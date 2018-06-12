@@ -6,6 +6,6 @@ def list(request):
     context={}
     return render(request, 'logbuch/list.html', context=context)
 
-def list(request, tagnummer):
+def tag(request, tagnummer):
     context={'tag':tagnummer}
     return render(request, 'logbuch/tag.html', context=context)
