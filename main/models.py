@@ -18,7 +18,7 @@ class Tour(models.Model):
 
     name = models.CharField(max_length=250)
     alias = models.CharField(max_length=250)  # url-safe
-    date_start = models.CharField('Tour Started', auto_now_add=True)
+    date_start = models.CharField('Tour Started', auto_now=True)
     date_end = models.CharField('Tour Finished', null=True)
     countries = models.ManyToMany(Country, blank=True)
     color = models.CharField(max_length=10)
@@ -47,7 +47,7 @@ class Tour(models.Model):
 
 
 class Daylog(models.Model):
-    date = models.DateTimeField('Date of the Day', auto_now_add=True)
+    date = models.DateTimeField('Date of the Day', auto_now=True)
     text = models.TextField(blank=True)
     tour = models.ForeignKey(Tour, blank=True)
     length = models.FloatField(blank=True)
@@ -61,6 +61,6 @@ class Daylog(models.Model):
 class User(models.Model):
     name = models.CharField(max_length=250, null=True)
     chatid = models.IntegerField()
-    date_active = models.DateTimeField('Last Activity', auto_now_add=True)
-    date_signed = models.DateTimeField('User Registred', auto_now_add=True)
+    date_active = models.DateTimeField('Last Activity', auto_now=True)
+    date_signed = models.DateTimeField('User Registred', auto_now=True)
 
