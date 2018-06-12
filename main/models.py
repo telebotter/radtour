@@ -47,16 +47,6 @@ class Tour(models.Model):
         return duration
 
 
-class Daylog(models.Model):
-    date = models.DateTimeField('Date of the Day', auto_now=True)
-    text = models.TextField(blank=True)
-    tour = models.ForeignKey(Tour, blank=True)
-    length = models.FloatField(blank=True)
-    uptime = models.FloatField(blank=True)
-    height = models.FloatField(blank=True)
-    def __str__(self):
-        return str(self.date)
-
 
 
 class User(models.Model):
