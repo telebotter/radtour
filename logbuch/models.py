@@ -6,7 +6,7 @@ from main.models import Tour
 class Logbucheintrag(models.Model):
     """Tagebucheintrag also ein Post zu einem Tag der Tour.
     """
-    erstellt = models.DateTimeField('Erstellt am', auto_now_add=True)
+    erstellt = models.DateTimeField('Erstellt am', auto_now=True)
     bearbeitet = models.DateTimeField('Bearbeitet am', auto_now=True)
     datum = models.DateTimeField('Datum', null=True, blank=True)
     tag = models.IntegerField('Tag Nummer', null=True, blank=True)
