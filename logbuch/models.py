@@ -3,7 +3,7 @@ from main.models import Tour
 # Create your models here.
 
 
-class Tagebucheintrag(models.Model):
+class Logbucheintrag(models.Model):
     """Tagebucheintrag also ein Post zu einem Tag der Tour.
     """
     erstellt = models.DateTimeField('Erstellt am', auto_now_add=True)
