@@ -20,11 +20,11 @@ class Tour(models.Model):
     alias = models.CharField(max_length=250)  # url-safe
     date_start = models.DateField('Tour Started', auto_now=True)
     date_end = models.CharField('Tour Finished', null=True)
-    countries = models.ManyToMany(Country, blank=True)
-    color = models.CharField(max_length=10)
-    length = models.FloatField(blank=True)
-    img = models.ImageField()
-    tourlog = models.TextField(blank=True)  # html or md content?
+    #countries = models.ManyToMany(Country, blank=True)
+    #color = models.CharField(max_length=10)
+    #length = models.FloatField(blank=True)
+    #img = models.ImageField()
+    #tourlog = models.TextField(blank=True)  # html or md content?
     
     
     def __str__(self):
@@ -40,7 +40,8 @@ class Tour(models.Model):
         :return duration: <datetime.timedelta>
         """
         try:
-            duration = date_start - date_end
+            #duration = date_start - date_end
+            duration = 5
         except:
             duration = dt.timedelta(days=0)
         return duration
