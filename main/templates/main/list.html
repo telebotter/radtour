@@ -8,7 +8,7 @@
 {% if touren %}
 <ul>
     {% for tour in touren %}
-    <li><a href="{{ tour.alias }}">{{ tour.name}}</a></li>
+    <li><a href="{% url main_tour tour.alias %}">{{ tour.name }}</a></li>
     {% endfor %}
 </ul>
 {% endif %}
