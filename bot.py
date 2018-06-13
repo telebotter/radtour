@@ -134,7 +134,7 @@ def ui_tour(bot, update):
             reply_markup=markup)
     except:  # create new
         bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
-    """
+
 
 # ------ Button definitions --------- #
 def button_callback(bot, update):
