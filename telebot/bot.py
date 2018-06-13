@@ -103,7 +103,7 @@ def ui_tour(bot, update):
 
     # create default keyboard (main menu)
     user, new = get_or_create_user(update)
-    msg = 'Ausgewählte Tour: {}'.format()
+    msg = 'Ausgewählte Tour: {}'.format('xy')
     keyboard = [[
         InlineKeyboardButton('Tour bearbeiten', callback_data='ui_edit_tour'),
         InlineKeyboardButton('Tour wechseln', callback_data='ui_change_tour'),
@@ -112,20 +112,20 @@ def ui_tour(bot, update):
         ], [
         InlineKeyboardButton('Sprache', callback_data='cfg_lan'),
         InlineKeyboardButton('Mensa-ID', callback_data='cfg_mensa'),
-        InlineKeyboardButton(Context.strings['config_btn_cancel'],
+        InlineKeyboardButton('Abbrechen',
                              callback_data='cfg_cancel')
     ]]
     markup = InlineKeyboardMarkup(keyboard)
     try:  # to get a messg_id
         msg_id = update.callback_query.message.message_id
         bot.edit_message_text(
-            text=cfg_txt,
-            chat_id=usr.chat_id,
+            text=msg,
+            chat_id=user.telegram_id,
             message_id=msg_id,
             parse_mode='Markdown',
             reply_markup=markup)
     except:  # create new
-        bot.send_message(chat_id=usr.chat_id, text=cfg_txt, parse_mode='Markdown', reply_markup=markup)
+        bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
 
 
 # ------ Button definitions --------- #
@@ -146,8 +146,10 @@ def button_callback():
 
 
 
-logbuch_handler = CommandHandler('logbuch', logbuch_ui)
-dispatcher.add_handler(logbuch_handler)
+#logbuch_handler = CommandHandler('logbuch', ui_tour_logbuch)
+#dispatcher.add_handler(logbuch_handler)
+ui_handler = CommandHandler('menu', ui)
+dispatcher.add_handler(ui_handler)
 
 dispatcher.add_handler(CallbackQueryHandler(button_callback))
 
