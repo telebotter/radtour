@@ -12,6 +12,8 @@ def list(request, touralias):
     context={'tour': tour, 'eintraege': eintraege}
     return render(request, 'logbuch/list.html', context=context)
 
-def tag(request, tagnummer):
-    context={'tag':tagnummer}
+def tag(request, touralias, tagnummer):
+    tour = get_object_or_404(Tour, alias=touralias)
+    eintrag = get_list_or_404(Logbucheintrag, tour=tour, tag=tagnummer)
+    context={'eintrag':eintrag}
     return render(request, 'logbuch/tag.html', context=context)
