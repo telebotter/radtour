@@ -19,7 +19,7 @@ def list(request):
     return render(request, 'main/list.html', context)
 
 
-def tour(requeust, touralias):
+def tour(request, touralias):
     """
     Kompaktansicht einer Tour. Gesamtstrecke, links zu den jeweiligen Views, 
     Zusammenfassung
