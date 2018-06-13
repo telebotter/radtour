@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import rende, get_object_or_404
 
 # Create your views here.
 
-def list(request):
-    context={}
+def list(request, touralias):
+    tour = get_object_or_404(Tour, alias=touralias)
+    context={'tour': tour}
     return render(request, 'logbuch/list.html', context=context)
 
 def tag(request, tagnummer):

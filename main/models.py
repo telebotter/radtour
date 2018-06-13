@@ -17,8 +17,8 @@ class Country(models.Model):
 class Tour(models.Model):
 
     name = models.CharField(max_length=250)
-    alias = models.CharField(max_length=250)  # url-safe
-    date_start = models.DateField('Tour Started', auto_now=True)
+    alias = models.CharField(max_length=250, unique=True)  # url-safe
+    date_start = models.DateField('Tour Started', null=True)
     #date_end = models.CharField('Tour Finished', null=True)
     #countries = models.ManyToMany(Country, blank=True)
     #color = models.CharField(max_length=10)
