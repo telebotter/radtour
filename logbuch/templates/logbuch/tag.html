@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-{{ eintrag }}
-tour: <a href="/{{ eintrag.tour.alias }}">{{ eintrag.tour.name }}</a>
-tag: {{ eintrag.tag }}
-text: {{ eintrag.text }}
+    tour: <a href="/{{ eintrag.tour.alias }}">{{ eintrag.tour.name }}</a> <br/>
+    datum: Tag {{ eintrag.tag }}
+        {% if eintrag.date %}({{ eintrag.datum|date:"SHORT_DATE_FORMAT" }}){% endif %}<br/>
+    text: {{ eintrag.text }} <br/>
 </body>
 </html>
