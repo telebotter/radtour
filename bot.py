@@ -90,6 +90,7 @@ def ui(bot, update):
     print(len(buttons))
     markup = InlineKeyboardMarkup(keyboard)
     print(type(markup))
+    """
     try:  # to get a messg_id and edit
         print('trying')
         msg_id = update.callback_query.message.message_id
@@ -105,6 +106,8 @@ def ui(bot, update):
         print(user.telegram_id)
         bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
         print('msg send')
+    """
+    bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
 
 
 def ui_tour(bot, update):
