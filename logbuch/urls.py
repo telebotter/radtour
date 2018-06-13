@@ -4,5 +4,5 @@ from logbuch import views
 urlpatterns = [
     path('<touralias>/', views.list, name='logbuch'),
     path('<touralias>/<int:tagnummer>', views.tag, name='logbucheintrag'),
-    # comment
+    # comment 2
 ]
