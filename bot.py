@@ -88,7 +88,6 @@ def ui(bot, update):
 
     keyboard.append([InlineKeyboardButton('Neu erstellen', callback_data='ui_new;')])
     markup = InlineKeyboardMarkup(keyboard)
-    """
     try:  # to get a messg_id and edit
         print('trying')
         msg_id = update.callback_query.message.message_id
@@ -104,8 +103,6 @@ def ui(bot, update):
         print(user.telegram_id)
         bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
         print('msg send')
-    """
-    bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
 
 
 def ui_tour(bot, update):
@@ -152,6 +149,8 @@ def ui_tour_logbuch(bot, update):
         except:
             print('error')
             logging.exception('Could not create Button for Eintragslist')
+    keyboard.append([InlineKeyboardButton('Neu erstellen', callback_data='ui_tour_logbuch_new;')])
+    markup = InlineKeyboardMarkup(keyboard)
     try:  # to get a messg_id
         msg_id = update.callback_query.message.message_id
         bot.edit_message_text(
