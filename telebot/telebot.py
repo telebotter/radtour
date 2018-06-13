@@ -28,9 +28,7 @@ updater = Updater(token='498664396:AAGcMqVSxVvnqxgC_a0twCnuIclORUEHYgI')
 dispatcher = updater.dispatcher
 
 # ----- Some statics ------ #
-msg_start = "*Hi*,\n \
-Benutze mich
-"
+msg_start = "*Hi*,\n Benutze mich"
 
 msg_help = "*Moin*,\n \
         Die wichtigsten Befehle sind: \n\
@@ -155,7 +153,6 @@ listall_handler = CommandHandler('list', list_touren)
 dispatcher.add_handler(listall_handler)
 
 """
-
 new_handler = CommandHandler('new', new, pass_args=True)
 dispatcher.add_handler(new_handler)
 
@@ -170,5 +167,6 @@ dispatcher.add_handler(show_handler)
 
 dispatcher.add_handler(CallbackQueryHandler(button))
 """
+
 # ---- Start Bot ---- #
 updater.start_polling()
