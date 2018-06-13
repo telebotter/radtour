@@ -112,17 +112,14 @@ def ui_tour(bot, update):
     # create default keyboard (main menu)
     user, new = get_or_create_user(update)
     msg = 'Ausgewählte Tour: {}'.format(user.tour.name)
-    bot.send_message(chat_id=user.telegram_id, text='msg')
-    return
-    """
     keyboard = [[
-        InlineKeyboardButton('Tour bearbeiten', callback_data='ui_edit_tour'),
-        InlineKeyboardButton('Tour wechseln', callback_data='ui_change_tour'),
-        InlineKeyboardButton('Logbuch', callback_data='cfg_time'),
+        InlineKeyboardButton('Tour bearbeiten', callback_data='ui_edit_tour')],[
+        InlineKeyboardButton('Tour wechseln', callback_data='ui_change_tour')],[
+        InlineKeyboardButton('Logbuch', callback_data='cfg_time')],[
         InlineKeyboardButton('Bilder', callback_data='cfg_food')
         ], [
-        InlineKeyboardButton('Sprache', callback_data='cfg_lan'),
-        InlineKeyboardButton('Mensa-ID', callback_data='cfg_mensa'),
+        InlineKeyboardButton('Sprache', callback_data='cfg_lan')],[
+        InlineKeyboardButton('Mensa-ID', callback_data='cfg_mensa')],[
         InlineKeyboardButton('Abbrechen',
                              callback_data='cfg_cancel')
     ]]

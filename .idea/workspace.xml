@@ -97,18 +97,16 @@
       <file leaf-file-name="bot.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="292">
-              <caret line="157" column="1" lean-forward="false" selection-start-line="157" selection-start-column="1" selection-end-line="157" selection-end-column="1" />
+            <state relative-caret-position="472">
+              <caret line="121" column="70" lean-forward="false" selection-start-line="121" selection-start-column="70" selection-end-line="121" selection-end-column="70" />
               <folding>
                 <element signature="e#44#53#0" expanded="true" />
-                <marker date="1528897942924" expanded="true" signature="3481:4716" ph="..." />
-                <marker date="1528897942924" expanded="true" signature="3718:4262" ph="..." />
-                <marker date="1528897942924" expanded="true" signature="3719:4018" ph="..." />
-                <marker date="1528897942924" expanded="true" signature="4022:4261" ph="..." />
-                <marker date="1528897942924" expanded="true" signature="4316:4585" ph="..." />
-                <marker date="1528897942924" expanded="true" signature="4891:4896" ph="..." />
-                <marker date="1528897942924" expanded="true" signature="5244:5673" ph="..." />
-                <marker date="1528897942924" expanded="true" signature="5815:6257" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+                <marker date="1528898089706" expanded="true" signature="3481:4648" ph="..." />
+                <marker date="1528898089706" expanded="true" signature="3641:3946" ph="..." />
+                <marker date="1528898089706" expanded="true" signature="3950:4193" ph="..." />
+                <marker date="1528898089706" expanded="true" signature="4823:4828" ph="..." />
+                <marker date="1528898089706" expanded="true" signature="5176:5605" ph="..." />
+                <marker date="1528898089706" expanded="true" signature="5747:6189" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
               </folding>
             </state>
           </provider>
@@ -154,6 +152,7 @@
       <find>config</find>
       <find>ben</find>
       <find>logbuch_u</find>
+      <find>usr</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -636,18 +635,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="292">
-          <caret line="157" column="1" lean-forward="false" selection-start-line="157" selection-start-column="1" selection-end-line="157" selection-end-column="1" />
+        <state relative-caret-position="472">
+          <caret line="121" column="70" lean-forward="false" selection-start-line="121" selection-start-column="70" selection-end-line="121" selection-end-column="70" />
           <folding>
             <element signature="e#44#53#0" expanded="true" />
-            <marker date="1528897942924" expanded="true" signature="3481:4716" ph="..." />
-            <marker date="1528897942924" expanded="true" signature="3718:4262" ph="..." />
-            <marker date="1528897942924" expanded="true" signature="3719:4018" ph="..." />
-            <marker date="1528897942924" expanded="true" signature="4022:4261" ph="..." />
-            <marker date="1528897942924" expanded="true" signature="4316:4585" ph="..." />
-            <marker date="1528897942924" expanded="true" signature="4891:4896" ph="..." />
-            <marker date="1528897942924" expanded="true" signature="5244:5673" ph="..." />
-            <marker date="1528897942924" expanded="true" signature="5815:6257" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1528898089706" expanded="true" signature="3481:4648" ph="..." />
+            <marker date="1528898089706" expanded="true" signature="3641:3946" ph="..." />
+            <marker date="1528898089706" expanded="true" signature="3950:4193" ph="..." />
+            <marker date="1528898089706" expanded="true" signature="4823:4828" ph="..." />
+            <marker date="1528898089706" expanded="true" signature="5176:5605" ph="..." />
+            <marker date="1528898089706" expanded="true" signature="5747:6189" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
           </folding>
         </state>
       </provider>
