@@ -75,29 +75,18 @@ def ui(bot, update):
 
     msg = 'Wähle eine der folgenden Touren:'
     touren = Tour.objects.all()
-    buttons = []
+    keyboard = []
     for tour in touren:
         try:
             btn = InlineKeyboardButton(tour.name,
                                        callback_data='ui_tour;{}'.format(tour.alias)),
-            buttons.append(*btn)
+            keyboard.append([*btn])
         except:
             print('error')
             logging.exception('Could not create Button for Tourlist')
 
-    buttons.append(InlineKeyboardButton('Neu erstellen', callback_data='ui_new;'))
-    keyboard = [list(buttons), list(buttons)]
-    keyboard2 = [[
-        InlineKeyboardButton('Tour bearbeiten', callback_data='ui_edit_tour'),
-        InlineKeyboardButton('Tour wechseln', callback_data='ui_change_tour'),
-        InlineKeyboardButton('Logbuch', callback_data='cfg_time'),
-        InlineKeyboardButton('Bilder', callback_data='cfg_food')
-        ], [
-        InlineKeyboardButton('Sprache', callback_data='cfg_lan'),
-        InlineKeyboardButton('Mensa-ID', callback_data='cfg_mensa'),
-        InlineKeyboardButton('Abbrechen',
-                             callback_data='cfg_cancel')
-    ]]
+    keyboard.append([InlineKeyboardButton('Neu erstellen', callback_data='ui_new;')])
+    #keyboard = [list(buttons), list(buttons)]
     print(len(buttons))
     print(keyboard)
     print('the other:')
