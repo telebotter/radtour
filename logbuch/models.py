@@ -21,4 +21,4 @@ class Logbucheintrag(models.Model):
 
 
     def __str__(self):
-        return str('Post ' + self.tour.name + str(self.tag))
+        return str('Post {}: {}'.format(self.tour.name, str(self.tag)))

@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9c5ca454-ec0d-46cb-a8ca-9e4bea661dbb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logbuch/models.py" afterPath="$PROJECT_DIR$/logbuch/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logbuch/templates/logbuch/list.html" afterPath="$PROJECT_DIR$/logbuch/templates/logbuch/list.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logbuch/views.py" afterPath="$PROJECT_DIR$/logbuch/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,11 +31,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logbuch/models.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
-              <caret line="23" column="60" lean-forward="true" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
+              <caret line="23" column="71" lean-forward="false" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -68,10 +70,10 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logbuch/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="150">
+              <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
               <folding>
-                <element signature="e#0#54#0" expanded="true" />
+                <element signature="e#0#71#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -101,11 +103,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="list.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/logbuch/templates/logbuch/list.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+            <state relative-caret-position="135">
+              <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -156,11 +158,11 @@
         <option value="$PROJECT_DIR$/main/urls.py" />
         <option value="$PROJECT_DIR$/logbuch/urls.py" />
         <option value="$PROJECT_DIR$/main/models.py" />
-        <option value="$PROJECT_DIR$/logbuch/templates/logbuch/list.html" />
-        <option value="$PROJECT_DIR$/logbuch/views.py" />
         <option value="$PROJECT_DIR$/main/admin.py" />
         <option value="$PROJECT_DIR$/logbuch/admin.py" />
         <option value="$PROJECT_DIR$/logbuch/models.py" />
+        <option value="$PROJECT_DIR$/logbuch/views.py" />
+        <option value="$PROJECT_DIR$/logbuch/templates/logbuch/list.html" />
       </list>
     </option>
   </component>
@@ -517,24 +519,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logbuch/templates/logbuch/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/logbuch/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logbuch/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -568,10 +552,28 @@
     <entry file="file://$PROJECT_DIR$/logbuch/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
-          <caret line="23" column="60" lean-forward="true" selection-start-line="23" selection-start-column="60" selection-end-line="23" selection-end-column="60" />
+          <caret line="23" column="71" lean-forward="false" selection-start-line="23" selection-start-column="71" selection-end-line="23" selection-end-column="71" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logbuch/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="39" lean-forward="false" selection-start-line="10" selection-start-column="39" selection-end-line="10" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#71#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logbuch/templates/logbuch/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>

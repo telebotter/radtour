@@ -6,5 +6,12 @@
 </head>
 <body>
 Liste {{ tour.name }}:
+{% if eintraege %}
+<ul>
+{% for eintrag in eintraege %}
+<li><a href="#">eintrag.tag</a></li>
+{% endfor %}
+</ul>
+{% endif %}
 </body>
 </html>
