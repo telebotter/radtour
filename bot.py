@@ -151,25 +151,11 @@ def button_callback(bot, update):
             ui_tour(bot, update)
         except:
             print('error in callback')
-    elif data[0] == 'cfg_cancel':
-        cancel_config(bot, update, usr)
-    elif data[0] == 'cfg_abo':
-        show_cfg_abo(bot, update, usr)
-    elif data[0] == 'cfg_time':
-        show_cfg_time(bot, update, usr)
-    elif data[0] == 'cfg_mensa':
-        show_cfg_mensa(bot, update, usr)
-    elif data[0] == 'cfg_food':
-        show_cfg_food(bot, update, usr)
-    elif data[0] == 'cfg_lan':
-        show_cfg_lan(bot, update, usr)
-    elif data[0] == 'cfg_delfood':
-        show_cfg_food_del(bot, update, usr)
     else:
         logging.warning('unbekannter button gedrückt')
 
 
-logging.warning(usr.chat_id, usr.first_name)
+#logging.warning(usr.chat_id, usr.first_name)
 
 
 # ----- Regist Handler ----- #
