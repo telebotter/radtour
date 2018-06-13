@@ -17,6 +17,7 @@ from telegram.ext import Updater
 from telegram.ext import CommandHandler
 from telegram.ext import InlineQueryHandler
 from telegram.ext import CallbackQueryHandler
+from telegram.ext import ConversationHandler, MessageHandler, Filters, RegexHandler
 from telegram import InlineQueryResultArticle, InputTextMessageContent
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 
@@ -31,6 +32,18 @@ dispatcher = updater.dispatcher
 msg_greets= "*Hi* {},\n Gut dass du fragst, "
 msg_start = "*Benutze mich!* \n Bin zwar noch in arbeit, aber trotzdem cool. \n Mit /menu kriegst du ne kleine 'grafische' Oberfläche. /befehle gibt dir die direkten Befehle, falls du weißt was du tust."
 
+
+
+# ------- states ----------- #
+EINTRAG_INIT = 0
+EINTRAG_TAG = 1
+EINTRAG_STRECKE = 2
+EINTRAG_HOEHE = 3
+EINTRAG_ZEIT = 4
+EINTRAG_ORT = 5
+EINTRAG_FOTO = 6
+EINTRAG_TEXT = 7
+EINTRAG_FERTIG = 8
 
 # --------- Helper Functions -------- #
 def get_or_create_user(update):
@@ -164,6 +177,28 @@ def ui_tour_logbuch(bot, update):
                          parse_mode='Markdown', reply_markup=markup)
 
 
+def ui_tour_logbuch_neu(bot, update):
+    user, new = get_or_create_user(update)
+    try:
+        msg = 'Neuer Eintrag für {}'.format(user.tour.name)
+    except:
+        bot.send_message(chat_id=user.telegram_id, text='WARNUNG: Tour hat keinen Namen')
+        msg = 'Neuer Eintrag für {}'.format(user.tour.alias)
+    msg += '\n Für den wievielten TAG der Tour soll der neue Eintrag sein? Bitte nur die Zahl angeben.'
+    msg += '\n Mit /skip kannst du die Frage überspringen und mit /cancle die Konversation abbrechen.'
+    bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown')
+    return EINTRAG_TAG
+
+
+def logbuch_tag(bot, update):
+    print('Antwort TAG: {}'.format(update.message.text))
+    user, new = get_or_create_user(update)
+    try:
+        print(update.message.text)
+        return EINTRAG_STRECKE
+    except:
+        return EINTRAG_TAG
+
 
 # ------ Button definitions --------- #
 def button_callback(bot, update):
@@ -184,6 +219,8 @@ def button_callback(bot, update):
     elif data[0] == 'ui_tour_logbuch':
         print('logbuch')
         ui_tour_logbuch(bot, update)
+    elif data[0] == 'ui_tour_logbuch_neu':
+        ui_tour_logbuch_neu(bot, update)
     else:
         logging.warning('unbekannter button gedrückt')
 
@@ -205,9 +242,19 @@ def button_callback(bot, update):
 
 #logbuch_handler = CommandHandler('logbuch', ui_tour_logbuch)
 #dispatcher.add_handler(logbuch_handler)
+
 ui_handler = CommandHandler('menu', ui)
 dispatcher.add_handler(ui_handler)
 
+neuer_eintrag_handler = CommandHandler('log', ui_tour_logbuch_neu)
+#dispatcher.add_handler(neuer_eintrag_handler)
+
+#https://github.com/python-telegram-bot/python-telegram-bot/blob/master/examples/conversationbot.py
+neuer_eintrag_conversation = ConversationHandler(entry_points=[ui_handler, neuer_eintrag_handler],
+                                                 states={EINTRAG_TAG: [MessageHandler(Filters.text, logbuch_tag)],
+                                                         EINTRAG_STRECKE: [MessageHandler(Filters.text, logbuch_tag)]},
+                                                 fallbacks=[CommandHandler('cancle', logbuch_tag)])  #TODO: replace regex handler to parse int
+dispatcher.add_handler(neuer_eintrag_conversation)
 dispatcher.add_handler(CallbackQueryHandler(button_callback))
 
 
