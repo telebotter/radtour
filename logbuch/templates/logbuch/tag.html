@@ -7,7 +7,7 @@
 <body>
     tour: <a href="/{{ eintrag.tour.alias }}">{{ eintrag.tour.name }}</a> <br/>
     datum: Tag {{ eintrag.tag }}
-        {% if eintrag.date %}({{ eintrag.datum|date:"SHORT_DATE_FORMAT" }}){% endif %}<br/>
+        {% if eintrag.datum %}({{ eintrag.datum|date:"SHORT_DATE_FORMAT" }}){% endif %}<br/>
     text: {{ eintrag.text }} <br/>
 </body>
 </html>
