@@ -28,11 +28,7 @@ updater = Updater(token='498664396:AAGcMqVSxVvnqxgC_a0twCnuIclORUEHYgI')
 dispatcher = updater.dispatcher
 
 # ----- Some statics ------ #
-msg_start = "*Hi*,\n Benutze mich"
-
-msg_help = "*Moin*,\n \
-        Die wichtigsten Befehle sind: \n\
-       "
+msg_start = "*Hi*,\n Benutze mich! \n Bin zwar noch in arbeit, aber trotzdem cool."
         
         
 
@@ -111,11 +107,6 @@ def parselocation(string):
 
 # ------ Create Handle Functions ----- #
 
-def help_text(bot, update):
-    """ This Function is called on /help.
-    """
-    bot.send_message(chat_id=update.message.chat_id, text=msg_start, parse_mode='Markdown')
-
 def start(bot, update):
     """ This Function is called on /start.
     Its telegrams style guide to serve some info and hints on this command
@@ -134,7 +125,7 @@ def show(bot, update, args):
     bot.send_message(chat_id=update.message.chat_id, text=msg)
 
 
-def list_touren(bot, update):
+def select_tour(bot, update):
     """ Sends all Events
     """
     touren = Tour.objects.all()  # TODO: filter this bunch
@@ -145,12 +136,33 @@ def list_touren(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown')
 
 
-# ----- Regist Handler ----- #
-start_handler = CommandHandler('start', start)
-dispatcher.add_handler(start_handler)
+def tour_erstellen(bot, update):
+    """eine neue Tour vom bot aus erstellen...
+    """
+    pass
 
-listall_handler = CommandHandler('list', list_touren)
-dispatcher.add_handler(listall_handler)
+def logbuch_ui(bot, update):
+    pass
+
+
+
+# ------ Button definitions --------- #
+def logbuch_button():
+
+
+# ----- Regist Handler ----- #
+#start_handler = CommandHandler('start', start)
+#dispatcher.add_handler(start_handler)
+
+#select_tour_handler = CommandHandler('tour', select_tour)
+#dispatcher.add_handler(select_tour_handler)
+
+#select_tag_handler = CommandHandler('tag', select_tag)
+#dispatcher.add_handler(select_tag_handler)
+
+logbuch_handler = CommandHandler('logbuch', logbuch_ui)
+dispatcher.add_handler(logbuch_handler)
+
 
 """
 new_handler = CommandHandler('new', new, pass_args=True)
