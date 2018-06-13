@@ -14,6 +14,6 @@ def list(request, touralias):
 
 def tag(request, touralias, tagnummer):
     tour = get_object_or_404(Tour, alias=touralias)
-    eintrag = get_list_or_404(Logbucheintrag, tour=tour, tag=tagnummer)
+    eintrag = get_object_or_404(Logbucheintrag, tour=tour, tag=tagnummer)
     context={'eintrag':eintrag}
     return render(request, 'logbuch/tag.html', context=context)
