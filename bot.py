@@ -8,6 +8,7 @@ django.setup()
 from django.urls import reverse
 
 from main.models import Tour
+from logbuch.models import Logbucheintrag
 from telebot.models import User
 
 import logging
@@ -113,13 +114,10 @@ def ui_tour(bot, update):
     user, new = get_or_create_user(update)
     msg = 'Ausgewählte Tour: {}'.format(user.tour.name)
     keyboard = [[
-        InlineKeyboardButton('Tour bearbeiten', callback_data='ui_edit_tour')],[
-        InlineKeyboardButton('Tour wechseln', callback_data='ui_change_tour')],[
-        InlineKeyboardButton('Logbuch', callback_data='cfg_time')],[
-        InlineKeyboardButton('Bilder', callback_data='cfg_food')
-        ], [
-        InlineKeyboardButton('Sprache', callback_data='cfg_lan')],[
-        InlineKeyboardButton('Mensa-ID', callback_data='cfg_mensa')],[
+        InlineKeyboardButton('Tour bearbeiten', callback_data='ui_tour_edit')],[
+        InlineKeyboardButton('Tour wechseln', callback_data='ui_tour_change')],[
+        InlineKeyboardButton('Logbuch', callback_data='ui_tour_logbuch')],[
+        InlineKeyboardButton('Bilder', callback_data='ui_tour_bilder')],[
         InlineKeyboardButton('Abbrechen',
                              callback_data='cfg_cancel')
     ]]
@@ -136,6 +134,38 @@ def ui_tour(bot, update):
         bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
 
 
+def ui_tour_logbuch(bot, update):
+    user, new = get_or_create_user(update)
+    try:
+        msg = 'Logbucheinträge für {}'.format(user.tour.name)
+    except:
+        print('no tour name')
+        msg = 'Logbucheinträge für {}'.format(user.tour.alias)
+
+    eintraege = Logbucheintrag.objects.get(tour=user.tour)
+    keyboard = []
+    for eintrag in eintraege:
+        try:
+            btn = InlineKeyboardButton('Tag {}'.format(eintrag.tag),
+                                       callback_data='ui_tour;{}'.format(tour.alias)),
+            keyboard.append([*btn])
+        except:
+            print('error')
+            logging.exception('Could not create Button for Eintragslist')
+    try:  # to get a messg_id
+        msg_id = update.callback_query.message.message_id
+        bot.edit_message_text(
+            text=msg,
+            chat_id=user.telegram_id,
+            message_id=msg_id,
+            parse_mode='Markdown',
+            reply_markup=markup)
+    except:  # create new
+        bot.send_message(chat_id=user.telegram_id, text=msg,
+                         parse_mode='Markdown', reply_markup=markup)
+
+
+
 # ------ Button definitions --------- #
 def button_callback(bot, update):
     data = update.callback_query.data.split(';')
@@ -148,6 +178,13 @@ def button_callback(bot, update):
             ui_tour(bot, update)
         except:
             print('error in callback')
+    elif data[0] == 'ui_tour_edit':
+        pass
+    elif data[0] == 'ui_tour_change':
+        ui(bot, update)
+    elif data[0] == 'ui_tour_logbuch':
+        print('logbuch')
+        ui_tour_logbuch(bot, update)
     else:
         logging.warning('unbekannter button gedrückt')
 
