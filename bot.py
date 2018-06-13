@@ -86,8 +86,8 @@ def ui(bot, update):
             logging.exception('Could not create Button for Tourlist')
 
     buttons.append(InlineKeyboardButton('Neu erstellen', callback_data='ui_new;'))
-    keyboard = [buttons, buttons]
-    keyboard = [[
+    keyboard = [list(buttons), list(buttons)]
+    keyboard2 = [[
         InlineKeyboardButton('Tour bearbeiten', callback_data='ui_edit_tour'),
         InlineKeyboardButton('Tour wechseln', callback_data='ui_change_tour'),
         InlineKeyboardButton('Logbuch', callback_data='cfg_time'),
@@ -99,6 +99,9 @@ def ui(bot, update):
                              callback_data='cfg_cancel')
     ]]
     print(len(buttons))
+    print(keyboard)
+    print('the other:')
+    print(keyboard2)
     markup = InlineKeyboardMarkup(keyboard)
     print(type(markup))
     """
