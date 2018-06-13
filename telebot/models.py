@@ -8,5 +8,5 @@ class User(models.Model):
     tour = models.ForeignKey(Tour, blank=True, on_delete=models.SET_NULL)
     tag = models.IntegerField(null=True, blank=True)
     created = models.DateTimeField(auto_created=True, null=True)
-    admin = models.BooleanField(default=False, null=True)
+    admin = models.BooleanField(default=False)
 
