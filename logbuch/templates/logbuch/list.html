@@ -5,13 +5,15 @@
     <title>Title</title>
 </head>
 <body>
-Liste {{ tour.name }}:
+Logbuch {{ tour.name }}:
 {% if eintraege %}
-<ul>
-{% for eintrag in eintraege %}
-<li><a href="{{ eintrag.tag }}">Tag {{ eintrag.tag }}</a></li>
-{% endfor %}
-</ul>
+    <ul>
+    {% for eintrag in eintraege %}
+    <li><a href="{{ eintrag.tag }}">Tag {{ eintrag.tag }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    Für diese Tour wurde noch nichts eingetragen.
 {% endif %}
 </body>
 </html>

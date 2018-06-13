@@ -19,6 +19,22 @@ class Logbucheintrag(models.Model):
     gps_lon = models.FloatField(null=True, blank=True)
     gps_lat = models.FloatField(null=True, blank=True)
 
+    @property
+    def naechster_eintrag(self):
+        try:
+            next = self.tag +1
+        except:
+            next = 0
+        return next
+
+    @property
+    def letzter_eintrag(self):
+        try:
+            prev = self.tag -1
+        except:
+            prev = 0
+        return prev
+
 
     def __str__(self):
         return str('Post {}: {}'.format(self.tour.name, str(self.tag)))
