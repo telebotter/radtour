@@ -3,9 +3,9 @@
 
 import os
 import django
-os.environ["DJANGO_SETTINGS_MODULE"] = 'kicken.settings'
+os.environ["DJANGO_SETTINGS_MODULE"] = 'tour.settings'
 django.setup()
-from eventer.models import Player, Event, Location
+from main.models import Tour
 from django.urls import reverse
 
 import logging
@@ -24,38 +24,22 @@ https://github.com/python-telegram-bot/python-telegram-bot/wiki/Extensions-%E2%8
 
 # ----- SETUP ------ #
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO)
-updater = Updater(token='446028208:AAGoCpsLnDaZhIA8MOEPvaPOpnRfTpjCevw')
+updater = Updater(token='498664396:AAGcMqVSxVvnqxgC_a0twCnuIclORUEHYgI')
 dispatcher = updater.dispatcher
 
 # ----- Some statics ------ #
 msg_start = "*Hi*,\n \
-Benutze mich um blitzgeschwind ein Event zu erstellen zu dem Abgestimmt werden kann.\n\
-Die Events sind neben Telegram auch [online erreichbar](https://kicken.sarbot.de/eventer).\n\n\
-*Befehle:*\n \
-/start - _Zeigt diese Nachricht an_\n \
-/new - _Erstellt ein Event. Bsp: /new Sonntag 18:00_\n \
-/list - _Postet eine Liste von allen Events_\n \
-/link - _Postet den Link zur Website_\n \
-/map - _Standort vom Aktuellen Event oder Name von der Location dahinter. zB /map vfl_\n \
-\n \
-*In Arbeit:* \n \
-/clean _Löscht alle Posts des Bots_\n \
-/cancel - _Ein Event absagen_\n \
-/post - _Postet das naechste Event in alle Kanaele (Whatsapp/Facebook/Email)_\n \
-@kickenbot - _Inline Steuerung mit allen Befehlen, Chat uebergreifend_\
+Benutze mich
 "
 
 msg_help = "*Moin*,\n \
         Die wichtigsten Befehle sind: \n\
-        /new - gefolgt vom Titel erstellt ein event zB /new Sonntag 12:00 Vfl\n\
-        /post - schickt das event mit der id (oder das letzt erstellte) an alle abonenten, diese funktion ist noch nicht fertig\n\
-        /start - liste aller Befehle\n\
-        \n\ Die Befehle können auch über den kleinen Button mit dem slash drauf neben dem textfenster eingegeben werden (vlt. muss man dazu den bot auf der freundesliste haben)"
+       "
         
         
 
 # ------ Helper Funktions -------- #
-
+"""
 def event2msg(event):
     player_yes = event.player_set.all().filter(player_status=3)
     player_no = event.player_set.all().filter(player_status=1)
@@ -125,7 +109,7 @@ def parselocation(string):
             break
     return lat, lon
 
-
+"""
 
 # ------ Create Handle Functions ----- #
 
@@ -145,101 +129,32 @@ def show(bot, update, args):
     """ This Function returns the newest event as signable playerlist with details.
     """
     try:
-        event = Event.objects.get(args[0])
+        tour = Tour.objects.get(alias=args[0])
+        msg = tour.name
     except:
-        event = Event.objects.all().order_by('event-date')[-1]  
-    bot.send_message(chat_id=update.message.chat_id, text=event.event_name)
+        msg = 'not found'
+    bot.send_message(chat_id=update.message.chat_id, text=msg)
 
 
-def listall(bot, update):
+def list_touren(bot, update):
     """ Sends all Events
     """
-    event_list = Event.objects.all()  # TODO: filter this bunch
-    msg = "*Termine:*"
-    for event in event_list:
+    touren = Tour.objects.all()  # TODO: filter this bunch
+    msg = 'Touren: \n'
+    for tour in touren:
         msg += "\n  "
-        #msg += "[" + event.event_name + "](" + str(reverse('eventer:detail', args=[event.id])) + ")"
-        msg += "[" + event.event_name +"](https://kicken.sarbot.de/eventer/detail/" + str(event.id) +")"
+        msg += tour.name
     bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown')
 
-
-def link(bot, update):
-    """ Sends Link to Website
-    """
-    url = "https://kicken.sarbot.de/eventer"
-    msg = "[Webseite](" + url + ")"
-    bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown')
-
-
-def new(bot, update, args):
-    """ Creates a new Event. 
-    If possible direct from args, else asking for name
-    """
-    msg_noname="Kannst direkt den Namen dahinter tun: /new Name des Events"
-    if len(args)>0:
-        name = ' '.join(args)
-        event = Event(event_name=name)
-        event.save()
-        event_id = event.id
-        event_db = Event.objects.get(pk=event_id)
-        msg, markup = event2msg(event_db)
-        #update.message.reply_text(text=msg, parse_mode='Markdown', reply_markup=markup)
-        bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown', reply_markup=markup)
-    else:
-        bot.send_message(chat_id=update.message.chat_id, text=msg_noname)
-
-
-
-
-def locate(bot, update, args):
-    """ Post Location from current Event or from args
-    """
-    found = False
-    lat = lon = 0
-    if len(args)>0:
-        # post specific location
-        words = args
-        print(words)
-    else:
-        # current event 
-        events = Event.objects.order_by('-event_date')
-        event = events[0]
-        event_name = event.event_name
-        words = event_name.split(' ')
-        print(words)
-    for word in words:
-        lat, lon = parselocation(word)
-        if lat != 0 or lon != 0:
-            bot.send_location(chat_id=update.message.chat_id, latitude=lat, longitude=lon)
-            found = True
-            break
-    if not found:
-         bot.send_message(chat_id=update.message.chat_id, text="Kein Ort gefunden.")
-
-
-
-
-def show_event(bot, update, args):
-    event = Event.objects.all()[0]
-    if len(args)>0:
-        try:
-            event = Event.objects.get(pk=args[0])
-        except Exection as e:
-            bot.send_message(chat_id=update.message.chat_id, text='ID: nicht gefunden')
-    msg, markup = event2msg(event)
-    bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown', reply_markup=markup)
-    
-    
 
 # ----- Regist Handler ----- #
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 
-listall_handler = CommandHandler('list', listall)
+listall_handler = CommandHandler('list', list_touren)
 dispatcher.add_handler(listall_handler)
 
-link_handler = CommandHandler('link', link)
-dispatcher.add_handler(link_handler)
+"""
 
 new_handler = CommandHandler('new', new, pass_args=True)
 dispatcher.add_handler(new_handler)
@@ -254,6 +169,6 @@ show_handler = CommandHandler('show', show_event, pass_args=True)
 dispatcher.add_handler(show_handler)
 
 dispatcher.add_handler(CallbackQueryHandler(button))
-
+"""
 # ---- Start Bot ---- #
 updater.start_polling()
