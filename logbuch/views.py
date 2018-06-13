@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 from main.models import Tour
+from logbuch.models import Logbucheintrag
 
 
 # Create your views here.
