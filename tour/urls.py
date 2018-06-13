@@ -19,7 +19,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    path('/', include('main.urls')),
+    path('', include('main.urls')),
     #path('karte/', include('karte.urls')),
     path('logbuch/', include('logbuch.urls')),
     #path('bilder/', include('bilder.urls')),
