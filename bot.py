@@ -87,7 +87,7 @@ def ui(bot, update):
 
     buttons.append(InlineKeyboardButton('Neu erstellen', callback_data='ui_new;'))
     keyboard = [buttons, buttons]
-    print(length(buttons))
+    print(len(buttons))
     markup = InlineKeyboardMarkup(keyboard)
     print(type(markup))
     try:  # to get a messg_id and edit
