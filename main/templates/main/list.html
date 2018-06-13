@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% if touren %}
+<ul>
+    {% for tour in touren %}
+    <li><a href="{{ tour.alias }}">{{ tour.name}}</a></li>
+    {% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>

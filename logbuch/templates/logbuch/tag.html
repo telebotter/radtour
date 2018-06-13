@@ -8,7 +8,7 @@
     tour: <a href="/{{ eintrag.tour.alias }}">{{ eintrag.tour.name }}</a> <br/>
     datum: Tag {{ eintrag.tag }}
         {% if eintrag.datum %}({{ eintrag.datum|date:"SHORT_DATE_FORMAT" }}){% endif %}<br/>
-    text: {{ eintrag.text }} <br/>
+    text: <p>{{ eintrag.text }}</p> <br/>
     <a href="{% url 'logbuch_eintrag' eintrag.tour.alias eintrag.letzter_eintrag %}">Vorheriger Eintrag</a> <br/>
     <a href="{% url 'logbuch_eintrag' eintrag.tour.alias eintrag.naechster_eintrag %}">Nächster Eintrag</a>
 </body>

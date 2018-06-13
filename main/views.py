@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Tour
 from django.http import HttpResponse
 
@@ -13,13 +13,20 @@ def index(request):
     return render(request, 'main/home.html', context)
 
 
-def tour(requeust, tour):
+def list(request):
+    touren = get_list_or_404(Tour)
+    context = {'touren': touren}
+    return render(request, 'main/list.html', context)
+
+
+def tour(requeust, touralias):
     """
     Kompaktansicht einer Tour. Gesamtstrecke, links zu den jeweiligen Views, 
     Zusammenfassung
     """
-    context = {}
-    return render(request, 'main/tour.html', context)
+    tour = get_object_or_404(Tour, alias=touralias)
+    context = {'tour': tour}
+    return render(request, 'main/tour.html', context=context)
 
 
 def map(request, tour):
