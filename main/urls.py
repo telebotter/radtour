@@ -8,7 +8,7 @@ from main import views
 
 
 urlpatterns = [
-    path('/', views.index, name='index'),
+    path('', views.index, name='index'),
     path('touren/', views.list, name='main_list'),
     path('tour/<touralias>', views.tour, name='main_tour'),
     #path('karte/', include('karte.urls')),
