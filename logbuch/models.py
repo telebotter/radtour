@@ -21,4 +21,4 @@ class Logbucheintrag(models.Model):
 
 
     def __str__(self):
-        return str(self.date)
+        return str('Post ' + self.tour.name + str(self.tag))
