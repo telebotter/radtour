@@ -88,6 +88,7 @@ def ui(bot, update):
     keyboard = [buttons]
     markup = InlineKeyboardMarkup(keyboard)
     try:  # to get a messg_id and edit
+        print('trying')
         msg_id = update.callback_query.message.message_id
         bot.edit_message_text(
             text=msg,
@@ -95,7 +96,9 @@ def ui(bot, update):
             message_id=msg_id,
             parse_mode='Markdown',
             reply_markup=markup)
+        print('done')
     except:  # create new
+        print('exception')
         bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
 
 
