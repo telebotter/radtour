@@ -142,7 +142,7 @@ def ui_tour_logbuch(bot, update):
         print('no tour name')
         msg = 'Logbucheinträge für {}'.format(user.tour.alias)
 
-    eintraege = Logbucheintrag.objects.get(tour=user.tour)
+    eintraege = Logbucheintrag.objects.filter(tour=user.tour)
     keyboard = []
     for eintrag in eintraege:
         try:
