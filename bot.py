@@ -144,7 +144,7 @@ def ui_tour_logbuch(bot, update):
     for eintrag in eintraege:
         try:
             btn = InlineKeyboardButton('Tag {}'.format(eintrag.tag),
-                                       callback_data='ui_tour;{}'.format(tour.alias)),
+                                       callback_data='ui_tour_logbucheintrag;{}'.format(eintrag.tag)),
             keyboard.append([*btn])
         except:
             print('error')
