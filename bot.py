@@ -85,8 +85,9 @@ def ui(bot, update):
             logging.exception('Could not create Button for Tourlist')
 
     buttons.append(InlineKeyboardButton('Neu erstellen', callback_data='ui_new;'))
-    keyboard = [buttons]
+    keyboard = [buttons, buttons]
     markup = InlineKeyboardMarkup(keyboard)
+    print(type(markup))
     try:  # to get a messg_id and edit
         print('trying')
         msg_id = update.callback_query.message.message_id
