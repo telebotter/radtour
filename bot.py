@@ -80,7 +80,7 @@ def ui(bot, update):
         try:
             btn = InlineKeyboardButton(tour.name,
                                        callback_data='ui_tour;{}'.format(tour.alias)),
-            buttons.append(btn*)
+            buttons.append(*btn)
         except:
             print('error')
             logging.exception('Could not create Button for Tourlist')
