@@ -99,7 +99,9 @@ def ui(bot, update):
         print('done')
     except:  # create new
         print('exception')
+        print(user.telegram_id)
         bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
+        print('msg send')
 
 
 def ui_tour(bot, update):
