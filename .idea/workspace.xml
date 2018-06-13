@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c5ca454-ec0d-46cb-a8ca-9e4bea661dbb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logbuch/templates/logbuch/list.html" afterPath="$PROJECT_DIR$/logbuch/templates/logbuch/list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logbuch/urls.py" afterPath="$PROJECT_DIR$/logbuch/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/logbuch/views.py" afterPath="$PROJECT_DIR$/logbuch/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/models.py" afterPath="$PROJECT_DIR$/main/models.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/admin.py" afterPath="$PROJECT_DIR$/main/admin.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,18 +35,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
               <caret line="8" column="59" lean-forward="false" selection-start-line="8" selection-start-column="59" selection-end-line="8" selection-end-column="59" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bilder/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="8" column="43" lean-forward="false" selection-start-line="8" selection-start-column="43" selection-end-line="8" selection-end-column="43" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -95,14 +81,26 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logbuch/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+            <state relative-caret-position="60">
+              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#54#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/admin.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="list.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/logbuch/templates/logbuch/list.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="105">
@@ -158,8 +156,9 @@
         <option value="$PROJECT_DIR$/main/urls.py" />
         <option value="$PROJECT_DIR$/logbuch/urls.py" />
         <option value="$PROJECT_DIR$/main/models.py" />
-        <option value="$PROJECT_DIR$/logbuch/views.py" />
         <option value="$PROJECT_DIR$/logbuch/templates/logbuch/list.html" />
+        <option value="$PROJECT_DIR$/logbuch/views.py" />
+        <option value="$PROJECT_DIR$/main/admin.py" />
       </list>
     </option>
   </component>
@@ -536,18 +535,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/logbuch/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="26" lean-forward="true" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/logbuch/templates/logbuch/list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="21" lean-forward="false" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/logbuch/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#54#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/admin.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
           <folding />
         </state>
       </provider>

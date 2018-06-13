@@ -1,4 +1,7 @@
-from django.shortcuts import rende, get_object_or_404
+from django.shortcuts import render, get_object_or_404
+
+from main.models import Tour
+
 
 # Create your views here.
 
