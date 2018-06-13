@@ -111,7 +111,10 @@ def ui_tour(bot, update):
 
     # create default keyboard (main menu)
     user, new = get_or_create_user(update)
-    msg = 'Ausgewählte Tour: {}'.format('xy')
+    msg = 'Ausgewählte Tour: {}'.format(user.tour.name)
+    bot.send_message(chat_id=user.telegram_id, text='msg')
+    return
+    """
     keyboard = [[
         InlineKeyboardButton('Tour bearbeiten', callback_data='ui_edit_tour'),
         InlineKeyboardButton('Tour wechseln', callback_data='ui_change_tour'),
@@ -134,12 +137,39 @@ def ui_tour(bot, update):
             reply_markup=markup)
     except:  # create new
         bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown', reply_markup=markup)
-
+    """
 
 # ------ Button definitions --------- #
-def button_callback():
-    pass
+def button_callback(bot, update):
+    data = update.callback_query.data.split(';')
+    user, new = get_or_create_user(update)
+    if data[0] == 'ui_tour':
+        try:
+            print(data[1])
+            user.tour = Tour.objects.get(alias=data[1])
+            user.save()
+            ui_tour(bot, update)
+        except:
+            print('error in callback')
+    elif data[0] == 'cfg_cancel':
+        cancel_config(bot, update, usr)
+    elif data[0] == 'cfg_abo':
+        show_cfg_abo(bot, update, usr)
+    elif data[0] == 'cfg_time':
+        show_cfg_time(bot, update, usr)
+    elif data[0] == 'cfg_mensa':
+        show_cfg_mensa(bot, update, usr)
+    elif data[0] == 'cfg_food':
+        show_cfg_food(bot, update, usr)
+    elif data[0] == 'cfg_lan':
+        show_cfg_lan(bot, update, usr)
+    elif data[0] == 'cfg_delfood':
+        show_cfg_food_del(bot, update, usr)
+    else:
+        logging.warning('unbekannter button gedrückt')
 
+
+logging.warning(usr.chat_id, usr.first_name)
 
 
 # ----- Regist Handler ----- #
