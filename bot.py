@@ -82,10 +82,12 @@ def ui(bot, update):
                                        callback_data='ui_tour;{}'.format(tour.alias)),
             buttons.append(btn)
         except:
+            print('error')
             logging.exception('Could not create Button for Tourlist')
 
     buttons.append(InlineKeyboardButton('Neu erstellen', callback_data='ui_new;'))
     keyboard = [buttons, buttons]
+    print(buttons.length())
     markup = InlineKeyboardMarkup(keyboard)
     print(type(markup))
     try:  # to get a messg_id and edit
