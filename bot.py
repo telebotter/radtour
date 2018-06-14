@@ -162,7 +162,7 @@ def ui_tour_logbuch(bot, update):
         except:
             print('error')
             logging.exception('Could not create Button for Eintragslist')
-    keyboard.append([InlineKeyboardButton('Neu erstellen', callback_data='ui_tour_logbuch_new;')])
+    keyboard.append([InlineKeyboardButton('Neu erstellen', callback_data='ui_tour_logbuch_neu;')])
     markup = InlineKeyboardMarkup(keyboard)
     try:  # to get a messg_id
         msg_id = update.callback_query.message.message_id
