@@ -184,8 +184,8 @@ def ui_tour_logbuch_neu(bot, update):
     except:
         bot.send_message(chat_id=user.telegram_id, text='WARNUNG: Tour hat keinen Namen')
         msg = 'Neuer Eintrag für {}'.format(user.tour.alias)
-    msg += '\n Für den wievielten TAG der Tour soll der neue Eintrag sein? Bitte nur die Zahl angeben.'
     msg += '\n Mit /skip kannst du die Frage überspringen und mit /cancle die Konversation abbrechen.'
+    msg += '\n Für den wievielten TAG der Tour soll der neue Eintrag sein? \nBitte nur die Zahl angeben.'
     bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown')
     return EINTRAG_TAG
 
@@ -194,14 +194,33 @@ def logbuch_tag(bot, update):
     user, new = get_or_create_user(update)
     try:
         print('Antwort TAG: {}'.format(update.message.text))  # TODO: logging
-        user.tag = int(update.message.text)
+        user.tag = int(update.message.text)  # um fuer weitere abfragen zu merken
         user.save()
+        # neuen eintrag erstellen
+        # TODO: ausschließen das eintrag nicht existiert, ansonsten auf edit umleiten
+        eintrag = Logbucheintrag(tag=user.tag)
+        #todo tour setzen:
+        eintrag.tour = user.tour #testen
+        eintrag.save()
         bot.send_message(chat_id=user.telegram_id, text='Hab nen Eintrag für Tag {} erstellt. \n Jetzt die Strecke in KM'.format(update.message.text))
         return EINTRAG_STRECKE
     except:
         bot.send_message(chat_id=user.telegram_id, text='Da ging was schief, versuchs nochmal...')
         return EINTRAG_TAG
 
+
+def logbuch_strecke(bot, update):
+    user, new = get_or_create_user(update)
+    try:
+        strecke = update.message.text
+        eintrag = Logbucheintrag.objects.get(tag=user.tag, tour=user.tour)
+        eintrag.strecke = strecke
+        eintrag.save()
+        print('Antwort STRECKE: {}'.format(strecke))
+        return EINTRAG_HOEHE
+    except:
+        print('eintrag nicht gefunden oder konnte strecke nicht eintragen..')
+        return EINTRAG_STRECKE
 
 # ------ Button definitions --------- #
 def button_callback(bot, update):
