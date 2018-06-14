@@ -222,7 +222,9 @@ def button_callback(bot, update):
         print('logbuch')
         ui_tour_logbuch(bot, update)
     elif data[0] == 'ui_tour_logbuch_neu':
+        bot.send_message(chat_id=user.telegram_id, text='Wenn das Eintragen übers Menu nicht startet, benutze den /log Befehl um die Eingabe zu starten.')
         ui_tour_logbuch_neu(bot, update)
+        return EINTRAG_TAG
     else:
         logging.warning('unbekannter button gedrückt')
 
@@ -252,12 +254,13 @@ neuer_eintrag_handler = CommandHandler('log', ui_tour_logbuch_neu)
 #dispatcher.add_handler(neuer_eintrag_handler)
 
 #https://github.com/python-telegram-bot/python-telegram-bot/blob/master/examples/conversationbot.py
-neuer_eintrag_conversation = ConversationHandler(entry_points=[ui_handler, neuer_eintrag_handler],
+callback_handler = CallbackQueryHandler(button_callback)
+neuer_eintrag_conversation = ConversationHandler(entry_points=[ui_handler, neuer_eintrag_handler, callback_handler],
                                                  states={EINTRAG_TAG: [MessageHandler(Filters.text, logbuch_tag)],
                                                          EINTRAG_STRECKE: [MessageHandler(Filters.text, logbuch_tag)]},
                                                  fallbacks=[CommandHandler('cancle', logbuch_tag)])  #TODO: replace regex handler to parse int
 dispatcher.add_handler(neuer_eintrag_conversation)
-dispatcher.add_handler(CallbackQueryHandler(button_callback))
+dispatcher.add_handler(callback_handler)
 
 
 
