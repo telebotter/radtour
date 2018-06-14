@@ -195,6 +195,7 @@ def logbuch_tag(bot, update):
     try:
         print('Antwort TAG: {}'.format(update.message.text))  # TODO: logging
         user.tag = int(update.message.text)
+        user.save()
         bot.send_message(chat_id=user.telegram_id, text='Hab nen Eintrag für Tag {} erstellt. \n Jetzt die Strecke in KM'.format(update.message.text))
         return EINTRAG_STRECKE
     except:
