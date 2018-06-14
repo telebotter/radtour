@@ -191,12 +191,14 @@ def ui_tour_logbuch_neu(bot, update):
 
 
 def logbuch_tag(bot, update):
-    print('Antwort TAG: {}'.format(update.message.text))
     user, new = get_or_create_user(update)
     try:
-        print(update.message.text)
+        print('Antwort TAG: {}'.format(update.message.text))  # TODO: logging
+        user.tag = int(update.message.text)
+        bot.send_message(chat_id=user.telegram_id, text='Hab nen Eintrag für Tag {} erstellt. \n Jetzt die Strecke in KM'.format(update.message.text))
         return EINTRAG_STRECKE
     except:
+        bot.send_message(chat_id=user.telegram_id, text='Da ging was schief, versuchs nochmal...')
         return EINTRAG_TAG
 
 
