@@ -204,23 +204,85 @@ def logbuch_tag(bot, update):
         eintrag.save()
         bot.send_message(chat_id=user.telegram_id, text='Hab nen Eintrag für Tag {} erstellt. \n Jetzt die Strecke in KM'.format(update.message.text))
         return EINTRAG_STRECKE
-    except:
-        bot.send_message(chat_id=user.telegram_id, text='Da ging was schief, versuchs nochmal...')
+    except Exception as e:
+        bot.send_message(chat_id=user.telegram_id, text='Da ging was schief, versuchs nochmal...\n{}'.format(e))
         return EINTRAG_TAG
 
 
 def logbuch_strecke(bot, update):
     user, new = get_or_create_user(update)
     try:
-        strecke = update.message.text
+        strecke = float(update.message.text)
         eintrag = Logbucheintrag.objects.get(tag=user.tag, tour=user.tour)
         eintrag.strecke = strecke
         eintrag.save()
         print('Antwort STRECKE: {}'.format(strecke))
+        bot.send_message(chat_id=user.telegram_id, text='Danke, jetzt die Hoehenmeter...')
         return EINTRAG_HOEHE
-    except:
+    except Exception as e:
         print('eintrag nicht gefunden oder konnte strecke nicht eintragen..')
+        bot.send_message(chat_id=user.telegram_id, text='Ups, das hat nicht geklappt:\n{}'.format(e))
         return EINTRAG_STRECKE
+
+
+def logbuch_hoehe(bot, update):
+    user, new = get_or_create_user(update)
+    try:
+        hoehe = float(update.message.text)
+        eintrag = Logbucheintrag.objects.get(tag=user.tag, tour=user.tour)
+        eintrag.hoehe = hoehe
+        eintrag.save()
+        bot.send_message(chat_id=user.telegram_id, text='Ist notiert, jetzt die Zeit in Stunden.')
+        return EINTRAG_ZEIT
+    except Exception as e:
+        bot.send_message(chat_id=user.telegram_id, text='Ups, da hat was nicht geklappt...\n{}'.format(e))
+        return EINTRAG_HOEHE
+
+
+def logbuch_zeit(bot, update):
+    user, new = get_or_create_user(update)
+    try:
+        zeit = float(update.message.text)
+        eintrag = Logbucheintrag.objects.get(tag=user.tag, tour=user.tour)
+        eintrag.uptime = zeit
+        eintrag.save()
+        bot.send_message(chat_id=user.telegram_id, text='Ok Super.. weiter gehts mit dem Schlafplatz, schick mir den Standort.')
+    except Exception as e:
+        bot.send_message(chat_id=user.telegram_id, text='Nope.. Fehler:\n{}'.format(e))
+
+
+def logbuch_ort(bot,update):
+    user, new = get_or_create_user(update)
+    try:
+        ort = update.message.location
+        eintrag = Logbucheintrag.objects.get(tag=user.tag, tour=user.tour)
+        eintrag.lon = ort.longitude
+        eintrag.lat = ort.latitude
+        eintrag.save()
+        bot.send_message(chat_id=user.telegram_id, text='Glaub ich habs gespeichert.. Noch nen Foto vom Schlafplatz? (geht noch nicht)')
+        return EINTRAG_FOTO
+    except Exception as e:
+        bot.send_message(chat_id=user.telegram_id, text='Nope.. war das nen Standort? Machen wir später, versuchs mit nem Foto... (noch in arbeit) \n{}'.format(e))
+        return EINTRAG_FOTO
+
+def logbuch_foto(bot,update):
+    user, new = get_or_create_user(update)
+    bot.send_message(chat_id=user.telegram_id, text='sorry das speichern des Fotos funktioniert noch nicht :(, aber text sollte gehen. Schreib mir was heute passiert ist.')
+    return EINTRAG_TEXT
+
+def logbuch_text(bot,update):
+    user, new = get_or_create_user(update)
+    text = update.message.text
+    eintrag = Logbucheintrag.objects.get(tag=user.tag, tour=user.tour)
+    eintrag.text = text
+    eintrag.save()
+    bot.send_message(chat_id=user.telegram_id, text='Ok sollte jetzt alles eingetragen sein, schaue doch nochmal nach um sicher zu gehen..')
+    return EINTRAG_END
+
+
+
+
+
 
 # ------ Button definitions --------- #
 def button_callback(bot, update):
