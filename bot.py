@@ -344,9 +344,9 @@ neuer_eintrag_conversation = ConversationHandler(entry_points=[ui_handler, neuer
                                                          EINTRAG_STRECKE: [MessageHandler(Filters.text, logbuch_strecke)],
                                                          EINTRAG_HOEHE: [MessageHandler(Filters.text, logbuch_hoehe)],
                                                          EINTRAG_ZEIT: [MessageHandler(Filters.text, logbuch_zeit)],
-                                                         EINTRAG_ORT: [MessageHandler(Filters.location, logbuch_ort)],
-                                                         EINTRAG_FOTO: [MessageHandler(Filters.location, logbuch_foto)],
-                                                         EINTRAG_TEXT: [MessageHandler(Filters.location, logbuch_text)],
+                                                         EINTRAG_ORT: [MessageHandler(Filters.location, logbuch_ort), MessageHandler(Filters.text, logbuch_ort)],
+                                                         EINTRAG_FOTO: [MessageHandler(Filters.photo, logbuch_foto), MessageHandler(Filters.text, logbuch_foto)],
+                                                         EINTRAG_TEXT: [MessageHandler(Filters.text, logbuch_text)],
                                                          },
                                                  fallbacks=[CommandHandler('cancle', logbuch_tag)])  #TODO: replace regex handler to parse int
 dispatcher.add_handler(neuer_eintrag_conversation)
