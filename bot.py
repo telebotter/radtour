@@ -346,8 +346,12 @@ def button_callback(bot, update):
 
 
 # ----- Regist Handler ----- #
-#start_handler = CommandHandler('start', start)
-#dispatcher.add_handler(start_handler)
+
+start_handler = CommandHandler('start', start)
+dispatcher.add_handler(start_handler)
+
+status_handler = CommandHandler('status', status)
+dispatcher.add_handler(status_handler)
 
 #select_tour_handler = CommandHandler('tour', select_tour)
 #dispatcher.add_handler(select_tour_handler)

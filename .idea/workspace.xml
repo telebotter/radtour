@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c5ca454-ec0d-46cb-a8ca-9e4bea661dbb" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bot.py" afterPath="$PROJECT_DIR$/bot.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/telebot/models.py" afterPath="$PROJECT_DIR$/telebot/models.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -87,11 +87,11 @@
       <file leaf-file-name="bot.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2265">
-              <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+            <state relative-caret-position="202">
+              <caret line="353" column="37" lean-forward="false" selection-start-line="353" selection-start-column="37" selection-end-line="353" selection-end-column="37" />
               <folding>
                 <element signature="e#44#53#0" expanded="true" />
-                <marker date="1529074655198" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+                <marker date="1529075333646" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
               </folding>
             </state>
           </provider>
@@ -514,7 +514,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#44#53#0" expanded="true" />
-            <marker date="1529074655198" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1529075333646" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
           </folding>
         </state>
       </provider>
@@ -609,7 +609,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#44#53#0" expanded="true" />
-            <marker date="1529074655198" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1529075333646" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
           </folding>
         </state>
       </provider>
@@ -704,7 +704,7 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#44#53#0" expanded="true" />
-            <marker date="1529074655198" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1529075333646" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
           </folding>
         </state>
       </provider>
@@ -936,11 +936,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/bot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2265">
-          <caret line="5" column="21" lean-forward="false" selection-start-line="5" selection-start-column="21" selection-end-line="5" selection-end-column="21" />
+        <state relative-caret-position="202">
+          <caret line="353" column="37" lean-forward="false" selection-start-line="353" selection-start-column="37" selection-end-line="353" selection-end-column="37" />
           <folding>
             <element signature="e#44#53#0" expanded="true" />
-            <marker date="1529074655198" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
+            <marker date="1529075333646" expanded="true" signature="3978:4527" ph="&quot;&quot;&quot;...&quot;&quot;&quot;" />
           </folding>
         </state>
       </provider>
