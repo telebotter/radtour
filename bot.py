@@ -339,7 +339,13 @@ neuer_eintrag_handler = CommandHandler('log', ui_tour_logbuch_neu)
 callback_handler = CallbackQueryHandler(button_callback)
 neuer_eintrag_conversation = ConversationHandler(entry_points=[ui_handler, neuer_eintrag_handler, callback_handler],
                                                  states={EINTRAG_TAG: [MessageHandler(Filters.text, logbuch_tag)],
-                                                         EINTRAG_STRECKE: [MessageHandler(Filters.text, logbuch_tag)]},
+                                                         EINTRAG_STRECKE: [MessageHandler(Filters.text, logbuch_tag)],
+                                                         EINTRAG_HOEHE: [MessageHandler(Filters.text, logbuch_tag)],
+                                                         EINTRAG_ZEIT: [MessageHandler(Filters.text, logbuch_zeit)],
+                                                         EINTRAG_ORT: [MessageHandler(Filters.location, logbuch_ort)],
+                                                         EINTRAG_FOTO: [MessageHandler(Filters.location, logbuch_foto)],
+                                                         EINTRAG_TEXT: [MessageHandler(Filters.location, logbuch_text)],
+                                                         },
                                                  fallbacks=[CommandHandler('cancle', logbuch_tag)])  #TODO: replace regex handler to parse int
 dispatcher.add_handler(neuer_eintrag_conversation)
 dispatcher.add_handler(callback_handler)
