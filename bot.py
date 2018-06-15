@@ -3,6 +3,7 @@
 
 import os
 import django
+import datetime as dt
 os.environ["DJANGO_SETTINGS_MODULE"] = 'tour.settings'
 django.setup()
 from django.urls import reverse
@@ -78,6 +79,32 @@ def start(bot, update):
 
     bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown')
 
+
+def status(bot, update):
+    """ Returns current user status variables...
+    Usefull to see what day and tour is selected without clicking the menu
+    """
+    user, new = get_or_create_user(update)
+    try:
+        tourname = str(user.tour)
+    except:
+        tourname = 'Keine Tour gefunden'
+    try:
+        tag = str(user.tag)
+    except:
+        tag = 'Kein Tag aktiv'
+    if user.admin:
+        admin = 'Ja'
+    else:
+        admin = 'Nein'
+    seit = dt.datetime.strftime(user.created, '%d.%m.%y')
+    status = '**Aktuelle Einstellungen:**\n\n'
+    status += '**Tour:** {}\n'.format(tourname)
+    status += '**Tag:** {}\n'.format(tag)
+    status += '**Id:** {}\n'.format(user.telegram_id)
+    status += '**Admin:** {}'.format(admin)
+    status += '**Seit:** {}'.format(user.created)
+    bot.send_message(chat_id=user.telegram_id, text=status)
 
 
 def ui(bot, update):
@@ -190,6 +217,8 @@ def ui_tour_logbuch_neu(bot, update):
     return EINTRAG_TAG
 
 
+
+# ---------- logbuch conversation handler ------------- #
 def logbuch_tag(bot, update):
     user, new = get_or_create_user(update)
     try:

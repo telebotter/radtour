@@ -10,3 +10,9 @@ class User(models.Model):
     created = models.DateTimeField(auto_created=True, null=True)
     admin = models.BooleanField(default=False)
 
+    def __str__(self):
+        if self.name:
+            return self.name
+        else:
+            return self.alias
+
