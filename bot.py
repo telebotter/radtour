@@ -98,12 +98,12 @@ def status(bot, update):
     else:
         admin = 'Nein'
     seit = dt.datetime.strftime(user.created, '%d.%m.%y')
-    status = '**Aktuelle Einstellungen:**\n\n'
-    status += '**Tour:** {}\n'.format(tourname)
-    status += '**Tag:** {}\n'.format(tag)
-    status += '**Id:** {}\n'.format(user.telegram_id)
-    status += '**Admin:** {}'.format(admin)
-    status += '**Seit:** {}'.format(user.created)
+    status = '*Aktuelle Einstellungen:*\n\n'
+    status += '*Tour:* {}\n'.format(tourname)
+    status += '*Tag:* {}\n'.format(tag)
+    status += '*Id:* {}\n'.format(user.telegram_id)
+    status += '*Admin:* {}\n'.format(admin)
+    status += '*Seit:* {}\n'.format(seit)
     bot.send_message(chat_id=user.telegram_id, text=status, parse_mode='Markdown')
 
 
