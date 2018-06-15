@@ -104,7 +104,7 @@ def status(bot, update):
     status += '**Id:** {}\n'.format(user.telegram_id)
     status += '**Admin:** {}'.format(admin)
     status += '**Seit:** {}'.format(user.created)
-    bot.send_message(chat_id=user.telegram_id, text=status)
+    bot.send_message(chat_id=user.telegram_id, text=status, parse_mode='Markdown')
 
 
 def ui(bot, update):
