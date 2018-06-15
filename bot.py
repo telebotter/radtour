@@ -247,8 +247,10 @@ def logbuch_zeit(bot, update):
         eintrag.uptime = zeit
         eintrag.save()
         bot.send_message(chat_id=user.telegram_id, text='Ok Super.. weiter gehts mit dem Schlafplatz, schick mir den Standort.')
+        return EINTRAG_ORT
     except Exception as e:
-        bot.send_message(chat_id=user.telegram_id, text='Nope.. Fehler:\n{}'.format(e))
+        bot.send_message(chat_id=user.telegram_id, text='Nope.. Fehler, denk dran, zahlen mit . statt ,\n{}'.format(e))
+        return EINTRAG_ZEIT
 
 
 def logbuch_ort(bot,update):
