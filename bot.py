@@ -111,12 +111,24 @@ def log(bot, update):
     """Automatically adds the text message in '' to the f"""
     pass
 
+
 def parse_text(bot, update):
     text = update.message.text
     if '#log' in text:
-        print('create new log entry')
+        update.message.text.replace('#log', '')
+        append_or_create_log(bot, update)
 
-
+def append_or_create_log(bot, update):
+    user, new = get_or_create_user(update)
+    print(user.tag)
+    try:
+        eintrag, log_neu = Logbucheintrag.objects.get_or_create(tour=user.tour, tag=user.tag)
+        if log_neu:
+            print('eintrag erstellt')
+        else:
+            print('eintrag gefunden')
+    except:
+        print('problem')
 
 
 # ------------------ Create UI Functions ------------------------------------- #
