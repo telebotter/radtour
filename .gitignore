@@ -1,2 +1,3 @@
 tour/settings.py
 *.sqlite3
+local
