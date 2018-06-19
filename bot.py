@@ -74,12 +74,21 @@ def save_file(bot, update):
     """Triggered on incomming files of type document"""
     iod = False
     ion = False
+    user, neu = get_or_create_user(update)
+    path = 'upload'
+    try:
+        f_path = os.path.join(path, user.tour.alias)
+    except:
+        f_path = os.path.join(path, 'unknown')
+    if not os.path.exists(f_path):
+        os.makedirs(f_path)  # TODO: does this work rekursive?
     print('file incomming')
     file_id = update.message.document.file_id
     name = update.message.document.file_name
-    print(update.message.document.mime_type)
+    print(update.message.document.mime_type[:5])
+    #if mime_type[:]
     file = bot.get_file(file_id)
-    file.download('telegram_'+name)
+    file.download(os.path.join(f_path, 'telegram_' + name))
     print('saved')
 
 # ------ Create Handle Functions ----- #
