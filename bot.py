@@ -65,6 +65,11 @@ def get_or_create_user(update):
     return user, new
 
 
+def save_file(bot, update):
+    iod = False
+    ion = False
+    print('file incomming')
+    print(update.message.document.file_id)
 
 # ------ Create Handle Functions ----- #
 
@@ -80,9 +85,10 @@ def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown')
 
 
-def status(bot, update):
+def status(bot, update, args):
     """ Returns current user status variables...
     Usefull to see what day and tour is selected without clicking the menu
+    todo: args for details like 'tour', 'logbuch', 'log', 'ort', 'bild'
     """
     user, new = get_or_create_user(update)
     try:
@@ -112,23 +118,42 @@ def log(bot, update):
     pass
 
 
+def tag(bot, update, args):
+    try:
+        tag = int(args[0])
+    except:
+        update.message.reply_text('Das ist leider keine ganze Zahl: {}'.format(args[0]))
+    user, neu = get_or_create_user(update)
+    user.tag = tag
+    user.save()
+    update.message.reply_text('Du befindest dich jetzt in Tag {}'.format(tag))
+
+def today(bot, update, args):
+    user, neu = get_or_create_user(update)
+    try:
+        start = user.tour.date_start
+    except:
+        update.reply_text('Sicher, dass die Tour ausgewählt und ein Startdatum angegeben ist? Prüfe mit /status und /status tour')
+
+
 def parse_text(bot, update):
     text = update.message.text
     if '#log' in text:
         update.message.text.replace('#log', '')
         append_or_create_log(bot, update)
 
+
 def append_or_create_log(bot, update):
+    # triggered by #log
     user, new = get_or_create_user(update)
-    print(user.tag)
     try:
         eintrag, log_neu = Logbucheintrag.objects.get_or_create(tour=user.tour, tag=user.tag)
         if log_neu:
-            print('eintrag erstellt')
+            update.message.reply_text('Neuen Eintrag für Tag {} erstellt'.format(user.tag))
         else:
-            print('eintrag gefunden')
+            update.message.reply_text('An Tag {} angehängt.'.format(user.tag))
     except:
-        print('problem')
+        update.message.reply_text('Das hat nicht geklappt. Ist der Tag und die Tour ausgewählt? /status /tag /today')
 
 
 # ------------------ Create UI Functions ------------------------------------- #
@@ -237,7 +262,7 @@ def ui_tour_logbuch_neu(bot, update):
     except:
         bot.send_message(chat_id=user.telegram_id, text='WARNUNG: Tour hat keinen Namen')
         msg = 'Neuer Eintrag für {}'.format(user.tour.alias)
-    msg += '\n Mit /skip kannst du die Frage überspringen und mit /cancle die Konversation abbrechen.'
+    msg += '\n Mit /skip kannst du die Frage überspringen und mit /abbrechen die Konversation abbrechen.'
     msg += '\n Für den wievielten TAG der Tour soll der neue Eintrag sein? \nBitte nur die Zahl angeben.'
     bot.send_message(chat_id=user.telegram_id, text=msg, parse_mode='Markdown')
     return EINTRAG_TAG
@@ -361,7 +386,7 @@ def button_callback(bot, update):
         print('logbuch')
         ui_tour_logbuch(bot, update)
     elif data[0] == 'ui_tour_logbuch_neu':
-        bot.send_message(chat_id=user.telegram_id, text='Wenn das Eintragen übers Menu nicht startet, benutze den /log Befehl um die Eingabe zu starten.')
+        #bot.send_message(chat_id=user.telegram_id, text='Wenn das Eintragen übers Menu nicht startet, benutze den /log Befehl um die Eingabe zu starten.')
         ui_tour_logbuch_neu(bot, update)
         return EINTRAG_TAG
     else:
@@ -407,12 +432,15 @@ neuer_eintrag_conversation = ConversationHandler(entry_points=[ui_handler, neuer
                                                          EINTRAG_FOTO: [MessageHandler(Filters.photo, logbuch_foto), MessageHandler(Filters.text, logbuch_foto)],
                                                          EINTRAG_TEXT: [MessageHandler(Filters.text, logbuch_text)],
                                                          },
-                                                 fallbacks=[CommandHandler('cancle', logbuch_tag)])  #TODO: replace regex handler to parse int
+                                                 fallbacks=[CommandHandler('abbrechen', logbuch_tag)])  #TODO: replace regex handler to parse int
 dispatcher.add_handler(neuer_eintrag_conversation)
 dispatcher.add_handler(callback_handler)
 
 text_handler = MessageHandler(Filters.text, parse_text)
 dispatcher.add_handler(text_handler)
+
+file_handler = MessageHandler(Filters.document, save_file())
+dispatcher.add_handler(file_handler)
 
 """
 new_handler = CommandHandler('new', new, pass_args=True)
