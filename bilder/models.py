@@ -5,8 +5,8 @@ from logbuch.models import Logbucheintrag
 # Create your models here.
 class Bild(models.Model):
     bild = models.ImageField(null=True, blank=True)
-    tour = models.ForeignKey(Tour, null=True, blank=True)
-    tagebucheintrag = models.ForeignKey(Logbucheintrag, null=True, blank=True)
+    tour = models.ForeignKey(Tour, null=True, blank=True, on_delete=models.CASCADE)
+    tagebucheintrag = models.ForeignKey(Logbucheintrag, null=True, blank=True, on_delete=models.SET_NULL)
     bewertung = models.FloatField(null=True, blank=True)  # 0-1
     titel = models.CharField(null=True, max_length=255, blank=True)
     kommentar = models.CharField(null=True, max_length=255, blank=True)
