@@ -11,6 +11,7 @@ from django.urls import reverse
 from main.models import Tour
 from logbuch.models import Logbucheintrag
 from telebot.models import User
+from bilder.models import Bild
 
 import logging
 import telegram  # pkg: python-telegram-bot
@@ -75,20 +76,37 @@ def save_file(bot, update):
     iod = False
     ion = False
     user, neu = get_or_create_user(update)
-    path = 'upload'
+    try:
+        eintrag = Logbucheintrag.objects.get(tag=user.tag, tour=user.tour)
+    except:
+        pass
+    path = 'media/upload'
+    file_id = update.message.document.file_id
+    name = update.message.document.file_name
     try:
         f_path = os.path.join(path, user.tour.alias)
     except:
         f_path = os.path.join(path, 'unknown')
     if not os.path.exists(f_path):
         os.makedirs(f_path)  # TODO: does this work rekursive?
+    file_path = os.path.join(f_path, 'telegram_' + name)
     print('file incomming')
-    file_id = update.message.document.file_id
-    name = update.message.document.file_name
     print(update.message.document.mime_type[:5])
-    #if mime_type[:]
+    if update.message.document.mime_type[:5] == 'image':
+        print('image detected')
+        # todo: check for images with this fname first
+        bild = Bild()
+        bild.bild = file_path
+        try:
+            bild.tour = user.tour
+            bild.tagebucheintrag = eintrag
+        except:
+            pass
+        bild.save()
+        print('saved in Image db')
+
     file = bot.get_file(file_id)
-    file.download(os.path.join(f_path, 'telegram_' + name))
+    file.download(file_path)
     print('saved')
 
 # ------ Create Handle Functions ----- #

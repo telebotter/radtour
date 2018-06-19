@@ -10,4 +10,6 @@ class Bild(models.Model):
     bewertung = models.FloatField(null=True, blank=True)  # 0-1
     titel = models.CharField(null=True, max_length=255, blank=True)
     kommentar = models.CharField(null=True, max_length=255, blank=True)
+    date = models.DateTimeField(null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
 
