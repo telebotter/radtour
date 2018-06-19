@@ -65,11 +65,22 @@ def get_or_create_user(update):
     return user, new
 
 
+def unsup_type(bot, update):
+    """not handled by any handler answer warning"""
+    update.reply_text('Mit dem Format deiner Nachricht kann ich nichts anfangen.\nBisher habe ich nur gelernt mit Dateien, Locations und Text umzugehen, also schicke mir die Bilder doch bitte als Datei')
+
+
 def save_file(bot, update):
+    """Triggered on incomming files of type document"""
     iod = False
     ion = False
     print('file incomming')
-    print(update.message.document.file_id)
+    file_id = update.message.document.file_id
+    name = update.message.document.file_name
+    print(update.message.document.mime_type)
+    file = bot.get_file(file_id)
+    file.download('telegram_'+name)
+    print('saved')
 
 # ------ Create Handle Functions ----- #
 
@@ -441,6 +452,9 @@ dispatcher.add_handler(text_handler)
 
 file_handler = MessageHandler(Filters.document, save_file)
 dispatcher.add_handler(file_handler)
+
+other_handler = MessageHandler(Filters.all, unsup_type)
+dispatcher.add_handler((other_handler))
 
 """
 new_handler = CommandHandler('new', new, pass_args=True)
