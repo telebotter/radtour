@@ -439,7 +439,7 @@ dispatcher.add_handler(callback_handler)
 text_handler = MessageHandler(Filters.text, parse_text)
 dispatcher.add_handler(text_handler)
 
-file_handler = MessageHandler(Filters.document, save_file())
+file_handler = MessageHandler(Filters.document, save_file)
 dispatcher.add_handler(file_handler)
 
 """
