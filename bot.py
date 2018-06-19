@@ -107,6 +107,20 @@ def status(bot, update):
     bot.send_message(chat_id=user.telegram_id, text=status, parse_mode='Markdown')
 
 
+def log(bot, update):
+    """Automatically adds the text message in '' to the f"""
+    pass
+
+def parse_text(bot, update):
+    text = update.message.text
+    if '#log' in text:
+        print('create new log entry')
+
+
+
+
+# ------------------ Create UI Functions ------------------------------------- #
+
 def ui(bot, update):
     user, new = get_or_create_user(update)
     """
@@ -308,7 +322,7 @@ def logbuch_text(bot,update):
     eintrag.text = text
     eintrag.save()
     bot.send_message(chat_id=user.telegram_id, text='Ok sollte jetzt alles eingetragen sein, schaue doch nochmal nach um sicher zu gehen..')
-    return EINTRAG_END
+    return EINTRAG_FERTIG
 
 
 
@@ -385,7 +399,8 @@ neuer_eintrag_conversation = ConversationHandler(entry_points=[ui_handler, neuer
 dispatcher.add_handler(neuer_eintrag_conversation)
 dispatcher.add_handler(callback_handler)
 
-
+text_handler = MessageHandler(Filters.text, parse_text)
+dispatcher.add_handler(text_handler)
 
 """
 new_handler = CommandHandler('new', new, pass_args=True)
