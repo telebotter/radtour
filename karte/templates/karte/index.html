@@ -15,9 +15,17 @@
         function main_map_init (map, options) {
             var controller = L.control.layers().addTo(map);
             {% for tour in touren %}
-                var dataurl = '{% url "orte_tour" tour.name %}';
-                console.log(dataurl);
-                $.getJSON(dataurl, function(data) {
+                var orte_url = '{% url "orte_tour" tour.name %}';
+                $.getJSON(orte_url, function(data) {
+                    var layer = L.geoJson(data);
+                    layer.addTo(map);
+                    controller.addOverlay(layer, '{{ tour.name|safe }}');
+                });
+            {% endfor %}
+
+            {% for tour in touren %}
+                var track_url = '{% url "track_tour" tour.name %}';
+                $.getJSON(track_url, function(data) {
                     var layer = L.geoJson(data);
                     layer.addTo(map);
                     controller.addOverlay(layer, '{{ tour.name|safe }}');
