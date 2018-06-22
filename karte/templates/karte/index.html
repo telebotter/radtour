@@ -49,7 +49,7 @@
                 var track_url = '{% url "track_tour" tour.name %}';
                 $.getJSON(track_url, function(data) {
                     var track = L.geoJson(data, {style: function(feature){
-                                                            return {color: feature.proertie.color};
+                                                            return {color: feature.properties.color};
                                                             }});
                     track.addTo(map);
                     controller.addOverlay(track, '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span> (Track)');
