@@ -1,6 +1,7 @@
 from django.db import models
 import datetime as dt
 from djgeojson.fields import MultiLineStringField
+from colorful.fields import RGBColorField
 
 
 
@@ -23,7 +24,7 @@ class Tour(models.Model):
     track = MultiLineStringField(null=True, blank=True)
     #date_end = models.CharField('Tour Finished', null=True)
     #countries = models.ManyToMany(Country, blank=True)
-    #color = models.CharField(max_length=10)
+    color = RGBColorField(default='#000000')
     #length = models.FloatField(blank=True)
     #img = models.ImageField()
     #tourlog = models.TextField(blank=True)  # html or md content?
