@@ -3,10 +3,10 @@
 <html>
   <head>
         <!--<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">-->
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'karte/css/leaflet.awesome-markers.css' %}">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
         {% leaflet_js %}
         {% leaflet_css %}
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -21,10 +21,6 @@
     <script type="text/javascript">
         //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
         var markerSize = 10;
-        var redMarker = L.AwesomeMarkers.icon({
-            icon: 'tent',
-            markerColor: 'red'
-        });
         function main_map_init (map, options) {
             var controller = L.control.layers().addTo(map);
             {% for tour in touren %}
@@ -38,13 +34,13 @@
                             return {color: feature.properties.color};
                         },
                         pointToLayer: function(feature, latlng) {
-                            //return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
+                            return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
                             //return new L.circle(latlng, {radius: 100, fillOpacity: 0.85});
-                            return new L.marker(latlng, {icon:
-                                L.AwesomeMarkers.icon({
-                                    icon: 'tent',
-                                    markerColor: feature.properties.color,
-                                })});
+                            //return new L.marker(latlng, {icon:
+                            //    L.AwesomeMarkers.icon({
+                            //        icon: 'tent',
+                            //        markerColor: feature.properties.color,
+                            //    })});
                         },
                         onEachFeature: function (feature, layer) {
                             layer.bindPopup(feature.properties.text);

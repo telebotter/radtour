@@ -55,8 +55,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/karte/templates/karte/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="365">
-              <caret line="45" column="74" lean-forward="false" selection-start-line="45" selection-start-column="74" selection-end-line="45" selection-end-column="74" />
+            <state relative-caret-position="135">
+              <caret line="8" column="219" lean-forward="false" selection-start-line="8" selection-start-column="219" selection-end-line="8" selection-end-column="219" />
               <folding />
             </state>
           </provider>
@@ -1019,8 +1019,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/karte/templates/karte/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="45" column="74" lean-forward="false" selection-start-line="45" selection-start-column="74" selection-end-line="45" selection-end-column="74" />
+        <state relative-caret-position="135">
+          <caret line="8" column="219" lean-forward="false" selection-start-line="8" selection-start-column="219" selection-end-line="8" selection-end-column="219" />
           <folding />
         </state>
       </provider>
