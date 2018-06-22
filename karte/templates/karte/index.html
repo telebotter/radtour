@@ -15,18 +15,16 @@
         function main_map_init (map, options) {
 
             var baseMaps = null;
-            var schweden;
-            var korsika;
             var controller = L.control.layers().addTo(map);
             var dataurl = '{% url "data_tour" 'kroatien' %}';
             $.getJSON('https://tour.sarbot.de/media/karte/tracks/schweden.json', function(data) {
-                schweden = L.geoJson(data);
-                controller.addLayer(schweden);
+                var schweden = L.geoJson(data);
+                controller.addOverlayLayer(schweden, 'Schweden');
 
             });
             $.getJSON('https://tour.sarbot.de/media/karte/tracks/korsika.json', function (data) {
-                korsika = L.geoJson(data);
-                controller.addLayer(schweden);
+                var korsika = L.geoJson(data);
+                controller.addOverlayLayer(korsika, 'Korsika);
             });
         }
     </script>
