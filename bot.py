@@ -139,7 +139,7 @@ def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown')
 
 
-def status(bot, update, args=[]):
+def status(bot, update, args):
     """ Returns current user status variables...
     Usefull to see what day and tour is selected without clicking the menu
     todo: args for details like 'tour', 'logbuch', 'log', 'ort', 'bild'
@@ -457,7 +457,7 @@ def button_callback(bot, update):
 start_handler = CommandHandler('start', start)
 dispatcher.add_handler(start_handler)
 
-status_handler = CommandHandler('status', status)
+status_handler = CommandHandler('status', status, pass_args=True)
 dispatcher.add_handler(status_handler)
 
 #select_tour_handler = CommandHandler('tour', select_tour)
@@ -474,7 +474,7 @@ dispatcher.add_handler(status_handler)
 ui_handler = CommandHandler('menu', ui)
 dispatcher.add_handler(ui_handler)
 
-tag_handler = CommandHandler('tag', tag)
+tag_handler = CommandHandler('tag', tag, pass_args=True)
 dispatcher.add_handler(tag_handler)
 
 neuer_eintrag_handler = CommandHandler('log', ui_tour_logbuch_neu)
