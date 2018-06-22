@@ -44,7 +44,7 @@
                         }
                     });
                     orte.addTo(map);
-                    controller.addOverlay(orte, ''<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span>');
+                    controller.addOverlay(orte, '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span>');
                 });
                 var track_url = '{% url "track_tour" tour.name %}';
                 $.getJSON(track_url, function(data) {
