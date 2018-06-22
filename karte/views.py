@@ -14,13 +14,22 @@ def index(request):
 
 def orte_tour(request, touralias):
     tour = get_object_or_404(Tour, alias=touralias)
+    logs = Logbucheintrag.objects.get(tour=tour)
+    points = []
+    for log in logs:
+        try:
+            points.append({'type':'Feature', 'geometry': log.ort, 'properties':{'name': log.tag, 'color': tour.color, 'text': log.text}})
+        except Exception as e:
+            raise e
+    geo_json = {'type': 'FeatureCollection', 'features': points, 'properties':{'name': tour.name}}
     context = {}
-    #context['color'] = tour.color
+    context['logs'] = logs
     geoms = Schlafplatz.objects.all()
-    json = GeoJSONSerializer().serialize(Schlafplatz.objects.all(),
-                                  use_natural_keys=True, with_modelname=False)
+    #json = GeoJSONSerializer().serialize(Schlafplatz.objects.all(),
+    #                              use_natural_keys=True, with_modelname=False)
 
-    return HttpResponse(json, content_type="application/json")
+    #return HttpResponse(json, content_type="application/json")
+    return JsonResponse(geo_json)
 
 
 def track_tour(request, touralias):
