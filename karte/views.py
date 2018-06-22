@@ -5,6 +5,6 @@ from django.http import HttpResponse
 # Create your views here.
 
 def index(request):
-    schlaf_plaetze = get_list_or_404(Schlafplatz)
+    #schlaf_plaetze = get_list_or_404(Schlafplatz)
     context = {}
     return render(request, 'karte/index.html')
