@@ -139,7 +139,7 @@ def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=msg, parse_mode='Markdown')
 
 
-def status(bot, update, args):
+def status(bot, update, args=[]):
     """ Returns current user status variables...
     Usefull to see what day and tour is selected without clicking the menu
     todo: args for details like 'tour', 'logbuch', 'log', 'ort', 'bild'
