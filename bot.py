@@ -69,7 +69,7 @@ def get_or_create_user(update):
 
 def unsup_type(bot, update):
     """not handled by any handler answer warning"""
-    update.reply_text('Mit dem Format deiner Nachricht kann ich nichts anfangen.\nBisher habe ich nur gelernt mit Dateien, Locations und Text umzugehen, also schicke mir die Bilder doch bitte als Datei')
+    update.message.reply_text('Mit dem Format deiner Nachricht kann ich nichts anfangen.\nBisher habe ich nur gelernt mit Dateien, Locations und Text umzugehen. Die möglichen Befehle kannst du dir mit /start anzeigen lassen.')
 
 
 def save_file(bot, update):
@@ -473,6 +473,9 @@ dispatcher.add_handler(status_handler)
 
 ui_handler = CommandHandler('menu', ui)
 dispatcher.add_handler(ui_handler)
+
+tag_handler = CommandHandler('tag', tag)
+dispatcher.add_handler(tag_handler)
 
 neuer_eintrag_handler = CommandHandler('log', ui_tour_logbuch_neu)
 #dispatcher.add_handler(neuer_eintrag_handler)
