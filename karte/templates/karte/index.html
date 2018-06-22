@@ -14,12 +14,16 @@
     <script type="text/javascript">
         function main_map_init (map, options) {
 
+            var baseMaps = null;
 
             var dataurl = '{% url "data_tour" 'kroatien' %}';
             $.getJSON(dataurl, function (data) {
-                lct = L.control.layers().addTo(map);
-                lct.addLayer(L.geoJson(data).addTo(map));
+                schweden = L.geoJson(data));
             });
+            var overlayMaps = {
+                "Schweden": schweden
+            };
+            L.control.layers(baseMaps, overlayMaps).addTo(map);
         }
     </script>
 
