@@ -43,7 +43,7 @@
                             return new L.marker(latlng, {icon:
                                 L.AwesomeMarkers.icon({
                                     icon: 'tent',
-                                    markerColor: 'red'
+                                    markerColor: feature.properties.color,
                                 })});
                         },
                         onEachFeature: function (feature, layer) {
