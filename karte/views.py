@@ -6,4 +6,5 @@ from django.http import HttpResponse
 
 def index(request):
     schlaf_plaetze = get_list_or_404(Schlafplatz)
-    return
+    context = {}
+    return render(request, 'karte/index.html')
