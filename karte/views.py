@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from main.models import Tour
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 from karte.models import Schlafplatz
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 # Create your views here.
 
 def index(request):
@@ -19,4 +19,4 @@ def data_tour(request, touralias):
     json = GeoJSONSerializer().serialize(Schlafplatz.objects.all(),
                                   use_natural_keys=True, with_modelname=False)
 
-    return HttpResponse(json)
+    return JsonResponse(json)
