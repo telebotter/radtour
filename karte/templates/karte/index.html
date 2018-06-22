@@ -15,11 +15,11 @@
         function main_map_init (map, options) {
             console.log('test');
 
-            console.log('{{ touren }}');
+            // console.log('{{ touren }}');
             // var baseMaps = null;
             var controller = L.control.layers().addTo(map);
             {% for tour in touren %}
-                console.log({{ tour }});
+                console.log('{{ tour.name }}');
                 var layer = L.geoJson( {{ tour.track }});
                 controller.addOverlay(layer, 'name');
             {% endfor %}
