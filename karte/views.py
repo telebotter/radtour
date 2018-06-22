@@ -8,24 +8,11 @@ from django.http import HttpResponse, JsonResponse
 
 def index(request):
     context = {}
-    context['touren'] = {}
-    touren = Tour.objects.all()
-    for tour in touren:
-        tour_data = {}
-        if tour.track:
-            track_data = {'geometry': tour.track, 'properties':{'name': tour.name, 'color': tour.color}}
-            tour_data['track'] = track_data
-        try:
-            logs = Logbucheintrag.objects.get(tour=tour)
-            tour_data['logs'] = logs
-        except:
-            pass
-        #if len(tour_data) > 0:
-        context['touren'][tour.name] = tour_data
+    context['touren'] = Tour.objects.all()
     return render(request, 'karte/index.html', context=context)
 
 
-def data_tour(request, touralias):
+def orte_tour(request, touralias):
     tour = get_object_or_404(Tour, alias=touralias)
     context = {}
     #context['color'] = tour.color

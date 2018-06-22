@@ -8,6 +8,6 @@ urlpatterns = [
     # path('<touralias>/', views.tour, name='tour_karte'),
     # path('<touralias>/<int:tagnummer>', views.tag, name='schlafplatz'),
     path('data.geojson', GeoJSONLayerView.as_view(model=Schlafplatz), name='data'),
-    path('data/<touralias>/', views.data_tour, name='data_tour'),
+    path('orte/<touralias>/', views.orte_tour, name='orte_tour'),
     path('track/<touralias>/', views.track_tour, name='track_tour'),
 ]

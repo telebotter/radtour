@@ -13,25 +13,15 @@
 
     <script type="text/javascript">
         function main_map_init (map, options) {
-            console.log('test');
-
-            // console.log('{{ touren }}');
-            // var baseMaps = null;
-            var controller = L.control.layers().addTo(map);
+            var controller = L.control.layer().addMap(map)
             {% for tour in touren %}
-                console.log('{{ tour.name }}');
-                var layer = L.geoJson( {{ tour.track }});
-                controller.addOverlay(layer, 'name');
+                var dataurl = '{% url "orte_tour" tour.name %}';
+                console.log(dataurl);
+                $.getJSON(dataurl, function(data) {
+                    var layer = L.geoJson(data);
+                    controller.addOverlay(layer, 'Name');
+                });
             {% endfor %}
-            // var dataurl = '{% url "data_tour" 'kroatien' %}';
-            // $.getJSON('https://tour.sarbot.de/media/karte/tracks/schweden.json', function(data) {
-            //    var schweden = L.geoJson(data);
-            //    controller.addOverlay(schweden, 'Schweden');
-            // });
-            // $.getJSON('https://tour.sarbot.de/media/karte/tracks/korsika.json', function (data) {
-            //    var korsika = L.geoJson(data);
-            //    controller.addOverlay(korsika, 'Korsika');
-            // });
         }
     </script>
 
