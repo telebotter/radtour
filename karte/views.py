@@ -20,8 +20,8 @@ def index(request):
             tour_data['logs'] = logs
         except:
             pass
-        if len(tour_data) > 0:
-            context['touren'].append(tour_data)
+        #if len(tour_data) > 0:
+        context['touren'].append(tour_data)
     return render(request, 'karte/index.html')
 
 
