@@ -17,14 +17,13 @@
             var baseMaps = null;
 
             var dataurl = '{% url "data_tour" 'kroatien' %}';
-            var schweden;
             $.getJSON(dataurl, function (data) {
-                schweden = L.geoJson(data);
+                var schweden = L.geoJson(data);
+                var overlayMaps = {
+                    "Schweden": schweden
+                };
+                L.control.layers(baseMaps, overlayMaps).addTo(map);
             });
-            var overlayMaps = {
-                "Schweden": schweden
-            };
-            L.control.layers(baseMaps, overlayMaps).addTo(map);
         }
     </script>
 
