@@ -1,10 +1,14 @@
 {% load leaflet_tags %}
+{% load static %}
 <html>
   <head>
-    {% leaflet_js %}
-    {% leaflet_css %}
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-    <style>
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+        <link rel="stylesheet" href="{% static 'karte/css/leaflet.awesome-markers.css' %}">
+        <script src="{% static 'karte/js/leaflet.awesome-markers.js' %}"></script>
+        {% leaflet_js %}
+        {% leaflet_css %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <style>
         .leaflet-container { height: 100%; }
     </style>
   </head>
@@ -12,6 +16,7 @@
     {% leaflet_map "main" callback="main_map_init" %}
 
     <script type="text/javascript">
+        var markerSize = 10;
         function main_map_init (map, options) {
             var controller = L.control.layers().addTo(map);
             {% for tour in touren %}
@@ -43,6 +48,7 @@
                 });
             {% endfor %}
         }
+        on.
     </script>
 
   </body>
