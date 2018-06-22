@@ -40,7 +40,9 @@
                             //    })});
                         },
                         onEachFeature: function (feature, layer) {
-                            layer.bindPopup(feature.properties.text);
+                            layer.bindPopup(
+                                '<h4>Tag ' + feature.properties.tag + '</h4>'
+                                + feature.properties.text);
                         }
                     });
                     orte.addTo(map);
