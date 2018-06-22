@@ -16,7 +16,7 @@ class Track(models.Model):
     tour = models.ForeignKey(Tour, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return 'Tag: {}'.format(self.tag)
+        return '{} Tag: {}'.format(tour.name, self.tag)
 
 
 class Schlafplatz(models.Model):
@@ -24,3 +24,6 @@ class Schlafplatz(models.Model):
     geom = PointField()
     tag = models.IntegerField(null=True, blank=True)
     tour = models.ForeignKey(Tour, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return '{} Tag: {}'.format(tour.name, self.tag)

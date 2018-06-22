@@ -110,6 +110,21 @@ def save_file(bot, update):
     file.download(file_path)
     print('saved')
 
+
+def add_location(bot, update):
+    # adds location to database (Schlafplatz)
+    user, new = get_or_create_user(update)
+    loc = update.message.location
+    geom = {'type': 'Point', 'coordinates': [loc.longitude, loc.latitude]}
+    platz, new = Schlafplatz.objects.get_or_create(tour=user.tour, tag=user.tag)
+    platz.geom = geom
+    platz.save()
+    if not new:
+        update.message.reply_text('Position für Tag {} aktualisiert...'.format(user.tag))
+    else:
+        update.message.reply_text('Neue Position für Tag {} erfasst...'.format(user.tag))
+
+
 # ------ Create Handle Functions ----- #
 
 def start(bot, update):
@@ -387,6 +402,7 @@ def logbuch_ort(bot,update):
         bot.send_message(chat_id=user.telegram_id, text='Nope.. war das nen Standort? Machen wir später, versuchs mit nem Foto... (noch in arbeit) \n{}'.format(e))
         return EINTRAG_FOTO
 
+
 def logbuch_foto(bot,update):
     user, new = get_or_create_user(update)
     bot.send_message(chat_id=user.telegram_id, text='sorry das speichern des Fotos funktioniert noch nicht :(, aber text sollte gehen. Schreib mir was heute passiert ist.')
@@ -481,6 +497,9 @@ dispatcher.add_handler(text_handler)
 
 file_handler = MessageHandler(Filters.document, save_file)
 dispatcher.add_handler(file_handler)
+
+location_handler = MessageHandler(Filters.location, add_location)
+dispatcher.add_handler(location_handler)
 
 other_handler = MessageHandler(Filters.all, unsup_type)
 dispatcher.add_handler((other_handler))
