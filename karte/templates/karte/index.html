@@ -16,6 +16,7 @@
     {% leaflet_map "main" callback="main_map_init" %}
 
     <script type="text/javascript">
+        L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
         var markerSize = 10;
         var redMarker = L.AwesomeMarkers.icon({
             icon: 'bed',
