@@ -25,7 +25,7 @@
                             return {color: feature.properties.color};
                         },
                         pointToLayer: function(feature, latlng) {
-                            //return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
+                            return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
                             //return new L.circle(latlng, {radius: 100, fillOpacity: 0.85});
                         },
                         onEachFeature: function (feature, layer) {
