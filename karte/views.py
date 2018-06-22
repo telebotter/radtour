@@ -14,7 +14,7 @@ def index(request):
 
 def orte_tour(request, touralias):
     tour = get_object_or_404(Tour, alias=touralias)
-    logs = Logbucheintrag.objects.get(tour=tour)
+    logs = Logbucheintrag.objects.filter(tour=tour)
     points = []
     for log in logs:
         try:
