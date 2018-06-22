@@ -4,8 +4,6 @@
     <list default="true" id="9c5ca454-ec0d-46cb-a8ca-9e4bea661dbb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/karte/templates/karte/index.html" afterPath="$PROJECT_DIR$/karte/templates/karte/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/karte/urls.py" afterPath="$PROJECT_DIR$/karte/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/karte/views.py" afterPath="$PROJECT_DIR$/karte/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -54,17 +52,17 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/karte/templates/karte/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="54" lean-forward="false" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
+            <state relative-caret-position="225">
+              <caret line="15" column="59" lean-forward="false" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/karte/views.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
@@ -181,8 +179,8 @@
         <option value="$PROJECT_DIR$/main/admin.py" />
         <option value="$PROJECT_DIR$/main/models.py" />
         <option value="$PROJECT_DIR$/karte/urls.py" />
-        <option value="$PROJECT_DIR$/karte/templates/karte/index.html" />
         <option value="$PROJECT_DIR$/karte/views.py" />
+        <option value="$PROJECT_DIR$/karte/templates/karte/index.html" />
       </list>
     </option>
   </component>
@@ -954,14 +952,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/karte/templates/karte/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="54" lean-forward="false" selection-start-line="21" selection-start-column="54" selection-end-line="21" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/karte/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -969,6 +959,14 @@
           <folding>
             <element signature="e#0#71#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/karte/templates/karte/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="59" lean-forward="false" selection-start-line="15" selection-start-column="59" selection-end-line="15" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>
