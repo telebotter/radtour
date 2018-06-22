@@ -24,9 +24,6 @@
         function main_map_init (map, options) {
             var controller = L.control.layers().addTo(map);
             {% for tour in touren %}
-                var tourStyle = {
-                    "color": '{{ tour.color|safe }}',
-                };
                 var orte_url = '{% url "orte_tour" tour.name %}';
                 $.getJSON(orte_url, function(data) {
                     var orte = L.geoJson(data, {
@@ -47,13 +44,15 @@
                         }
                     });
                     orte.addTo(map);
-                    controller.addOverlay(orte, '{{ tour.name|safe }}');
+                    controller.addOverlay(orte, ''<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span>');
                 });
                 var track_url = '{% url "track_tour" tour.name %}';
                 $.getJSON(track_url, function(data) {
-                    var track = L.geoJson(data, {style: tourStyle});
+                    var track = L.geoJson(data, {style: function(feature){
+                                                            return {color: feature.proertie.color};
+                                                            }});
                     track.addTo(map);
-                    controller.addOverlay(track, '{{ tour.name|safe }}' + ' (Track)');
+                    controller.addOverlay(track, '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span> (Track)');
                 });
             {% endfor %}
         }
