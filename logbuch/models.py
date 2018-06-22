@@ -17,7 +17,7 @@ class Logbucheintrag(models.Model):
     strecke = models.FloatField(null=True, blank=True)
     uptime = models.FloatField(null=True, blank=True)
     hoehe = models.FloatField(null=True, blank=True)
-    position = PointField(null=True, blank=True)
+    ort = PointField(null=True, blank=True)
 
     @property
     def naechster_eintrag(self):
