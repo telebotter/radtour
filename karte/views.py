@@ -28,5 +28,5 @@ def track_tour(request, touralias):
     track = tour.track
     data = {'geometry': track, 'properties':{'name': tour.name, 'color': tour.color}}
     json = GeoJSONSerializer().serialize(data)
-    return HttpResponse(json, content_type='application/json')
-    #return JsonResponse(data)
+    #return HttpResponse(json, content_type='application/json')
+    return JsonResponse(data)
