@@ -26,7 +26,7 @@
                         },
                         pointToLayer: function(feature, latlng) {
                             //return new L.CircleMarker(latlng, {radius: 6, fillOpacity: 0.85});
-                            return new L.circle(latlng, {radius: 40, fillOpacity: 0.85});
+                            return new L.circle(latlng, {radius: 100, fillOpacity: 0.85});
                         },
                         onEachFeature: function (feature, layer) {
                             layer.bindPopup(feature.properties.text);
