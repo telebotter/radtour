@@ -20,7 +20,17 @@
                 };
                 var orte_url = '{% url "orte_tour" tour.name %}';
                 $.getJSON(orte_url, function(data) {
-                    var orte = L.geoJson(data, {style: tourStyle});
+                    var orte = L.geoJson(data, {
+                        style: function(feature) {
+                            return {color: feature.properties.color};
+                        },
+                        pointToLayer: function(feature, latlng) {
+                            return new L.CircleMarker(latlng, {radius: 10, fillOpacity: 0.85});
+                        },
+                        onEachFeature: function (feature, layer) {
+                            layer.bindPopup(feature.properties.text);
+                        }
+                    });
                     orte.addTo(map);
                     controller.addOverlay(orte, '{{ tour.name|safe }}');
                 });
