@@ -4,10 +4,10 @@
   <head>
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
         <link rel="stylesheet" href="{% static 'karte/css/leaflet.awesome-markers.css' %}">
-        <script src="{% static 'karte/js/leaflet.awesome-markers.js' %}"></script>
         {% leaflet_js %}
         {% leaflet_css %}
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="{% static 'karte/js/leaflet.awesome-markers.js' %}"></script>
         <style>
         .leaflet-container { height: 100%; }
     </style>
