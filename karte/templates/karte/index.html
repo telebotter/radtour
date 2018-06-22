@@ -15,7 +15,7 @@
         function main_map_init (map, options) {
 
             var baseMaps = null;
-            var overlayMaps = {}
+            var overlayMaps = {};
             var dataurl = '{% url "data_tour" 'kroatien' %}';
             $.getJSON('https://tour.sarbot.de/media/karte/tracks/schweden.json', function(data) {
                 var schweden = L.geoJson(data);
