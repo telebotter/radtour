@@ -10,7 +10,7 @@ class Karte(models.Model):
         return self.name
 
 
-class Track(models.Model):
+class Einzelstrecke(models.Model):
     """One day of the tour?"""
     tag = models.IntegerField(null=True, blank=True)
     tour = models.ForeignKey(Tour, on_delete=models.SET_NULL, null=True, blank=True)
