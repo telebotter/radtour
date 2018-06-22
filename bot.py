@@ -12,6 +12,7 @@ from main.models import Tour
 from logbuch.models import Logbucheintrag
 from telebot.models import User
 from bilder.models import Bild
+from karte.models import Schlafplatz
 
 import logging
 import telegram  # pkg: python-telegram-bot
@@ -151,11 +152,6 @@ def status(bot, update, args):
     bot.send_message(chat_id=user.telegram_id, text=status, parse_mode='Markdown')
 
 
-def log(bot, update):
-    """Automatically adds the text message in '' to the f"""
-    pass
-
-
 def tag(bot, update, args):
     try:
         tag = int(args[0])
@@ -165,6 +161,7 @@ def tag(bot, update, args):
     user.tag = tag
     user.save()
     update.message.reply_text('Du befindest dich jetzt in Tag {}'.format(tag))
+
 
 def today(bot, update, args):
     user, neu = get_or_create_user(update)
@@ -379,7 +376,12 @@ def logbuch_ort(bot,update):
         eintrag.lon = ort.longitude
         eintrag.lat = ort.latitude
         eintrag.save()
-        bot.send_message(chat_id=user.telegram_id, text='Glaub ich habs gespeichert.. Noch nen Foto vom Schlafplatz? (geht noch nicht)')
+        geom = {'type': 'Point', 'coordinates': [ort.longitude, ort.latitude]}
+        platz, platz_neu = Schlafplatz.objects.get_or_create(geom=geom, tour=user.tour, tag=user.tag)
+        platz.save()
+        if platz_neu:
+            update.message.reply_text('Neuen Spot auf der Karte erstellt.')
+        bot.send_message(chat_id=user.telegram_id, text='In der DB gespeichert.. Noch nen Foto vom Schlafplatz? (geht noch nicht)')
         return EINTRAG_FOTO
     except Exception as e:
         bot.send_message(chat_id=user.telegram_id, text='Nope.. war das nen Standort? Machen wir später, versuchs mit nem Foto... (noch in arbeit) \n{}'.format(e))
