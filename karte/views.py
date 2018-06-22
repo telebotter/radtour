@@ -16,6 +16,6 @@ def data_tour(request, touralias):
     context = {}
     #context['color'] = tour.color
     geoms = Schlafplatz.objects.all()
-    return GeoJSONSerializer().serialize(Restaurants.objects.all(),
+    return GeoJSONSerializer().serialize(Schlafplatz.objects.all(),
                                   use_natural_keys=True, with_modelname=False)
 
