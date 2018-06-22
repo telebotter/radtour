@@ -13,6 +13,7 @@
 
     <script type="text/javascript">
         function main_map_init (map, options) {
+            console.log('test');
             // var baseMaps = null;
             var controller = L.control.layers().addTo(map);
             {% for tour in touren %}
