@@ -17,6 +17,7 @@
             var baseMaps = null;
 
             var dataurl = '{% url "data_tour" 'kroatien' %}';
+            var schweden;
             $.getJSON(dataurl, function (data) {
                 schweden = L.geoJson(data);
             });
