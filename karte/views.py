@@ -20,3 +20,10 @@ def data_tour(request, touralias):
                                   use_natural_keys=True, with_modelname=False)
 
     return HttpResponse(json, content_type="application/json")
+
+
+def track_tour(request, touralias):
+    tour = get_object_or_404(Tour, alias=touralias)
+    track = tour.track
+    data = {'geometry': track, 'properties':{'name': tour.name}}
+    return JsonResponse(data)
