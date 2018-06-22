@@ -19,12 +19,12 @@
             var dataurl = '{% url "data_tour" 'kroatien' %}';
             $.getJSON('https://tour.sarbot.de/media/karte/tracks/schweden.json', function(data) {
                 var schweden = L.geoJson(data);
-                controller.addOverlayLayer(schweden, 'Schweden');
+                controller.addOverlay(schweden, 'Schweden');
 
             });
             $.getJSON('https://tour.sarbot.de/media/karte/tracks/korsika.json', function (data) {
                 var korsika = L.geoJson(data);
-                controller.addOverlayLayer(korsika, 'Korsika');
+                controller.addOverlay(korsika, 'Korsika');
             });
         }
     </script>
