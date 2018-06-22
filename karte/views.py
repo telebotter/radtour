@@ -22,7 +22,7 @@ def index(request):
             pass
         #if len(tour_data) > 0:
         context['touren'][tour.name] = tour_data
-    return render(request, 'karte/index.html')
+    return render(request, 'karte/index.html', context=context)
 
 
 def data_tour(request, touralias):
