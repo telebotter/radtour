@@ -1,5 +1,6 @@
 from django.db import models
 import datetime as dt
+from djgeojson.fields import MultiLineStringField
 
 
 
@@ -19,6 +20,7 @@ class Tour(models.Model):
     name = models.CharField(max_length=250)
     alias = models.CharField(max_length=250, unique=True)  # url-safe
     date_start = models.DateField('Tour Started', null=True)
+    track = models.MultiLineStringField(null=True, blank=True)
     #date_end = models.CharField('Tour Finished', null=True)
     #countries = models.ManyToMany(Country, blank=True)
     #color = models.CharField(max_length=10)
