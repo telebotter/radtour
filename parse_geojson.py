@@ -6,7 +6,6 @@ import json
 import django
 os.environ["DJANGO_SETTINGS_MODULE"] = 'tour.settings'
 django.setup()
-from karte.models import Track
 from main.models import Tour
 from logbuch.models import Logbucheintrag
 
