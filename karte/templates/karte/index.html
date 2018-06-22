@@ -22,7 +22,7 @@
         //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
         var markerSize = 10;
         var redMarker = L.AwesomeMarkers.icon({
-            icon: 'bed',
+            icon: 'tent',
             markerColor: 'red'
         });
         function main_map_init (map, options) {
@@ -40,7 +40,11 @@
                         pointToLayer: function(feature, latlng) {
                             //return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
                             //return new L.circle(latlng, {radius: 100, fillOpacity: 0.85});
-                            return new L.marker(latlng, {icon: redMarker});
+                            return new L.marker(latlng, {icon:
+                                L.AwesomeMarkers.icon({
+                                    icon: 'tent',
+                                    markerColor: 'red'
+                                })});
                         },
                         onEachFeature: function (feature, layer) {
                             layer.bindPopup(feature.properties.text);
