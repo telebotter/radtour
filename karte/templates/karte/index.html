@@ -14,7 +14,7 @@
 
     <script type="text/javascript">
         function main_map_init (map, options) {
-            var dataurl = '{% url "data" %}';
+            var dataurl = '{% url "data_tour" 'kroatien' %}';
             // Download GeoJSON via Ajax
             $.getJSON(dataurl, function (data) {
                 // Add GeoJSON layer
