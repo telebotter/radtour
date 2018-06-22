@@ -28,7 +28,7 @@
             $.getJSON(schwedenurl, function(data){
                 var schwedenLayer = L.layerGroup(data);
                 var layerControl = L.control.layers().addTo(map);
-                layerControl.addLayer(schwedenLayer);
+                layerControl.addLayer({'name':schwedenLayer});
             });
         }
     </script>
