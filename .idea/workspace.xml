@@ -56,7 +56,7 @@
         <entry file="file://$PROJECT_DIR$/karte/templates/karte/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
-              <caret line="21" column="66" lean-forward="false" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+              <caret line="21" column="71" lean-forward="false" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -90,7 +90,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/schweden.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
-              <caret line="19" column="52" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="52" />
+              <caret line="19" column="52" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -957,7 +957,7 @@
     <entry file="file://$PROJECT_DIR$/scripts/schweden.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
-          <caret line="19" column="52" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="52" />
+          <caret line="19" column="52" lean-forward="false" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="52" />
           <folding />
         </state>
       </provider>
@@ -965,7 +965,7 @@
     <entry file="file://$PROJECT_DIR$/karte/templates/karte/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
-          <caret line="21" column="66" lean-forward="false" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
+          <caret line="21" column="71" lean-forward="false" selection-start-line="21" selection-start-column="71" selection-end-line="21" selection-end-column="71" />
           <folding />
         </state>
       </provider>
