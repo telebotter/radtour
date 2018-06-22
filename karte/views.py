@@ -20,7 +20,7 @@ def orte_tour(request, touralias):
         try:
             points.append({'type':'Feature', 'geometry': log.ort, 'properties':{'name': log.tag, 'color': tour.color, 'text': log.text}})
         except Exception as e:
-            raise e
+            pass
     geo_json = {'type': 'FeatureCollection', 'features': points, 'properties':{'name': tour.name}}
     context = {}
     context['logs'] = logs

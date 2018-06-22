@@ -15,15 +15,18 @@
         function main_map_init (map, options) {
             var controller = L.control.layers().addTo(map);
             {% for tour in touren %}
+                var tourStyle = {
+                    "color": '{{ tour.color|safe }}',
+                };
                 var orte_url = '{% url "orte_tour" tour.name %}';
                 $.getJSON(orte_url, function(data) {
-                    var orte = L.geoJson(data);
+                    var orte = L.geoJson(data, {style: tourStyle});
                     orte.addTo(map);
                     controller.addOverlay(orte, '{{ tour.name|safe }}');
                 });
                 var track_url = '{% url "track_tour" tour.name %}';
                 $.getJSON(track_url, function(data) {
-                    var track = L.geoJson(data);
+                    var track = L.geoJson(data {style: tourStyle});
                     track.addTo(map);
                     controller.addOverlay(track, '{{ tour.name|safe }}' + ' (Track)');
                 });
