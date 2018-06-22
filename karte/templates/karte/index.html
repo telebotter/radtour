@@ -13,22 +13,12 @@
 
     <script type="text/javascript">
         function main_map_init (map, options) {
+
+
             var dataurl = '{% url "data_tour" 'kroatien' %}';
-            // Download GeoJSON via Ajax
             $.getJSON(dataurl, function (data) {
-                // Add GeoJSON layer
-                L.geoJson(data).addTo(map);
-            });
-
-
-            L.layerJSON({url: schwedenurl}).addTo(map);
-
-
-            var schwedenurl = 'https://tour.sarbot.de/media/karte/tracks/schweden.json';
-            $.getJSON(schwedenurl, function(data){
-                var schwedenLayer = L.layerGroup(data);
-                var layerControl = L.control.layers().addTo(map);
-                layerControl.addLayer({'name':schwedenLayer});
+                lct = L.control.layers().addTo(map);
+                lct.addLayer(L.geoJson(data).addTo(map));
             });
         }
     </script>
