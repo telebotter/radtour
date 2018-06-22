@@ -19,7 +19,7 @@
                 console.log(dataurl);
                 $.getJSON(dataurl, function(data) {
                     var layer = L.geoJson(data);
-                    controller.addOverlay(layer, 'Name');
+                    controller.addOverlay(layer, {{ tour.name|safe }});
                 });
             {% endfor %}
         }
