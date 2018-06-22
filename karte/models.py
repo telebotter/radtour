@@ -1,6 +1,6 @@
 from django.db import models
 from main.models import Tour
-from djgeojson.fields import PointField
+from djgeojson.fields import PointField, MultiLineField
 
 # Create your models here.
 class Karte(models.Model):
@@ -14,9 +14,10 @@ class Track(models.Model):
     """One day of the tour?"""
     tag = models.IntegerField(null=True, blank=True)
     tour = models.ForeignKey(Tour, on_delete=models.SET_NULL, null=True, blank=True)
+    track = MultiLineField(null=True, blank=True)
 
     def __str__(self):
-        return '{} Tag: {}'.format(tour.name, self.tag)
+        return '{}'.format(self.tour.name)
 
 
 class Schlafplatz(models.Model):
@@ -26,4 +27,4 @@ class Schlafplatz(models.Model):
     tour = models.ForeignKey(Tour, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
-        return '{} Tag: {}'.format(tour.name, self.tag)
+        return '{} Tag: {}'.format(self.tour.name, self.tag)

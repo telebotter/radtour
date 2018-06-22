@@ -1,5 +1,6 @@
 from django.db import models
 from main.models import Tour
+from djgeojson.fields import PointField
 # Create your models here.
 
 
@@ -16,8 +17,7 @@ class Logbucheintrag(models.Model):
     strecke = models.FloatField(null=True, blank=True)
     uptime = models.FloatField(null=True, blank=True)
     hoehe = models.FloatField(null=True, blank=True)
-    gps_lon = models.FloatField(null=True, blank=True)
-    gps_lat = models.FloatField(null=True, blank=True)
+    position = PointField(null=True, blank=True)
 
     @property
     def naechster_eintrag(self):
