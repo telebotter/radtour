@@ -19,4 +19,4 @@ def data_tour(request, touralias):
     json = GeoJSONSerializer().serialize(Schlafplatz.objects.all(),
                                   use_natural_keys=True, with_modelname=False)
 
-    return JsonResponse(json)
+    return HttpResponse(json)
