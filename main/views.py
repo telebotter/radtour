@@ -10,7 +10,7 @@ def index(request):
     welcome_msg = 'Hallo'
     latest_tour = Tour.objects.order_by('date_start').reverse()[0].id
     context = {'text': welcome_msg, 'tour_id': latest_tour}
-    return render(request, 'main/home.html', context)
+    return render(request, 'main/index.html', context)
 
 
 def list(request):
