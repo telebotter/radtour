@@ -17,18 +17,15 @@
             {% for tour in touren %}
                 var orte_url = '{% url "orte_tour" tour.name %}';
                 $.getJSON(orte_url, function(data) {
-                    var layer = L.geoJson(data);
-                    layer.addTo(map);
+                    var orte = L.geoJson(data);
+                    orte.addTo(map);
                     controller.addOverlay(layer, '{{ tour.name|safe }}');
                 });
-            {% endfor %}
-
-            {% for tour in touren %}
                 var track_url = '{% url "track_tour" tour.name %}';
                 $.getJSON(track_url, function(data) {
-                    var layer = L.geoJson(data);
-                    layer.addTo(map);
-                    controller.addOverlay(layer, '{{ tour.name|safe }}');
+                    var track = L.geoJson(data);
+                    track.addTo(map);
+                    controller.addOverlay(layer, '{{ tour.name|safe }}' + ' (Track)');
                 });
             {% endfor %}
         }
