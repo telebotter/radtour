@@ -8,7 +8,7 @@ from django.http import HttpResponse, JsonResponse
 
 def index(request):
     context = {}
-    context['touren'] = []
+    context['touren'] = {}
     touren = Tour.objects.all()
     for tour in touren:
         tour_data = {}
@@ -21,7 +21,7 @@ def index(request):
         except:
             pass
         #if len(tour_data) > 0:
-        context['touren'].append(tour_data)
+        context['touren'][tour.name] = tour_data
     return render(request, 'karte/index.html')
 
 
