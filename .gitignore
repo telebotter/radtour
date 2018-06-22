@@ -3,6 +3,5 @@ tour/settings.py
 local/
 static/
 !karte/static/
-media/
 .idea/
 __pycache__/
