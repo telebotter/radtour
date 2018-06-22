@@ -20,7 +20,6 @@
             var dataurl = '{% url "data_tour" 'kroatien' %}';
             $.getJSON('https://tour.sarbot.de/media/karte/tracks/schweden.json', function(data) {
                 schweden = L.geoJson(data);
-                overlayMaps['Schweden'] = schweden;
 
             });
             $.getJSON('https://tour.sarbot.de/media/karte/tracks/korsika.json', function (data) {
