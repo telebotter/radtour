@@ -2,7 +2,9 @@
 {% load static %}
 <html>
   <head>
-        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">
+        <!--<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">-->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'karte/css/leaflet.awesome-markers.css' %}">
         {% leaflet_js %}
         {% leaflet_css %}
@@ -16,7 +18,7 @@
     {% leaflet_map "main" callback="main_map_init" %}
 
     <script type="text/javascript">
-        L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
+        //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
         var markerSize = 10;
         var redMarker = L.AwesomeMarkers.icon({
             icon: 'bed',
