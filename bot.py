@@ -114,7 +114,7 @@ def save_file(bot, update):
 def add_location(bot, update):
     # adds location to database (Schlafplatz)
     user, new = get_or_create_user(update)
-    log = Logbucheintrag.objects.get_or_create(tag=user.tag, tour=user.tour)
+    log, new = Logbucheintrag.objects.get_or_create(tag=user.tag, tour=user.tour)
     loc = update.message.location
     geom = {'type': 'Point', 'coordinates': [loc.longitude, loc.latitude]}
     log.ort = geom
