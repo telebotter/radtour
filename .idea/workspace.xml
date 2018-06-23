@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c5ca454-ec0d-46cb-a8ca-9e4bea661dbb" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/karte/tracks/portugal.json" afterPath="$PROJECT_DIR$/media/karte/tracks/portugal.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/media/karte/tracks/portugal.gpx" afterPath="$PROJECT_DIR$/media/karte/tracks/portugal.gpx" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
