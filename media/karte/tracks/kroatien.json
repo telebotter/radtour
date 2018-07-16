@@ -8,7 +8,7 @@
 				"coordinates": [15.213288, 44.136587]
 			},
 			"properties": {
-				"name": "Tag 1",
+				"name": "001",
 				"type": "Generic",
 				"ele": "3.0"
 			}
@@ -20,7 +20,7 @@
 				"coordinates": [12.838919, 47.036909]
 			},
 			"properties": {
-				"name": "Tag 10",
+				"name": "010",
 				"type": "Generic",
 				"ele": "1232.0"
 			}
@@ -32,7 +32,7 @@
 				"coordinates": [12.826972, 47.223902]
 			},
 			"properties": {
-				"name": "Tag 11",
+				"name": "011",
 				"type": "Generic",
 				"ele": "816.0"
 			}
@@ -44,7 +44,7 @@
 				"coordinates": [12.908581, 47.763983]
 			},
 			"properties": {
-				"name": "Tag 13",
+				"name": "013",
 				"type": "Generic",
 				"ele": "452.0"
 			}
@@ -56,7 +56,7 @@
 				"coordinates": [12.968518, 47.83765]
 			},
 			"properties": {
-				"name": "Tag 14",
+				"name": "014",
 				"type": "Generic",
 				"ele": "424.0"
 			}
@@ -68,7 +68,7 @@
 				"coordinates": [14.885061, 44.539096]
 			},
 			"properties": {
-				"name": "Tag 2",
+				"name": "002",
 				"type": "Generic",
 				"ele": "14.0"
 			}
@@ -80,7 +80,7 @@
 				"coordinates": [14.332633, 45.353302]
 			},
 			"properties": {
-				"name": "Tag 3",
+				"name": "003",
 				"type": "Generic",
 				"ele": "4.0"
 			}
@@ -92,7 +92,7 @@
 				"coordinates": [14.08764, 45.474686]
 			},
 			"properties": {
-				"name": "Tag 4",
+				"name": "004",
 				"type": "Generic",
 				"ele": "784.0"
 			}
@@ -104,7 +104,7 @@
 				"coordinates": [13.999277, 45.498153]
 			},
 			"properties": {
-				"name": "Tag 5",
+				"name": "005",
 				"type": "Generic",
 				"ele": "669.0"
 			}
@@ -116,7 +116,7 @@
 				"coordinates": [13.999192, 45.498214]
 			},
 			"properties": {
-				"name": "Tag 6",
+				"name": "006",
 				"type": "Generic",
 				"ele": "669.0"
 			}
@@ -128,7 +128,7 @@
 				"coordinates": [13.965895, 45.432106]
 			},
 			"properties": {
-				"name": "Tag 7",
+				"name": "007",
 				"type": "Generic",
 				"ele": "232.0"
 			}
@@ -140,7 +140,7 @@
 				"coordinates": [14.000248, 45.498744]
 			},
 			"properties": {
-				"name": "Tag 8",
+				"name": "008",
 				"type": "Generic",
 				"ele": "689.0"
 			}
@@ -152,7 +152,7 @@
 				"coordinates": [13.446074, 46.824807]
 			},
 			"properties": {
-				"name": "Tag 9",
+				"name": "009",
 				"type": "Generic",
 				"ele": "574.0"
 			}
