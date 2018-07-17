@@ -9,7 +9,7 @@ from django.http import HttpResponse, JsonResponse
 def index(request):
     context = {}
     context['touren'] = Tour.objects.all()
-    return render(request, 'karte/index.html', context=context)
+    return render(request, 'karte/base_karte.html', context=context)
 
 
 def orte_tour(request, touralias):
