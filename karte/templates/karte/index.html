@@ -1,5 +1,6 @@
 {% extends 'main/base.html' %}
-
+    {% load leaflet_tags %}
+    {% load static %}
 
     {% block addjs %}
         {% leaflet_js %}
@@ -14,8 +15,7 @@
 
 {% block content %}
 
-    {% load leaflet_tags %}
-    {% load static %}
+
     {% leaflet_map "main" callback="main_map_init" %}
     <script type="text/javascript">
         //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
