@@ -1,5 +1,7 @@
 {% extends 'karte/base_karte.html' %}
 
+{% load leaflet_tags %}
+{% load static %}
 
     {% leaflet_map "main" callback="main_map_init" %}
 
