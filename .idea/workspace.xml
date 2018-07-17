@@ -31,9 +31,9 @@
         <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="46" column="76" lean-forward="false" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
+              <caret line="46" column="81" lean-forward="false" selection-start-line="46" selection-start-column="81" selection-end-line="46" selection-end-column="81" />
               <folding>
-                <element signature="e#3588#3592#0" expanded="true" />
+                <element signature="e#3595#3599#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -903,9 +903,9 @@
     <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="46" column="76" lean-forward="false" selection-start-line="46" selection-start-column="76" selection-end-line="46" selection-end-column="76" />
+          <caret line="46" column="81" lean-forward="false" selection-start-line="46" selection-start-column="81" selection-end-line="46" selection-end-column="81" />
           <folding>
-            <element signature="e#3588#3592#0" expanded="true" />
+            <element signature="e#3595#3599#0" expanded="true" />
           </folding>
         </state>
       </provider>
