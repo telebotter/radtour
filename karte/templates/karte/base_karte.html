@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% load leaflet_tags %}
+{% load static %}
+
+    {% block addcss %}
+        {% leaflet_css %}
+    {% endblock addcss %}
+
+    {% block addjs %}
+        {% leaflet_js %}
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="{% static 'karte/js/leaflet.awesome-markers.js' %}"></script>
+        <style>
+            .leaflet-container { height: 100%; }
+        </style>
+    {% endblock addjs %}
+
+{% block content %}
+Karte wird dynamisch eingefügt
+{% endblock content %}
