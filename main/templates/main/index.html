@@ -1,14 +1,6 @@
 {% extends "main/base_main.html" %}
 
 {% block content %}
-<h2>Hauptmenu</h2>
-<ul>
-    <li><a href="{% url 'main_list' %}">Übersicht</a></li>
-    <li><a href="{% url 'index_karte' %}">Karte</a></li>
-    <li><a href="{% url 'logbuch_liste' 'kroatien' %}">Logbücher</a></li>
-    <li><a class="disabled" href="" >Statistik</a></li>
-    <li><a href="/admin">Login</a></li>
-</ul>
 <h2>Neu</h2>
 <h2>Sonstige</h2>
 {% endblock content %}
