@@ -22,7 +22,7 @@ class Tour(models.Model):
     alias = models.CharField(max_length=250, unique=True)  # url-safe
     date_start = models.DateField('Tour Started', null=True)
     track = MultiLineStringField(null=True, blank=True)
-    date_end = models.CharField('Tour Finished', null=True)
+    #date_end = models.CharField('Tour Finished', null=True)
     #countries = models.ManyToMany(Country, blank=True)
     color = RGBColorField(default='#000000')
     #length = models.FloatField(blank=True)
