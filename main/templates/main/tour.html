@@ -7,7 +7,7 @@
 <h2>{{ tour.name }}</h2> <br/>
     <p>{{ tour.text }}</p>
     <div class="container-box">
-        <div class="data-box">
+        <div class="data-box" style="width: 30%;">
              <table class="table table-hover">
             <thead>
               <tr>
@@ -43,7 +43,7 @@
             {% if tour.color %}
               <tr>
                 <td>Farbe</td>
-                  <td><div style="background-color:{{ tour.color }}; width:10px; height:10px;"></div></td>
+                  <td><div style="background-color:{{ tour.color }}; width:20px; height:20px;"></div></td>
               </tr>
             {% endif %}
             </tbody>
