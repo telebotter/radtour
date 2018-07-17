@@ -43,9 +43,10 @@
             {% endif %}
             </tbody>
           </table>
+        <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
         </div>
-    <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
     </div>
 </div>
-    <p>{{ tour.text }}</p>
+    <p>{{ tour.text|safe }}</p>
+    <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
 {% endblock content %}
