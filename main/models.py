@@ -48,6 +48,19 @@ class Tour(models.Model):
         except:
             duration = dt.timedelta(days=0)
         return duration
+    
+    @@property
+    def dauer(self):
+        """Berechnet die anzahl der tage aus start-enddatum oder anzahl der tagebuch einträge
+        """
+        try:
+            duration = self.date_finish - self.date_start
+            days = duration.days
+        except:
+            from logbuch import Logbucheintrag
+            logs = Logbucheintrag.objects.filter(tour=self)
+            days = len(logs)
+        return days
 
 
 

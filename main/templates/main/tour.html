@@ -2,6 +2,53 @@
 
 {% block content %}
     <a href="/touren">Alle Touren</a> <p/>
-    {{ tour.name }} <br/>
+
+<div class="content-box">
+<h2>{{ tour.name }}</h2> <br/>
+    <p>{{ tour.text }}</p>
+    <div class="container-box">
+        <div class="data-box">
+             <table class="table table-hover">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Wert</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% if tour.date_start %}
+              <tr>
+                <td>Start</td>
+                <td>{{ tour.date }}</td>
+              </tr>
+            {% endif %}
+            {% if tour.dauer %}
+              <tr>
+                <td>Dauer</td>
+                <td>{{ tour.dauer }}</td>
+              </tr>
+            {% if tour.strecke %}
+              <tr>
+                <td>Strecke</td>
+                <td>{{ tour.strecke }} km</td>
+              </tr>
+            {% endif %}
+            {% if tour.hoehe %}
+              <tr>
+                <td>Hoehe</td>
+                <td>{{ tour.hoehe }} m</td>
+              </tr>
+            {% endif %}
+            {% if tour.color %}
+              <tr>
+                <td>Farbe</td>
+                <td>{{ tour.color }} m</td>
+              </tr>
+            {% endif %}
+            </tbody>
+          </table>
+        </div>
+    </div>
+</div>
     <a href="/logbuch/{{ tour.alias }}">Logbuch</a> <br/>
 {% endblock content %}
