@@ -1,7 +1,9 @@
 {% extends 'karte/base_karte.html' %}
 
-{% block content %}
+
     {% leaflet_map "main" callback="main_map_init" %}
+
+{% block content %}
     <script type="text/javascript">
         //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
         var markerSize = 10;
