@@ -42,11 +42,10 @@
       <file leaf-file-name="base_karte.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/karte/templates/karte/base_karte.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="139" column="26" lean-forward="true" selection-start-line="139" selection-start-column="26" selection-end-line="139" selection-end-column="26" />
+            <state relative-caret-position="434">
+              <caret line="40" column="27" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
               <folding>
-                <marker date="1531834292114" expanded="true" signature="6503:6634" ph="..." />
-                <marker date="1531834292114" expanded="true" signature="6533:6620" ph="..." />
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -927,11 +926,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/karte/templates/karte/base_karte.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="139" column="26" lean-forward="true" selection-start-line="139" selection-start-column="26" selection-end-line="139" selection-end-column="26" />
+        <state relative-caret-position="434">
+          <caret line="40" column="27" lean-forward="false" selection-start-line="40" selection-start-column="27" selection-end-line="40" selection-end-column="27" />
           <folding>
-            <marker date="1531834292114" expanded="true" signature="6503:6634" ph="..." />
-            <marker date="1531834292114" expanded="true" signature="6533:6620" ph="..." />
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
