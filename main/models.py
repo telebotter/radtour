@@ -49,7 +49,7 @@ class Tour(models.Model):
             duration = dt.timedelta(days=0)
         return duration
     
-    @@property
+    @property
     def dauer(self):
         """Berechnet die anzahl der tage aus start-enddatum oder anzahl der tagebuch einträge
         """
