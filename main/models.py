@@ -22,12 +22,13 @@ class Tour(models.Model):
     alias = models.CharField(max_length=250, unique=True)  # url-safe
     date_start = models.DateField('Tour Started', null=True)
     track = MultiLineStringField(null=True, blank=True)
-    #date_end = models.CharField('Tour Finished', null=True)
+    date_end = models.CharField('Tour Finished', null=True)
     #countries = models.ManyToMany(Country, blank=True)
     color = RGBColorField(default='#000000')
     #length = models.FloatField(blank=True)
-    #img = models.ImageField()
+    img = models.ImageField(null=True, blank=True)
     #tourlog = models.TextField(blank=True)  # html or md content?
+    text = models.TextField(blank=True, null=True)
     
     
     def __str__(self):
@@ -62,6 +63,31 @@ class Tour(models.Model):
             days = len(logs)
         return days
 
+    @property
+    def strecke(self):
+        """Berechnet strecke als summe aller tageskilometer"""
+        from logbuch.models import Logbucheintrag
+        logs = Logbucheintrag.objects.filter(tour=self)
+        km = 0
+        for log in logs:
+            try:
+                km += log.strecke
+            except:
+                pass
+        return km
+
+    @property
+    def hoehe(self):
+        """Hoehe als summe aller tagesdaten"""
+        from logbuch.models import Logbucheintrag
+        logs = Logbucheintrag.objects.filter(tour=self)
+        hm = 0
+        for log in logs:
+            try:
+                hm += log.hoehe
+            except:
+                pass
+        return hm
 
 
 
