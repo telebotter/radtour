@@ -1,6 +1,6 @@
-{% extends 'main/main_base.html' %}
+{% extends "main/base_main.html" %}
 
-{% block content %}
+{% block tourlist %}
 {% if touren %}
 <ul>
     {% for tour in touren %}
@@ -8,4 +8,4 @@
     {% endfor %}
 </ul>
 {% endif %}
-{% endblock content %}
+{% endblock tourlist %}

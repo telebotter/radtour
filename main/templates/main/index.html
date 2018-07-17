@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "main/base_main.html" %}
+
+{% block content %}
 <h2>Hauptmenu</h2>
 <ul>
     <li><a href="{% url 'main_list' %}">Übersicht</a></li>
@@ -15,5 +11,4 @@
 </ul>
 <h2>Neu</h2>
 <h2>Sonstige</h2>
-</body>
-</html>
+{% endblock content %}
