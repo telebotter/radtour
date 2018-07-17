@@ -57,7 +57,7 @@ class Tour(models.Model):
             duration = self.date_finish - self.date_start
             days = duration.days
         except:
-            from logbuch import Logbucheintrag
+            from logbuch.models import Logbucheintrag
             logs = Logbucheintrag.objects.filter(tour=self)
             days = len(logs)
         return days
