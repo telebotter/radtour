@@ -1,23 +1,7 @@
-{% load leaflet_tags %}
-{% load static %}
-<html>
-  <head>
-        <!--<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/1.5.2/css/ionicons.min.css">-->
-        <!--<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'karte/css/leaflet.awesome-markers.css' %}">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-        {% leaflet_js %}
-        {% leaflet_css %}
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-        <script src="{% static 'karte/js/leaflet.awesome-markers.js' %}"></script>
-        <style>
-        .leaflet-container { height: 100%; }
-    </style>
-  </head>
-  <body>
-    {% leaflet_map "main" callback="main_map_init" %}
+{% extends 'karte/base_karte.html' %}
 
+{% block content %}
+    {% leaflet_map "main" callback="main_map_init" %}
     <script type="text/javascript">
         //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
         var markerSize = 10;
@@ -60,6 +44,4 @@
         }
         //on.
     </script>
-
-  </body>
-</html>
+{% endblock content %}
