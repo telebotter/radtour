@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<a href="/touren">Alle Touren</a> <p/>
-{{ tour.name }} <br/>
-<a href="/logbuch/{{ tour.alias }}">Logbuch</a> <br/>
-</body>
-</html>
+{% extends base_main.html %}
+
+{% block content %}
+    <a href="/touren">Alle Touren</a> <p/>
+    {{ tour.name }} <br/>
+    <a href="/logbuch/{{ tour.alias }}">Logbuch</a> <br/>
+{% endblock content %}
