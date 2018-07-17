@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c5ca454-ec0d-46cb-a8ca-9e4bea661dbb" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/karte/templates/karte/base_karte.html" afterPath="$PROJECT_DIR$/karte/templates/karte/base_karte.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/templates/main/base.html" afterPath="$PROJECT_DIR$/main/templates/main/base.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,11 +27,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="12" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+            <state relative-caret-position="405">
+              <caret line="78" column="264" lean-forward="false" selection-start-line="78" selection-start-column="264" selection-end-line="78" selection-end-column="264" />
               <folding>
                 <element signature="e#3607#3611#0" expanded="true" />
               </folding>
@@ -39,12 +39,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base_karte.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base_karte.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/karte/templates/karte/base_karte.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
-              <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
-              <folding />
+            <state relative-caret-position="314">
+              <caret line="26" column="207" lean-forward="true" selection-start-line="26" selection-start-column="207" selection-end-line="26" selection-end-column="207" />
+              <folding>
+                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -179,10 +181,10 @@
         <option value="$PROJECT_DIR$/main/templates/main/index.html" />
         <option value="$PROJECT_DIR$/main/templates/main/base_main.html" />
         <option value="$PROJECT_DIR$/main/templates/main/list.html" />
-        <option value="$PROJECT_DIR$/main/templates/main/base.html" />
         <option value="$PROJECT_DIR$/karte/templates/karte/index.html" />
         <option value="$PROJECT_DIR$/karte/views.py" />
         <option value="$PROJECT_DIR$/karte/templates/karte/base_karte.html" />
+        <option value="$PROJECT_DIR$/main/templates/main/base.html" />
       </list>
     </option>
   </component>
@@ -894,16 +896,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="12" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-          <folding>
-            <element signature="e#3607#3611#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/karte/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="98">
@@ -924,9 +916,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/karte/templates/karte/base_karte.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="40" column="42" lean-forward="false" selection-start-line="40" selection-start-column="42" selection-end-line="40" selection-end-column="42" />
-          <folding />
+        <state relative-caret-position="314">
+          <caret line="26" column="207" lean-forward="true" selection-start-line="26" selection-start-column="207" selection-end-line="26" selection-end-column="207" />
+          <folding>
+            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/templates/main/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="78" column="264" lean-forward="false" selection-start-line="78" selection-start-column="264" selection-end-line="78" selection-end-column="264" />
+          <folding>
+            <element signature="e#3607#3611#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
