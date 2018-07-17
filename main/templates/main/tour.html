@@ -9,17 +9,11 @@
     <div class="container-box">
         <div class="data-box" style="width: 30%;">
              <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Wert</th>
-              </tr>
-            </thead>
             <tbody>
             {% if tour.date_start %}
               <tr>
                 <td>Start</td>
-                <td>{{ tour.date }}</td>
+                <td>{{ tour.date|date:"Y-m-d" }}</td>
               </tr>
             {% endif %}
             {% if tour.dauer %}
