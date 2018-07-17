@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %} Tour - Website {% endblock title %}
+    </title>
+    {% block css %}
+    {% endblock css %}
+    {% block js %}
+    {% endblock js %}
+</head>
+
+<body>
+    {% block header %}
+    <h2>Hauptmenu</h2>
+    <ul>
+        <li><a href="{% url 'main_list' %}">Übersicht</a></li>
+        <li><a href="{% url 'index_karte' %}">Karte</a></li>
+        <li><a href="{% url 'logbuch_liste' 'kroatien' %}">Logbücher</a></li>
+        <li><a class="disabled" href="" >Statistik</a></li>
+        <li><a href="/admin">Login</a></li>
+    </ul>
+    {% endblock header %}
+
+    {% block content %}
+    <h2>Neu</h2>
+    <h2>Sonstige</h2>
+    {% endblock content %}
+
+    {% block footer %}
+    footer
+    {% endblock footer %}
+
+</body>
+</html>
