@@ -5,7 +5,7 @@ from main.models import Tour
 
 
 # Create your views here.
-def index(request):
+def index(request, touralias='kroatien'):
     """All images overview"""
     bilder = get_list_or_404(Bild)
     ctx= {'bilder': bilder}
