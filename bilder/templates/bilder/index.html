@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bilder</title>
+</head>
+<body>
+{% for bild in bilder %}
+<p>Name: {{ bild.titel }}</p>
+<img src="{{ bild_thumb.url }}"/>
+<img src="{{ bild_web.url }}"/>
+<img src="{{ bild.url }}"/>
+{% endfor %}
+</body>
+</html>

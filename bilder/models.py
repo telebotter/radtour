@@ -19,5 +19,7 @@ class Bild(models.Model):
     bild_web = ImageSpecField(source='bild',
                                       processors=[ResizeToFill(720, 720)],
                                       format='JPEG',
-                                      options={'quality': 60})
+                                      options={'quality': 90})
+    bild_thumb = ImageSpecField(source='bild', processors=[ResizeToFill(100,100)],
+                                format='JPEG', options={'quality': 60})
 
