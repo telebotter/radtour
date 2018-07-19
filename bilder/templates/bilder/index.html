@@ -7,9 +7,10 @@
 <body>
 {% for bild in bilder %}
 <p>Name: {{ bild.titel }}</p>
-<img src="{{ bild_thumb.url }}"/>
-<img src="{{ bild_web.url }}"/>
-<img src="{{ bild.url }}"/>
+<p>Url: {{ bild.url }}</p>
+<img src="{{ bild_thumb.url }}" alt="thumb"/>
+<img src="{{ bild_web.url }}" alt="web"/>
+<img src="{{ bild.url }}" alt="bild"/>
 {% endfor %}
 </body>
 </html>
