@@ -7,10 +7,7 @@
 <h2>{{ tour.name }}</h2> <br/>
     <div class="container-box">
         <div class="data-box" style="width: 30%; float: right;">
-        <div class="minimap-box">
-            <a href="/karte"><img width="100%" src="/media/gfx/minimap_{{ tour.alias }}.png" /></a>
-        </div>
-             <table class="table table-hover">
+            <table class="table table-hover">
             <tbody>
             {% if tour.date_start %}
               <tr>
@@ -50,6 +47,12 @@
             </tr>
             </tbody>
           </table>
+        </div>
+        <div class="data-box" style="width: 30%; float: right;">
+        <div class="minimap-box">
+            <a href="/karte"><img width="100%" src="/media/gfx/minimap_{{ tour.alias }}.png" /></a>
+        </div>
+
         </div>
     </div>
 </div>
