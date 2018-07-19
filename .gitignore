@@ -1,7 +1,6 @@
 tour/settings.py
 *.sqlite3
 local/
-static/
 !karte/static/
 !main/static/
 .idea/*
