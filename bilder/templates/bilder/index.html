@@ -1,21 +1,20 @@
 {% load static %}
-
+{% extends "main/base.html" %}
 <!-- https://github.com/blueimp/Gallery#setup -->
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Bilder</title>
-
-    <link rel="stylesheet" href="{% static 'bilder/css/blueimp-gallery.min.css' %}">
-
-</head>
-<body>
+{% block title %}
+Tour - Bilder
+{% endblock title %}
 
 
+
+{% block addcss %}
+<link rel="stylesheet" href="{% static 'bilder/css/blueimp-gallery.min.css' %}">
+{% endblock addcss %}
+
+
+{% block content %}
 <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
     <div class="slides"></div>
@@ -48,5 +47,4 @@ document.getElementById('links').onclick = function (event) {
     blueimp.Gallery(links, options);
 };
 </script>
-</body>
-</html>
+{% endblock content %}
