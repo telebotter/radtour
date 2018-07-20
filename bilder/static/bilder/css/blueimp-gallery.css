@@ -224,3 +224,17 @@ body:last-child .blueimp-gallery-playing > .play-pause {
 *+html .blueimp-gallery > .slides > .slide > .slide-content {
   position: relative;
 }
+
+
+
+
+.blueimp-gallery > .description {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  color: #fff;
+  display: none;
+}
+.blueimp-gallery-controls > .description {
+  display: block;
+}
