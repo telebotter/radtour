@@ -203,6 +203,24 @@
           user-select: none;
 }
 
+
+
+
+.blueimp-gallery > .description {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  color: #fff;
+  display: none;
+}
+.blueimp-gallery-controls > .description {
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  color: #fff;
+  display: block;
+}
+
 /* Replace PNGs with SVGs for capable browsers (excluding IE<9) */
 body:last-child .blueimp-gallery > .slides > .slide-error {
   background-image: url(../img/error.svg);
@@ -225,20 +243,3 @@ body:last-child .blueimp-gallery-playing > .play-pause {
   position: relative;
 }
 
-
-
-
-.blueimp-gallery > .description {
-  position: absolute;
-  top: 30px;
-  left: 15px;
-  color: #fff;
-  display: none;
-}
-.blueimp-gallery-controls > .description {
-  position: absolute;
-  top: 30px;
-  left: 15px;
-  color: #fff;
-  display: block;
-}
