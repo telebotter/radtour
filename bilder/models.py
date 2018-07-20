@@ -3,6 +3,7 @@ from main.models import Tour
 from logbuch.models import Logbucheintrag
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
+from imagekit.processors import ResizeToFit
 
 # Create your models here.
 
@@ -17,7 +18,7 @@ class Bild(models.Model):
     date = models.DateTimeField(null=True, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     bild_web = ImageSpecField(source='bild',
-                                      processors=[ResizeToFill(720, 720)],
+                                      processors=[ResizeToFit(1000, 1000)],
                                       format='JPEG',
                                       options={'quality': 90})
     bild_thumb = ImageSpecField(source='bild', processors=[ResizeToFill(100,100)],
