@@ -221,6 +221,11 @@
   display: block;
 }
 
+
+.description {
+    color: red;
+}
+
 /* Replace PNGs with SVGs for capable browsers (excluding IE<9) */
 body:last-child .blueimp-gallery > .slides > .slide-error {
   background-image: url(../img/error.svg);
