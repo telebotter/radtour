@@ -10,6 +10,11 @@
  * https://opensource.org/licenses/MIT
  */
 
+.description {
+    color: red;
+}
+
+
 .blueimp-gallery,
 .blueimp-gallery > .slides > .slide > .slide-content {
   position: absolute;
