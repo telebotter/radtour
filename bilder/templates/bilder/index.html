@@ -52,6 +52,7 @@ document.getElementById('links').onclick = function (event) {
             node.empty();
             if (text) {
                 node[0].appendChild(document.createTextNode(text));
+                node[1].setAttribute('href', 'hello');
 
             }
             var editlink = this.list[index].getAttribute('data-editlink'),
