@@ -20,6 +20,7 @@ Tour - Bilder
     <div class="slides"></div>
     <h3 class="title"></h3>
     <p class="description"></p>
+    <div class="editlink">blub</div>
     <a class="prev">‹</a>
     <a class="next">›</a>
     <a class="close">×</a>
@@ -29,7 +30,7 @@ Tour - Bilder
 
 <div id="links">
     {% for bild in bilder %}
-    <a href="{{ bild.bild_web.url }}" title="{{ bild.titel }}" data-description="This is a banana.">
+    <a href="{{ bild.bild_web.url }}" title="{{ bild.titel }}" data-description="This is a banana." data-editlink="testlink">
         <img src="{{ bild.bild_thumb.url }}" alt="{{ bild.titel }}">
     </a>
     {% endfor %}
@@ -51,6 +52,13 @@ document.getElementById('links').onclick = function (event) {
             node.empty();
             if (text) {
                 node[0].appendChild(document.createTextNode(text));
+
+            }
+            var editlink = this.list[index].getAttribute('data-editlink'),
+                nodeeditlink = this.container.find('.editlink');
+            nodeeditlink.empty();
+            if (editlink) {
+                node[0].appendChild(document.createTextNode(editlink));
             }
         }
 
