@@ -5,3 +5,9 @@ display:inline;
 margin:0;
 padding:.5em;
 }
+
+#id_label input {
+display:inline;
+margin:0;
+padding:.5em;
+}
