@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 from bilder.models import Bild
 from main.models import Tour
+from bilder.forms import FilterForm
 
 
 # Create your views here.
@@ -21,4 +22,6 @@ def index(request):
     else:
         bilder = get_list_or_404(Bild, private=False)
     ctx= {'bilder': bilder}
+    form = FilterForm()
+    ctx['form'] = form
     return render(request, 'bilder/index.html', context=ctx)
