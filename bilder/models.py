@@ -11,6 +11,9 @@ class Label(models.Model):
     private = models.BooleanField(default=False)
     name = models.CharField(max_length=50, primary_key=True)
 
+    def __str__(self):
+        return self.name
+
 
 
 
@@ -31,6 +34,9 @@ class Bild(models.Model):
                                 format='JPEG', options={'quality': 60})
     labels = models.ManyToManyField(Label, blank=True, null=True, related_name='bild_label')
     private = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.titel
 
     class Meta:
         ordering = ['date', 'bild']
