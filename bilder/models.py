@@ -29,6 +29,6 @@ class Bild(models.Model):
                                       options={'quality': 90})
     bild_thumb = ImageSpecField(source='bild', processors=[ResizeToFill(100,100)],
                                 format='JPEG', options={'quality': 60})
-    labels = models.ManyToManyField(Label, blank=True, null=True)
+    labels = models.ManyToManyField(Label, blank=True, null=True, related_name='bild_label')
     private = models.BooleanField(default=False)
 
