@@ -15,7 +15,7 @@ Tour - Bilder
 
 
 {% block content %}
-<div><form action="" method="get">
+<div><form action="/bilder" method="get">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit" />
