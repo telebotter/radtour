@@ -14,7 +14,7 @@ def index(request):
         tour = get_object_or_404(Tour, alias=tour_alias)
         bilder = get_list_or_404(Bild, private=False, tour=tour)
     else:
-        bilder = get_list_or_404(Bild, private=False, alias=tour_alias)
+        bilder = get_list_or_404(Bild, private=False)
     if labels:
         bilder = bilder.filter(labels__in=labels)
     ctx= {'bilder': bilder}
