@@ -9,6 +9,6 @@ class FilterForm(forms.Form):
     OPTIONS = []
     for lab in LABELS:
         OPTIONS.append((lab.name, lab.name))
-    Filter = forms.MultipleChoiceField(
+    label = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
         choices=OPTIONS)
