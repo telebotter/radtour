@@ -32,3 +32,7 @@ class Bild(models.Model):
     labels = models.ManyToManyField(Label, blank=True, null=True, related_name='bild_label')
     private = models.BooleanField(default=False)
 
+    class Meta:
+        ordering = ['date', 'bild']
+        verbose_name_plural = 'bilder'
+
