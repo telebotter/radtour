@@ -20,7 +20,7 @@ def index(request):
     elif labels:
         bilder = get_list_or_404(Bild, private=False, labels__in=labels)
     else:
-        bilder = get_list_or_404(Bild.objects.order_by('date'), private=False)
+        bilder = get_list_or_404(Bild, private=False)
     ctx= {'bilder': bilder}
     form = FilterForm()
     ctx['form'] = form
