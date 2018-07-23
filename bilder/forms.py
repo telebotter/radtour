@@ -3,6 +3,11 @@
 from django import forms
 
 class FilterForm(forms.Form):
-    tag_lukas = forms.CheckboxSelectMultiple()
-    tag_renas = forms.CheckboxSelectMultiple()
-    tag_hendrik = forms.CheckboxSelectMultiple()
+    OPTIONS = (
+        ("AUT", "Austria"),
+        ("DEU", "Germany"),
+        ("NLD", "Neitherlands"),
+    )
+    Countries = forms.MultipleChoiceField(
+        widget=forms.CheckboxSelectMultiple,
+        choices=OPTIONS)
