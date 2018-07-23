@@ -9,6 +9,7 @@ def index(request, touralias='kroatien'):
     """All images overview"""
     bilder = get_list_or_404(Bild)
     ctx= {'bilder': bilder}
+
     return render(request, 'bilder/index.html', context=ctx)
 
 

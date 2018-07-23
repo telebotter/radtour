@@ -2,7 +2,11 @@ from django.contrib import admin
 
 # Register your models here.
 from bilder.models import Bild
+from imagekit.admin import AdminThumbnail
 
-# Register your models here.
+class BildAdmin(admin.ModelAdmin):
+    list_display = ('__str__', 'admin_thumbnail')
+    admin_thumbnail = AdminThumbnail(image_field='bild_thumb')
 
-admin.site.register(Bild)
+admin.site.register(Bild, BildAdmin)
+#admin.site.register(Bild)
