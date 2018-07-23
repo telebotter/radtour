@@ -5,15 +5,17 @@ from main.models import Tour
 
 
 # Create your views here.
-def index(request, touralias='kroatien'):
+def index(request):
     """All images overview"""
-    bilder = get_list_or_404(Bild)
+    # apply filter
+    tour_alias = request.GET.get('tour', default=False)
+    labels = request.GET.getlist('labels', default=False)
+    if tour_alias:
+        tour = get_object_or_404(Tour, alias=tour_alias)
+        bilder = get_list_or_404(Bild, private=False, tour=tour)
+    else:
+        bilder = get_list_or_404(Bild, private=False, alias=tour_alias)
+    if labels:
+        bilder = bilder.filter(labels__in=labels)
     ctx= {'bilder': bilder}
-
     return render(request, 'bilder/index.html', context=ctx)
-
-
-def album(request, touralias):
-    tour = get_object_or_404(Tour, alias=touralias)
-    context={'tour': tour}
-    return render(request, 'bilder/index.html', context=tour)
