@@ -1,4 +1,6 @@
-
+#id_label{
+display: inline;
+}
 
 #id_label li {
 display:inline;
