@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from bilder.models import Bild
+from bilder.models import Bild, Label
 from imagekit.admin import AdminThumbnail
 
 class BildAdmin(admin.ModelAdmin):
@@ -9,4 +9,4 @@ class BildAdmin(admin.ModelAdmin):
     admin_thumbnail = AdminThumbnail(image_field='bild_thumb')
 
 admin.site.register(Bild, BildAdmin)
-#admin.site.register(Bild)
+admin.site.register(Label)
