@@ -9,7 +9,9 @@
     datum: Tag {{ eintrag.tag }}
         {% if eintrag.datum %}({{ eintrag.datum|date:"SHORT_DATE_FORMAT" }}){% endif %}<br/>
     text: <p>{{ eintrag.text }}</p> <br/>
+    Bilder:
     {% for bild in bilder %}
+    ...
     <div>EIN BILD {{ bild.url }}</div>
     {% endfor %}
     <a href="{% url 'logbuch_eintrag' eintrag.tour.alias eintrag.letzter_eintrag %}">Vorheriger Eintrag</a> <br/>
