@@ -19,7 +19,7 @@ def tag(request, touralias, tagnummer):
     context={'eintrag':eintrag}
     tagesdatum = eintrag.datum
     #bilder = Bild.objects.filter(date__date=tagesdatum)
-    bilder = Bild.objects.filter(date__year=tagesdatum.year, date__day='12')
+    bilder = Bild.objects.filter(date__contains=tagesdatum)
     context['bilder'] = bilder
     context['anzahl'] = len(bilder)
     return render(request, 'logbuch/tag.html', context=context)
