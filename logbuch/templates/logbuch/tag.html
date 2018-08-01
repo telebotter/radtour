@@ -1,21 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "main/base.html" %}
+{% load static %}
+
+
+
+{% block title %}
+Tour - Tagebuch
+{% endblock title %}
+
+{% if bilder %}
+{% block addcss %}
+<link rel="stylesheet" href="{% static 'bilder/css/blueimp-gallery.min.css' %}">
+<link rel="stylesheet" href="{% static 'bilder/css/style.css' %}">
+{% endblock addcss %}
+{% endif %}
+
+
+
+{% block content %}
+
     tour: <a href="{% url 'main_tour' eintrag.tour.alias %}">{{ eintrag.tour.name }}</a> <br/>
     datum: Tag {{ eintrag.tag }}
         {% if eintrag.datum %}({{ eintrag.datum|date:"SHORT_DATE_FORMAT" }}){% endif %}<br/>
     text: <p>{{ eintrag.text }}</p> <br/>
     {% if bilder %}
     Bilder ({{ anzahl }}): <br/>
-    {% for bild in bilder %}
-    <div>EIN BILD {{ bild.url }}</div>
-    {% endfor %}
     {% endif %}
     <a href="{% url 'logbuch_eintrag' eintrag.tour.alias eintrag.letzter_eintrag %}">Vorheriger Eintrag</a> <br/>
     <a href="{% url 'logbuch_eintrag' eintrag.tour.alias eintrag.naechster_eintrag %}">Nächster Eintrag</a>
-</body>
-</html>
+
+
+{% if bilder %}
+<div><form action="/bilder" method="get">
+    {{ form }}
+    <input style="display:inline;" type="submit" value="Anwenden" />
+</form></div>
+<!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <p class="description"></p>
+    <a href="" class="editlink">blub</a>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+
+<div id="links">
+    {% for bild in bilder %}
+    <a href="{{ bild.bild_web.url }}" title="{{ bild.titel }}" data-description="This is a banana." data-editlink="testlink">
+        <img src="{{ bild.bild_thumb.url }}" alt="{{ bild.titel }}">
+    </a>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% if bilder %}
+<script src="{% static 'bilder/js/blueimp-gallery.min.js' %}"></script>
+<script>
+document.getElementById('links').onclick = function (event) {
+    event = event || window.event;
+    var target = event.target || event.srcElement,
+        link = target.src ? target.parentNode : target,
+        options = {index: link, event: event,
+
+        onslide: function (index, slide) {
+            var text = this.list[index].getAttribute('data-description'),
+                node = this.container.find('.description');
+            node.empty();
+            if (text) {
+                node[0].appendChild(document.createTextNode(text));
+                node[1].setAttribute('href', 'hello');
+
+            }
+            var editlink = this.list[index].getAttribute('data-editlink'),
+                nodeeditlink = this.container.find('.editlink');
+            nodeeditlink.empty();
+            if (editlink) {
+                node[0].appendChild(document.createTextNode(editlink));
+            }
+        }
+
+
+
+        },
+        links = this.getElementsByTagName('a');
+    blueimp.Gallery(links, options);
+};
+</script>
+{% endif %}
+{% endblock content %}
