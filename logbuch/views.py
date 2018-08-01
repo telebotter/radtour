@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 from main.models import Tour
+from bilder.models import Bild
 from logbuch.models import Logbucheintrag
 
 
@@ -16,4 +17,7 @@ def tag(request, touralias, tagnummer):
     tour = get_object_or_404(Tour, alias=touralias)
     eintrag = get_object_or_404(Logbucheintrag, tour=tour, tag=tagnummer)
     context={'eintrag':eintrag}
+    tagesdatum = eintrag.datum
+    bilder = Bild.objects.filter(date__date=tagesdatum)
+    context['bilder'] = bilder
     return render(request, 'logbuch/tag.html', context=context)
