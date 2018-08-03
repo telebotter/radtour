@@ -8,7 +8,10 @@ Tour - Bilder
 {% endblock title %}
 
 {% block content %}
-{{ bild.bild }} <br/>
-{{ bild.bild.url }} <br/>
+{{ bild.titel }} <br/>
+<div><form action="/bilder" method="post">
+    {{ form }}
+    <input style="display:inline;" type="submit" value="Speichern" />
+</form></div>
 <img src="{{ bild.bild.url }}" alt="{{ bild.titel }}" />
 {% endblock content %}

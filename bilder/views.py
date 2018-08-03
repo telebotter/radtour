@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 
 from bilder.models import Bild
 from main.models import Tour
-from bilder.forms import FilterForm
+from bilder.forms import FilterForm, TagForm
 
 
 # Create your views here.
@@ -26,9 +26,19 @@ def index(request):
     ctx['form'] = form
     return render(request, 'bilder/index.html', context=ctx)
 
+
 def tagging(request, image):
     """show an image with list of tags to edit"""
+    # check for post data to change form entries and db
+    if request.method == 'POST':
+        form = TagForm(request.POST)
+        if form.is_valid():
+            # process and or redirect
+            pass
+    else:
+        form = TagForm()
     img = Bild.objects.get(bild='bilder/'+image)
     ctx = {}
     ctx['bild'] = img
+    ctx['form'] = form
     return render(request, 'bilder/tagging.html', context=ctx)
