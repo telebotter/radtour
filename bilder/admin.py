@@ -9,7 +9,7 @@ class BildAdmin(admin.ModelAdmin):
     list_display = ('__str__', 'admin_thumbnail')
     admin_thumbnail = AdminThumbnail(image_field='bild_thumb')
     admin_thumbnail.short_description = 'Bild'
-    readonly_fields = ['admin_thumbnail']
+    readonly_fields = ['web_thumbnail']
 
 admin.site.register(Bild, BildAdmin)
 admin.site.register(Label)
