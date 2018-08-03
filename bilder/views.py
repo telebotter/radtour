@@ -26,9 +26,9 @@ def index(request):
     ctx['form'] = form
     return render(request, 'bilder/index.html', context=ctx)
 
-def tagging(request, img):
+def tagging(request, image):
     """show an image with list of tags to edit"""
-    image = Bild.objects.get(bild='bilder/'+img)
+    img = Bild.objects.get(bild='bilder/'+image)
     ctx = {}
-    ctx['bild'] = image
+    ctx['bild'] = img
     return render(request, 'bilder/tagging.html', context=ctx)
