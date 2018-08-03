@@ -25,3 +25,10 @@ def index(request):
     form = FilterForm()
     ctx['form'] = form
     return render(request, 'bilder/index.html', context=ctx)
+
+def tagging(request, img):
+    """show an image with list of tags to edit"""
+    image = Bild.objects.get(bild='bilder/'+img)
+    ctx = {}
+    ctx['bild'] = image
+    return render(request, 'bilder/tagging.html', context=ctx)

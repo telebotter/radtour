@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% load static %}
+<!-- https://github.com/blueimp/Gallery#setup -->
+
+
+{% block title %}
+Tour - Bilder
+{% endblock title %}
+
+{% block content %}
+<img src="{{ bild.url }}" alt="{{ bild.titel }}" />
+{% endblock content %}

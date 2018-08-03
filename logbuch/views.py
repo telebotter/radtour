@@ -23,3 +23,4 @@ def tag(request, touralias, tagnummer):
     context['bilder'] = bilder
     context['anzahl'] = len(bilder)
     return render(request, 'logbuch/tag.html', context=context)
+

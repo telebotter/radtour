@@ -12,3 +12,10 @@ class FilterForm(forms.Form):
     filter = forms.MultipleChoiceField(
         widget=forms.CheckboxSelectMultiple,
         choices=OPTIONS)
+
+class TagForm(forms.Form):
+    LABELS = get_list_or_404(Label)
+    OPTIONS = []
+    for lab in LABELS:
+        OPTIONS.append((lab.name, lab.name))
+    tagging = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
