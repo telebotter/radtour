@@ -8,5 +8,7 @@ Tour - Bilder
 {% endblock title %}
 
 {% block content %}
-<img src="{{ bild.url }}" alt="{{ bild.titel }}" />
+{{ bild.bild }} <br/>
+{{ bild.bild.url }} <br/>
+<img src="{{ bild.bild.url }}" alt="{{ bild.titel }}" />
 {% endblock content %}
