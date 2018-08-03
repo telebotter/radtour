@@ -39,6 +39,7 @@ def tagging(request, image):
         form = TagForm()
     img = Bild.objects.get(bild='bilder/'+image)
     ctx = {}
+    ctx['post'] = request.POST
     ctx['bild'] = img
     ctx['form'] = form
     ctx['submit_url'] = request.get_full_path()

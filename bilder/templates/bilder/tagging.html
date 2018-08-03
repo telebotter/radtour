@@ -9,6 +9,7 @@ Tour - Bilder
 
 {% block content %}
 {{ bild.titel }} <br/>
+{{ post }} <br/>
 <div><form action="{{ submit_url }}" method="post">
     {% csrf_token %}
     {{ form }}
