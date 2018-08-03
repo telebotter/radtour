@@ -41,4 +41,5 @@ def tagging(request, image):
     ctx = {}
     ctx['bild'] = img
     ctx['form'] = form
+    ctx['submit_url'] = request.get_full_path()
     return render(request, 'bilder/tagging.html', context=ctx)

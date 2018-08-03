@@ -9,7 +9,8 @@ Tour - Bilder
 
 {% block content %}
 {{ bild.titel }} <br/>
-<div><form action="" method="post">
+<div><form action="{{ submit_url }}" method="post">
+    {% csrf_token %}
     {{ form }}
     <input style="display:inline;" type="submit" value="Speichern" />
 </form></div>
