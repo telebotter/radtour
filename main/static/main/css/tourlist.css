@@ -48,11 +48,11 @@
 
 
 .block > .block-desc {
-    visibility: hidden;
-    transition: visibility 0.3s linear;
-    -webkit-transition: visibility 0.3s linear;
-    -moz-transition: visibility 0.3s linear;
+    opacity: 0;
+    transition: opacity 0.5s linear;
+    -webkit-transition: opacity 0.5s linear;
+    -moz-transition: opacity 0.5s linear;
 }
 .block:hover > .block-desc {
-    visibility: visible;
+    opacity: 1;
 }
