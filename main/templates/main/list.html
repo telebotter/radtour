@@ -12,8 +12,10 @@
         {% if tour.img %}
         <img class="header-img block-bg" src="{{ tour.img.url }}" alt="{{ tour.titel }}"/>
         {% endif %}
-        <div class="text block-text">
-            Kurzbeschreibung der Tour und vielleicht auch die links?
+        <div class="desc block-desc">
+            <div class="text">
+                Kurzbeschreibung der Tour und vielleicht auch die links?
+            </div>
         </div>
         <h2 class="heading block-title">
             <a href="{% url 'main_tour' tour.alias %}">{{ tour.name }}</a>
