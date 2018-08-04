@@ -11,6 +11,16 @@
     top:0;
 }
 
+.block-title {
+    z-index:100;
+    position:absolute;
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    left:10px;
+    top:10px;
+}
+
 .block-text {
     z-index:100;
     position:absolute;
@@ -18,5 +28,5 @@
     font-size:24px;
     font-weight:bold;
     left:10px;
-    bottom:0px;
+    bottom:10px;
 }
