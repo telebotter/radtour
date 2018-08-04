@@ -36,7 +36,11 @@
     font-size:24px;
     font-weight:bold;
     left:0px;
-    width:100%;
+    width:900px;
     bottom:0px;
     background-color: rgba(0,0,0,0.5);
+}
+
+.text {
+    padding: 10px;
 }
