@@ -6,7 +6,7 @@
     {% for tour in touren %}
     <div class="block block-tour">
         {% if tour.img %}
-        <img src="{{ tour.img }}" alt="{{ tour.titel }}"/>
+        <img src="{{ tour.img.url }}" alt="{{ tour.titel }}"/>
         {% endif %}
         <a href="{% url 'main_tour' tour.alias %}">{{ tour.name }}</a>
     </div>
