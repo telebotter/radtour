@@ -44,3 +44,11 @@
 .text {
     padding: 10px;
 }
+
+
+.block > .block-desc {
+    visibility: hidden;
+}
+.block:hover > .block-desc {
+    visibility: visible;
+}
