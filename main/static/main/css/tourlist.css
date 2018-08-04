@@ -9,6 +9,7 @@
     position:absolute;
     left:0;
     top:0;
+    width:100%;
 }
 
 .block-title {
@@ -36,7 +37,7 @@
     font-size:24px;
     font-weight:bold;
     left:0px;
-    width:900px;
+    width:100%;
     bottom:0px;
     background-color: rgba(0,0,0,0.5);
 }
@@ -48,6 +49,9 @@
 
 .block > .block-desc {
     visibility: hidden;
+    transition: visibility 0.3s linear;
+    -webkit-transition: visibility 0.3s linear;
+    -moz-transition: visibility 0.3s linear;
 }
 .block:hover > .block-desc {
     visibility: visible;
