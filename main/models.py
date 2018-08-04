@@ -29,7 +29,7 @@ class Tour(models.Model):
     color = RGBColorField(default='#000000')
     #length = models.FloatField(blank=True)
     img = models.ImageField(null=True, blank=True)
-    img_thumb = ImageSpecField(source='bild', processors=[ResizeToFill(100,100)],
+    img_thumb = ImageSpecField(source='img', processors=[ResizeToFill(100,100)],
                                 format='JPEG', options={'quality': 60})
     #tourlog = models.TextField(blank=True)  # html or md content?
     text = models.TextField(blank=True, null=True)
