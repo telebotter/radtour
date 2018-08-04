@@ -2,6 +2,8 @@ from django.db import models
 import datetime as dt
 from djgeojson.fields import MultiLineStringField
 from colorful.fields import RGBColorField
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFill
 
 
 
@@ -27,6 +29,8 @@ class Tour(models.Model):
     color = RGBColorField(default='#000000')
     #length = models.FloatField(blank=True)
     img = models.ImageField(null=True, blank=True)
+    img_thumb = ImageSpecField(source='bild', processors=[ResizeToFill(100,100)],
+                                format='JPEG', options={'quality': 60})
     #tourlog = models.TextField(blank=True)  # html or md content?
     text = models.TextField(blank=True, null=True)
     

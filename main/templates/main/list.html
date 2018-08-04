@@ -2,10 +2,11 @@
 
 {% block content %}
 {% if touren %}
-<ul>
     {% for tour in touren %}
-    <li><a href="{% url 'main_tour' tour.alias %}">{{ tour.name }}</a></li>
+    <div class="block block-tour">
+        <img src="{% tour.img.url %}" alt="{% tour.titel %}"/>
+        <a href="{% url 'main_tour' tour.alias %}">{{ tour.name }}</a>
+    </div>
     {% endfor %}
-</ul>
 {% endif %}
 {% endblock content %}
