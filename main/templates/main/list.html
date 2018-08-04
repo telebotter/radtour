@@ -1,12 +1,16 @@
 {% extends "main/base_main.html" %}
 {% load static %}
 
+{% block addcss %}
+<link href="{% static 'main/css/tourlist.css' %}" rel="stylesheet">
+{% endblock addcss %}
+
 {% block content %}
 {% if touren %}
     {% for tour in touren %}
     <div class="block block-tour">
         {% if tour.img %}
-        <img class="header block-bg" src="{{ tour.img.url }}" alt="{{ tour.titel }}"/>
+        <img class="header-img block-bg" src="{{ tour.img.url }}" alt="{{ tour.titel }}"/>
         {% endif %}
         <div class="text block-text">
             Kurzbeschreibung der Tour und vielleicht auch die links?
