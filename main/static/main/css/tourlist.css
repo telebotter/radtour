@@ -1,6 +1,6 @@
 .block {
-    height:400px;
-    width:400px;
+    height:300px;
+    width:900px;
     position:relative;
 
 }
@@ -17,6 +17,6 @@
     color:white;
     font-size:24px;
     font-weight:bold;
-    left:150px;
-    top:350px;
+    left:10px;
+    bottom:0px;
 }
