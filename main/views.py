@@ -14,14 +14,15 @@ def index(request):
 
 
 def list(request):
-    touren = get_list_or_404(Tour)
+    query = Tour.objects.filter(listed=True).order_by('date_start').reverse()
+    touren = get_list_or_404(query)
     context = {'touren': touren}
     return render(request, 'main/list.html', context)
 
 
 def tour(request, touralias):
     """
-    Kompaktansicht einer Tour. Gesamtstrecke, links zu den jeweiligen Views, 
+    Kompaktansicht einer Tour. Gesamtstrecke, links zu den jeweiligen Views,
     Zusammenfassung
     """
     tour = get_object_or_404(Tour, alias=touralias)
@@ -65,7 +66,7 @@ def day(request, tour, day):
 
 def download(request, tour, package):
     """
-    Zu jeder Tour sollen download pakete als zip generiert werden: 
+    Zu jeder Tour sollen download pakete als zip generiert werden:
     zB Alles (alle bilder, alle tracks, alle tagebücher, txt+pdf)
     Kompakt (kompressed track, kompressed fav pics, tagebücher txt
     bilder, bücher, track only jeweils dann alle formate
@@ -73,9 +74,15 @@ def download(request, tour, package):
     return
 
 
+def webodf(request):
+    """
+    """
+    context = {}
+    return render(request, 'main/webodf.html', context)
+
 
 # Als Beispiele aus nem anderen Projekt
-    
+
 def archive(request):
     title = 'All Posts'
     posts = Post.objects.all()
@@ -90,7 +97,7 @@ def archive(request):
     context = dict(title=title, posts=posts)
     return render(request, 'blog/archive.html', context)
 
-def post(request, post_id): 
+def post(request, post_id):
     post = get_object_or_404(Post, pk=post_id)
     context = {'post': post}
     return render(request, 'blog/post.html', context)
@@ -108,4 +115,3 @@ def download(request, post_id, ftype):
         response = HttpResponse(markdown, content_type="text/plain")
         response["Content-Disposition"] = "attachment; filename="+ post.get_fname()+".md"
     return response
-

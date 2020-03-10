@@ -12,7 +12,7 @@ class Country(models.Model):
     name = models.CharField(max_length=250)
     short = models.CharField(max_length=10)
     lon = models.FloatField(default=0, null=True)
-    lat = models.FloatField(default=0, null=True) 
+    lat = models.FloatField(default=0, null=True)
     url = models.CharField(max_length=500, null=True)
     def __str__(self):
         return self.name
@@ -33,15 +33,17 @@ class Tour(models.Model):
                                 format='JPEG', options={'quality': 60})
     #tourlog = models.TextField(blank=True)  # html or md content?
     text = models.TextField(blank=True, null=True)
-    
-    
+    listed = models.BooleanField(default=True)
+    short_text = models.CharField(max_length=600, default='Kurzbeschreibung')
+
+
     def __str__(self):
         """
-        Diese Funktion wird automatisch von python/django aufgerufen um 
+        Diese Funktion wird automatisch von python/django aufgerufen um
         ein Objekt zu bennen.
         """
         return self.name
-    
+
     def get_duration(self):
         """
         returns duration of the tour if start and finish date are set correct.
@@ -53,7 +55,7 @@ class Tour(models.Model):
         except:
             duration = dt.timedelta(days=0)
         return duration
-    
+
     @property
     def dauer(self):
         """Berechnet die anzahl der tage aus start-enddatum oder anzahl der tagebuch einträge
@@ -100,4 +102,3 @@ class User(models.Model):
     chatid = models.IntegerField()
     date_active = models.DateTimeField('Last Activity', auto_now=True)
     date_signed = models.DateTimeField('User Registred', auto_now=True)
-

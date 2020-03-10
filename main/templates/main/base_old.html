@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %} Tour - Website {% endblock title %}
+    </title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Dokumentation der Fahrradtouren, des dynamischen Reisetrios aus Bremen. Angetan von der ersten Radtour durch die Alpen, begeben wir uns fast jedes Jahr auf die Reise mit dem Zelt und Fahrrad in und um Europa. Unsere Erlebnisse und Fotos werden auf dieser Seite gesammelt.">
+    <meta name="author" content="Lukas">
+    <link rel="icon" href="../../../../favicon.ico">
+    <link href="{% static 'main/css/stickyfooter.css' %}" rel="stylesheet">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    {% block addcss %}
+    {% endblock addcss %}
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    {% block addjs %}
+    {% endblock addjs %}
+
+</head>
+
+<body>
+    {% block header %}
+    <header>
+      <!-- Fixed navbar -->
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="/">Trio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'main_list' %}">Touren</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index_karte' %}">Karte</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'index_bilder' %}">Bilder</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="{% url 'logbuch_liste' 'kroatien' %}">Logbuch</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled" href="#">Statistik</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Login</a>
+            </li>
+          </ul>
+          <form class="form-inline mt-2 mt-md-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
+    {% endblock header %}
+
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+    {% block content %}
+    <h2>Neu</h2>
+    <h2>Sonstige</h2>
+      <p class="lead">Pin a fixed-height footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>body &gt; .container</code>.</p>
+      <p>Back to <a href="../sticky-footer">the default sticky footer</a> minus the navbar.</p>
+    {% endblock content %}
+    </main>
+
+    {% block footer %}
+    <footer class="footer">
+      <div class="container">
+        <span class="text-muted">Diese Website wird unter Verwendung freier Software (Django, Leaflet, Bootstrap) erstellt und gefplegt. Impressum.</span>
+      </div>
+    </footer>
+    {% endblock footer %}
+
+</body>
+</html>
+
+
+
+
+
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Sticky Footer Navbar Template for Bootstrap</title>
+
+    <!-- Custom styles for this template -->
+    <link href="sticky-footer-navbar.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="../../assets/js/vendor/popper.min.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+  </body>
+</html>

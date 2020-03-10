@@ -37,4 +37,7 @@ class Logbucheintrag(models.Model):
 
 
     def __str__(self):
-        return str('Post {}: {}'.format(self.tour.name, str(self.tag)))
+        try:
+            return str('{}: Tag {} ({})'.format(self.tour.name, str(self.tag), str(self.datum)))
+        except:
+            return str('{}: {}'.format(sefl.tour.name, self.datum))

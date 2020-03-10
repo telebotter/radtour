@@ -6,21 +6,29 @@
 {% endblock addcss %}
 
 {% block content %}
+  <div class="container marketing">
+
 {% if touren %}
+    <hr class="featurette-divider">
     {% for tour in touren %}
-    <div class="block block-tour">
+    <div class="row featurette">
+      <div class="col-md-7 {% if not forloop.counter|divisibleby:2 %} order-md-2 {% endif %}">
+        <h2 class="featurette-heading" style="margin-top:10px;">
+            <a href="{% url 'main_tour' tour.alias %}" style="color: {{ tour.color }};">{{ tour.name }}</a></h2>
+        <p class="lead"> {{ tour.short_text }}</p>
+      </div>
+
+      <div class="col-md-5">
         {% if tour.img %}
-        <img class="header-img block-bg" src="{{ tour.img.url }}" alt="{{ tour.titel }}" width="100%" />
+        {# <img class="featurette-image img-fluid mx-auto" width="500" height="500" src="{{ tour.img.url }}" alt="{{ tour.titel }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"/> #}
+        <img class="featurette-image img-fluid mx-auto" src="{{ tour.img.url }}" alt="{{ tour.titel }}" focusable="false" role="img"/>
         {% endif %}
-        <div class="desc block-desc">
-            <div class="text">
-                Kurzbeschreibung der Tour und vielleicht auch die links?
-            </div>
-        </div>
-        <h2 class="heading block-title">
-            <a href="{% url 'main_tour' tour.alias %}">{{ tour.name }}</a>
-        </h2>
+      </div>
     </div>
+
+    <hr class="featurette-divider">
     {% endfor %}
 {% endif %}
+
+</div><!-- /.container -->
 {% endblock content %}

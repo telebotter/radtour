@@ -96,23 +96,46 @@
     <script type="text/javascript">
         //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
         var markerSize = 10;
+        var track_orte = [];
         function main_map_init (map, options) {
             var controller = L.control.layers().addTo(map);
             {% for tour in touren %}
-                var orte_url = '{% url "orte_tour" tour.name %}';
-                $.getJSON(orte_url, function(data) {
+            var tourLayer = L.geoJson(null, {
+                  style: function(feature) {
+                      return {color: feature.properties.color};
+                  },
+                  pointToLayer: function(feature, latlng) {
+                      return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
+                  },
+                  onEachFeature: function (feature, layer) {
+                      layer.bindPopup(
+                          '<h4>Tag ' + feature.properties.tag + '</h4>'
+                          + feature.properties.text);
+                  }
+                });/*
+            tourLayer.setStyle(
+              function(feature) {
+                return {color: feature.properties.color};
+            });*/
+            var trackUrl = '{% url "track_tour" tour.alias %}';
+                $.getJSON(trackUrl, function(data) {
+                  /*
+                    var track = L.geoJson(data, {style: function(feature){
+                                      return {color: feature.properties.color};
+                                }});
+                  */
+                    //controller.addOverlay(track, '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span> (Track)');
+                    tourLayer.addData(data);
+                });
+                var orteUrl = '{% url "orte_tour" tour.alias %}';
+                $.getJSON(orteUrl, function(data) {
+                  /*
                     var orte = L.geoJson(data, {
                         style: function(feature) {
                             return {color: feature.properties.color};
                         },
                         pointToLayer: function(feature, latlng) {
                             return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
-                            //return new L.circle(latlng, {radius: 100, fillOpacity: 0.85});
-                            //return new L.marker(latlng, {icon:
-                            //    L.AwesomeMarkers.icon({
-                            //        icon: 'tent',
-                            //        markerColor: feature.properties.color,
-                            //    })});
                         },
                         onEachFeature: function (feature, layer) {
                             layer.bindPopup(
@@ -120,17 +143,12 @@
                                 + feature.properties.text);
                         }
                     });
-                    orte.addTo(map);
-                    controller.addOverlay(orte, '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span>');
+                    */
+                    tourLayer.addData(data);
                 });
-                var track_url = '{% url "track_tour" tour.name %}';
-                $.getJSON(track_url, function(data) {
-                    var track = L.geoJson(data, {style: function(feature){
-                                                            return {color: feature.properties.color};
-                                                            }});
-                    track.addTo(map);
-                    controller.addOverlay(track, '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span> (Track)');
-                });
+
+                tourLayer.addTo(map);
+                controller.addOverlay(tourLayer, '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span>');
             {% endfor %}
         }
         //on.
@@ -167,4 +185,3 @@
         .leaflet-container { height: 100%; }
     </style>
   </head>
-

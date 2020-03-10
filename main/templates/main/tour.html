@@ -1,61 +1,156 @@
-{% extends "main/base_main.html" %}
+{% extends "main/base.html" %}
+
+{% block addcss %}
+<style>
+html{
+
+  scroll-behavior: smooth;
+ }
+ /*
+body{
+ min-height:100%;
+ }*/
+
+.parallax {
+ /* The image used */
+ background-image: url("{{ tour.img.url }}");
+
+ /* Full height */
+ padding-top: 500px;
+ padding-bottom: 20px;  /* 0 on mobile (cont 100%) some px else */
+
+ /* Create the parallax scrolling effect */
+ background-position: center, center;
+ background-repeat: no-repeat;
+ background-clip: border-box;
+ background-size: 100%;
+ background-size: cover;
+ -webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover;
+background-attachment: fixed;
+
+}
+
+.container {
+  background-color: white;
+  padding: 50px;
+}
+
+
+.title-span {
+  display: inline-block;
+  /*background-color: {{ tour.color }}22;*/
+  /*background-color: #ffffff;*/
+  padding: 20px;
+  font-size: 3rem;
+  color: white;
+  text-shadow: 2px 2px 4px black, 0 0 2px black;
+  border-width: 4px;
+  border-style: solid;
+  border-color: {{ tour.color }};
+  border-radius: 2px;
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 5rem;
+    }
+  }
+}
+
+.title-span:hover{
+  display: inline-block;
+  padding: 20px;
+  color: white;
+  text-shadow: 2px 2px 4px black, 0 0 2px black;
+  border-width: 4px;
+  border-style: solid;
+  border-color: {{ tour.color }};
+  border-radius: 2px;
+  background-color: {{ tour.color }};
+  text-decoration: none;
+}
+
+</style>
+
+{% endblock addcss %}
 
 {% block content %}
 
-<div class="content-box" style="padding-top: 65px;">
-    <div class="header-img"><img src="{{ tour.img.url }}" alt="Foto der Tour" width="100%" /> </div>
-<h2>{{ tour.name }}</h2> <br/>
-    <div class="container-box">
-        <div class="data-box" style="width: 30%; float: right;">
-            <table class="table table-hover">
-            <tbody>
-            {% if tour.date_start %}
-              <tr>
-                <td>Start</td>
-                <td>{{ tour.date|date:"Y-m-d" }}</td>
-              </tr>
-            {% endif %}
-            {% if tour.dauer %}
-              <tr>
-                <td>Dauer</td>
-                <td>{{ tour.dauer }}</td>
-              </tr>
-            {% endif %}
-            {% if tour.strecke %}
-              <tr>
-                <td>Strecke</td>
-                <td>{{ tour.strecke }} km</td>
-              </tr>
-            {% endif %}
-            {% if tour.hoehe %}
-              <tr>
-                <td>Hoehe</td>
-                <td>{{ tour.hoehe }} m</td>
-              </tr>
-            {% endif %}
-            {% if tour.color %}
-              <tr>
-                <td>Farbe</td>
-                  <td><div style="background-color:{{ tour.color }}; width:20px; height:20px;"></div></td>
-              </tr>
-            {% endif %}
-            <tr>
-                <td>
-                <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
-                </td>
-                <td><a href="/bilder/{{ tour.alias }}">Bilder</a></td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="data-box" style="width: 30%; float: right;">
-        <div class="minimap-box">
-            <a href="/karte"><img width="100%" src="/media/gfx/minimap_{{ tour.alias }}.png" /></a>
-        </div>
-
-        </div>
-    </div>
+<div class="tour-title" style="text-align: center; width:100%; position: absolute; top: 120px;">
+    <a href="#start" class="title-span">
+      {{ tour.name }}
+    </a>
 </div>
+
+<div class="container" id="start">
+  <div class="">
+          <table class="table table-hover">
+          <tbody>
+          {% if tour.date_start %}
+            <tr>
+              <td>Start</td>
+              <td>{{ tour.date|date:"Y-m-d" }}</td>
+            </tr>
+          {% endif %}
+          {% if tour.dauer %}
+            <tr>
+              <td>Dauer</td>
+              <td>{{ tour.dauer }}</td>
+            </tr>
+          {% endif %}
+          {% if tour.strecke %}
+            <tr>
+              <td>Strecke</td>
+              <td>{{ tour.strecke }} km</td>
+            </tr>
+          {% endif %}
+          {% if tour.hoehe %}
+            <tr>
+              <td>Hoehe</td>
+              <td>{{ tour.hoehe }} m</td>
+            </tr>
+          {% endif %}
+          {% if tour.color %}
+            <tr>
+              <td>Farbe</td>
+                <td><div style="background-color:{{ tour.color }}; width:20px; height:20px;"></div></td>
+            </tr>
+          {% endif %}
+          <tr>
+              <td>
+              <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
+              </td>
+              <td><a href="/bilder/{{ tour.alias }}">Bilder</a></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+      <div class="minimap-box">
+          <a href="/karte"><img width="100%" src="/media/gfx/minimap_{{ tour.alias }}.png" /></a>
+      </div>
+
+      </div>
     <p>{{ tour.text|safe }}</p>
     <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
+</div><!-- container -->
 {% endblock content %}
+
+{% block addjs %}
+<script>
+jQuery(document).ready(function($){ //wait for the document to load
+    $('.parallax').each(function(){ //loop through each element with the .dynamic-height class
+        $(this).css({
+            'padding-top' : jQuery(window).height() //adjust the css rule for margin-top to equal the element height - 10px and add the measurement unit "px" for valid CSS
+        });
+    });
+    $('.tour-title').each(function(){
+      $(this).css({
+        'top': jQuery(window).height()/2
+      });
+      console.log('changed title position to center')
+    });
+});
+</script>
+{% endblock addjs %}

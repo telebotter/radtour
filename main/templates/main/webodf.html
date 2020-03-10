@@ -1,0 +1,16 @@
+<html>
+ <head>
+  <script src="/static/webodf/webodf.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript" charset="utf-8">
+function init() {
+  var odfelement = document.getElementById("odf"),
+      odfcanvas = new odf.OdfCanvas(odfelement);
+  odfcanvas.load("/static/webodf/myodf.odt");
+}
+window.setTimeout(init, 0);
+  </script>
+ </head>
+ <body>
+  <div id="odf"></div>
+ </body>
+</html>
