@@ -36,7 +36,7 @@ class Bild(models.Model):
     private = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.titel
+        return str(self.titel)
 
     class Meta:
         ordering = ['date', 'bild']

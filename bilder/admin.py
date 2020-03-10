@@ -6,7 +6,7 @@ from imagekit.admin import AdminThumbnail
 
 
 class BildAdmin(admin.ModelAdmin):
-    list_display = ('__str__', 'admin_thumbnail')  # for list view
+    list_display = ('bild', '__str__', 'admin_thumbnail')  # for list view
     admin_thumbnail = AdminThumbnail(image_field='bild_thumb')
     admin_thumbnail.short_description = 'Bild'
     big_thumbnail = AdminThumbnail(image_field='bild_web')
