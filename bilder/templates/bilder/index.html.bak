@@ -24,8 +24,8 @@ Tour - Bilder
 <div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
     <div class="slides"></div>
     <h3 class="title"></h3>
-    <p class="description">edit</p>
-    <!--<a href="/change" class="editlink">edit</a>-->
+    <!--<p class="description"></p>-->
+    <!--<a href="" class="editlink">edit</a>-->
     <a class="prev">‹</a>
     <a class="next">›</a>
     <a class="close">×</a>
@@ -35,7 +35,7 @@ Tour - Bilder
 
 <div id="links">
     {% for bild in bilder %}
-    <a href="{{ bild.bild_web.url }}" title="{{ bild.titel }}" data-description="/admin/bilder/bild/{{ bild.id }}/change" >
+    <a href="{{ bild.bild_web.url }}" title="{{ bild.titel }}" data-description="this is banana" >
         <img src="{{ bild.bild_thumb.url }}" alt="{{ bild.titel }}">
     </a>
     {% endfor %}
@@ -75,26 +75,9 @@ document.getElementById('links').onclick = function (event) {
         event = event || window.event;
             var target = event.target || event.srcElement,
                 link = target.src ? target.parentNode : target,
-                options = {
-                    index: link, 
-                    event: event,
-                    onslide: function (index, slide) {
-                                    console.log('sliding');
-                                    var editlink = this.list[index].getAttribute('data-description'),
-                                        node = this.container.find('.description');
-                                    node.empty();
-                                    console.log(node);
-                                    if (editlink) {
-                                        var a = document.createElement('a');
-                                        a.appendChild(document.createTextNode('edit'));
-                                        a.href = editlink;
-                                        a.title =  "Bild bearbeiten";
-                                        node[0].appendChild(a);
-                                    }
-                                }
-                           },
-                links = this.getElementsByTagName('a');
-            blueimp.Gallery(links, options);
+                        options = {index: link, event: event},
+                                links = this.getElementsByTagName('a');
+                blueimp.Gallery(links, options);
 };
 </script>
 

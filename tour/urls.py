@@ -23,4 +23,5 @@ urlpatterns = [
     path('karte/', include('karte.urls')),
     path('logbuch/', include('logbuch.urls')),
     path('bilder/', include('bilder.urls')),
+    url(r'^', include('django_telegrambot.urls')),
 ]

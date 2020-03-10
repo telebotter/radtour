@@ -1,7 +1,10 @@
 tour/settings.py
+**/migrations
+media/
 *.sqlite3
 local/
 !karte/static/
 !main/static/
 .idea/*
-__pycache__/
+**/__pycache__
+static/
