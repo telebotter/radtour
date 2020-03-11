@@ -16,7 +16,6 @@ class Label(models.Model):
 
 
 
-
 class Bild(models.Model):
     bild = models.ImageField(null=True, blank=True)
     tour = models.ForeignKey(Tour, null=True, blank=True, on_delete=models.CASCADE)
@@ -41,4 +40,3 @@ class Bild(models.Model):
     class Meta:
         ordering = ['date', 'bild']
         verbose_name_plural = 'bilder'
-

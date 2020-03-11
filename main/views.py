@@ -25,8 +25,9 @@ def tour(request, touralias):
     Kompaktansicht einer Tour. Gesamtstrecke, links zu den jeweiligen Views,
     Zusammenfassung
     """
+    touren = Tour.objects.filter(listed=True).order_by('date_start').reverse()
     tour = get_object_or_404(Tour, alias=touralias)
-    context = {'tour': tour}
+    context = {'tour': tour, 'touren': touren}
     return render(request, 'main/tour.html', context=context)
 
 
@@ -34,7 +35,8 @@ def map(request, tour):
     """
     Kartenansicht mit Fokus auf eine Bestimmte Tour
     """
-    context = {}
+    touren = Tour.objects.filter(listed=True).order_by('date_start').reverse()
+    context = {'touren': touren}
     return render(request, 'main/map.html', context)
 
 
@@ -43,7 +45,8 @@ def logbook(request, tour):
     Buch Ansicht: Das komplette logbuch mit ggf. links zu täglichen Bildern.
     Alle Seiten auf einen Blick.
     """
-    context = {}
+    touren = Tour.objects.filter(listed=True).order_by('date_start').reverse()
+    context = {'touren': touren}
     return render(request, 'main/book.html', context)
 
 
@@ -51,7 +54,8 @@ def gallery(request, tour):
     """
     Photogalleryansicht mit allen bildern zum durchklicken/wischen (lightning)
     """
-    context = {}
+    touren = Tour.objects.filter(listed=True).order_by('date_start').reverse()
+    context = {'touren': touren}
     return render(request, 'main/gallery.html', context)
 
 
@@ -60,7 +64,8 @@ def day(request, tour, day):
     Tagesansicht: Kombination von Tagebucheintrag mit Kartenauschnitt und allen
     ausgewählten fotos von dem Tag
     """
-    context = {}
+    touren = Tour.objects.filter(listed=True).order_by('date_start').reverse()
+    context = {'touren': touren}
     return render(request, 'main/day.html', context)
 
 
@@ -71,6 +76,8 @@ def download(request, tour, package):
     Kompakt (kompressed track, kompressed fav pics, tagebücher txt
     bilder, bücher, track only jeweils dann alle formate
     """
+    touren = Tour.objects.filter(listed=True).order_by('date_start').reverse()
+    context = {'touren': touren}
     return
 
 

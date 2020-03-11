@@ -3,54 +3,8 @@
 {% block addcss %}
 <style>
 html{
-
   scroll-behavior: smooth;
  }
- /*
-body{
- min-height:100%;
- }*/
-
-.parallax {
- /* The image used */
- background-image: url("{{ tour.img.url }}");
-
- /* Full height */
- padding-top: 500px;
- padding-bottom: 20px;  /* 0 on mobile (cont 100%) some px else */
-
- /* Create the parallax scrolling effect */
- background-position: center, center;
- background-repeat: no-repeat;
- background-clip: border-box;
- background-size: 100%;
- background-size: cover;
- -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-attachment: fixed;
-
-}
-
-.container {
-  background-color: white;
-  padding: 50px;
-}
-
-
-.title-span {
-  display: inline-block;
-  /*background-color: {{ tour.color }}22;*/
-  /*background-color: #ffffff;*/
-  padding: 20px;
-  font-size: 3rem;
-  color: white;
-  text-shadow: 2px 2px 4px black, 0 0 2px black;
-  border-width: 4px;
-  border-style: solid;
-  border-color: {{ tour.color }};
-  border-radius: 2px;
-
   @media (min-width: 768px) {
     .bd-placeholder-img-lg {
       font-size: 5rem;
@@ -58,33 +12,31 @@ background-attachment: fixed;
   }
 }
 
-.title-span:hover{
-  display: inline-block;
-  padding: 20px;
-  color: white;
-  text-shadow: 2px 2px 4px black, 0 0 2px black;
-  border-width: 4px;
-  border-style: solid;
-  border-color: {{ tour.color }};
-  border-radius: 2px;
-  background-color: {{ tour.color }};
-  text-decoration: none;
-}
-
 </style>
 
 {% endblock addcss %}
-
 {% block content %}
 
-<div class="tour-title" style="text-align: center; width:100%; position: absolute; top: 120px;">
-    <a href="#start" class="title-span">
-      {{ tour.name }}
-    </a>
-</div>
 
-<div class="container" id="start">
-  <div class="">
+<div class="container" style="padding-top: 50px;">
+  <div class="row" style="text-align: center;">
+      <div class="tour-banner" style="position: relative; min-height: 100px; width:100%;">
+        {% if tour.img %}
+        <img class="" style="width:100%;height:auto;" src="{{ tour.img.url }}" alt="{{ tour.titel }}" focusable="false" role="img"/>
+        {% else %}
+        <img class="" style="width:100%;height:auto;" src="https://tour.sarbot.de/media/kroatienheader.jpg" alt="{{ tour.titel }}" focusable="false" role="img"/>
+        {% endif %}
+
+        <div class="text-block" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0,0,0,0.5); padding-top: 8px; padding-left: 16px; padding-right: 16px;
+color: white; padding-bottom: 20px;">
+        <h2 class="featurette-heading" style="margin-top:10px; text-shadow:10px;">
+            <a href="{% url 'main_tour' tour.alias %}" style="color: white; text-shadow: 2px 2px 4px {{ tour.color }};">{{ tour.name }}</a></h2>
+      </div>
+    </div>
+  </div>
+  <div style="height:20px;"></div>
+  <div class="row">
+    <div class="col-sm-12 col-md-6">
           <table class="table table-hover">
           <tbody>
           {% if tour.date_start %}
@@ -126,18 +78,22 @@ background-attachment: fixed;
           </tbody>
         </table>
       </div>
-      <div>
+    <div class="col-sm-12 col-md-6">
       <div class="minimap-box">
           <a href="/karte"><img width="100%" src="/media/gfx/minimap_{{ tour.alias }}.png" /></a>
       </div>
-
-      </div>
+    </div>
+  </div>
+  <div class="row">
     <p>{{ tour.text|safe }}</p>
     <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
+  </div>
 </div><!-- container -->
 {% endblock content %}
 
 {% block addjs %}
+{% endblock addjs %}
+{#
 <script>
 jQuery(document).ready(function($){ //wait for the document to load
     $('.parallax').each(function(){ //loop through each element with the .dynamic-height class
@@ -152,5 +108,4 @@ jQuery(document).ready(function($){ //wait for the document to load
       console.log('changed title position to center')
     });
 });
-</script>
-{% endblock addjs %}
+</script> #}

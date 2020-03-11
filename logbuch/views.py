@@ -9,9 +9,10 @@ from logbuch.models import Logbucheintrag
 
 def list(request, touralias):
     tour = get_object_or_404(Tour, alias=touralias)
-    eintraege = get_list_or_404(Logbucheintrag, tour=tour)
+    eintraege = Logbucheintrag.objects.filter(tour=tour).order_by('tag')
     context={'tour': tour, 'eintraege': eintraege}
-    return render(request, 'logbuch/list.html', context=context)
+    return render(request, 'logbuch/buch.html', context=context)
+
 
 def tag(request, touralias, tagnummer):
     tour = get_object_or_404(Tour, alias=touralias)
@@ -23,4 +24,3 @@ def tag(request, touralias, tagnummer):
     context['bilder'] = bilder
     context['anzahl'] = len(bilder)
     return render(request, 'logbuch/tag.html', context=context)
-

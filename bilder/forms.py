@@ -19,3 +19,8 @@ class TagForm(forms.Form):
     for lab in LABELS:
         OPTIONS.append((lab.name, lab.name))
     tagging = forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple, choices=OPTIONS)
+
+
+class FileFieldForm(forms.Form):
+    """ upload multiple images at once """
+    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))

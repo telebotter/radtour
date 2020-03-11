@@ -9,26 +9,25 @@
   <div class="container marketing">
 
 {% if touren %}
-    <hr class="featurette-divider">
     {% for tour in touren %}
-    <div class="row featurette">
-      <div class="col-md-7 {% if not forloop.counter|divisibleby:2 %} order-md-2 {% endif %}">
-        <h2 class="featurette-heading" style="margin-top:10px;">
-            <a href="{% url 'main_tour' tour.alias %}" style="color: {{ tour.color }};">{{ tour.name }}</a></h2>
-        <p class="lead"> {{ tour.short_text }}</p>
-      </div>
+    <div class="row" style="text-align: center;">
+      {#  <p class="lead"> {{ tour.short_text }}</p> #}
+        <div class="tour-banner" style="position: relative; padding-top: 20px; min-height: 100px; width:100%;">
+          {% if tour.img %}
+          <img class="" style="width:100%;height:auto;" src="{{ tour.img.url }}" alt="{{ tour.titel }}" focusable="false" role="img"/>
+          {% else %}
+          <img class="" style="width:100%;height:auto;" src="https://tour.sarbot.de/media/kroatienheader.jpg" alt="{{ tour.titel }}" focusable="false" role="img"/>
+          {% endif %}
 
-      <div class="col-md-5">
-        {% if tour.img %}
-        {# <img class="featurette-image img-fluid mx-auto" width="500" height="500" src="{{ tour.img.url }}" alt="{{ tour.titel }}" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"/> #}
-        <img class="featurette-image img-fluid mx-auto" src="{{ tour.img.url }}" alt="{{ tour.titel }}" focusable="false" role="img"/>
-        {% endif %}
+          <div class="text-block" style="position: absolute; bottom: 0px; left: 0px; background-color: rgba(0,0,0,0.5);  padding-left: 16px; padding-right: 16px;
+  color: white; padding-bottom: 20px; width: 100%;">
+          <h2 class="featurette-heading" style="margin-top:10px; text-shadow:10px;">
+              <a href="{% url 'main_tour' tour.alias %}" style="color: white; text-shadow: 2px 2px 4px {{ tour.color }};">{{ tour.name }}</a></h2>
+        </div>
       </div>
     </div>
-
-    <hr class="featurette-divider">
     {% endfor %}
 {% endif %}
-
+<hr class="featurette-divider">
 </div><!-- /.container -->
 {% endblock content %}
