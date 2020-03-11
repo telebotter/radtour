@@ -1,7 +1,9 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Tour
-from django.http import HttpResponse
-
+from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required  # decorator
 
 def index(request):
     """
@@ -87,6 +89,23 @@ def webodf(request):
     context = {}
     return render(request, 'main/webodf.html', context)
 
+
+def login_view(request):
+    """ NOTE: not used.. the default login views are imported in urls.py """
+    from django.contrib.auth import authenticate, login
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return HttpResponseRedirect(request.GET.get('next', '/logged_in'))
+        else:
+            messages.error(request, 'Login fehlgeschlagen.')
+            return HttpResponseRedirect(request.path)
+    else:
+        return render(request, 'main/login.html', {'form': AuthenticationForm})
+        # Return an 'invalid login' error message.
 
 # Als Beispiele aus nem anderen Projekt
 
