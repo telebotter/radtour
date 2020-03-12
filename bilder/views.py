@@ -79,9 +79,11 @@ def upload(request, alias):
                         # chunk write to save ram for big files
                         for chunk in f.chunks():
                             target.write(chunk)
-                    bild = Bild.objects.get_or_create(tour=tour, date=date, bild=os.path.join('bilder', fname))
-                    bild.save()
-                    messages.info(request, f'datei gespeichert als: {fpath}')
+                    bild, created = Bild.objects.get_or_create(tour=tour, date=date, bild=os.path.join('bilder', fname))
+                    if created:
+                        messages.info(request, f'datei gespeichert als: {fpath}')
+                    else:
+                        messages.warning(request, f'bild ist bereits in der db')
                 except Exception as e:
                     messages.error(request, f'fehler: {e}')
             #instance = ModelWithFileField(file_field=request.FILES['file'])
