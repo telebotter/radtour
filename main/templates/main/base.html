@@ -40,29 +40,31 @@
         <ul class="navbar-nav mr-auto">
 
           {% if tour %}
-          <li class="nav-item">
-            <a class="nav-link" href="/bilder/{{ tour.alias }}">Bilder</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logbuch/{{ tour.alias }}">Logbuch</a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/bilder/{{ tour.alias }}">Bilder</a>
+            </li>
+            {% if user.is_authenticated %}
+              <li class="nav-item">
+                <a class="nav-link" href="/logbuch/{{ tour.alias }}">Logbuch</a>
+              </li>
+            {% endif %}
             <li class="nav-item">
             <a class="nav-link" href="/karte/{{ tour.alias }}">Karte</a>
             </li>
+            <!--
             <li class="nav-item">
               <a class="nav-link disabled" href="/statistik/{{ tour.alias }}">Statistik</a>
             </li>
+            -->
           {% else %}
             <li class="nav-item">
               <a class="nav-link" href="/karte/">Karte</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#">Statistik</a>
-            </li>
           {% endif %}
+          <!--
           <li class="nav-item">
             <a class="nav-link" href="/kontakt">Kontakt</a>
-          </li>
+          </li> -->
         </ul>
         <!-- <form class="form-inline mt-2 mt-md-0">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">

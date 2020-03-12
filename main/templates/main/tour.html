@@ -1,24 +1,10 @@
 {% extends "main/base.html" %}
 
 {% block addcss %}
-<style>
-html{
-  scroll-behavior: smooth;
- }
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 5rem;
-    }
-  }
-}
-
-</style>
-
 {% endblock addcss %}
+
 {% block content %}
-
-
-<div class="container" style="padding-top: 50px;">
+<div class="container">
   <div class="row" style="text-align: center;">
       <div class="tour-banner" style="position: relative; min-height: 100px; width:100%;">
         {% if tour.img %}
