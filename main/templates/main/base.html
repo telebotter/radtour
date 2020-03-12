@@ -1,4 +1,5 @@
 {% load static %}
+{% load tour_tags %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -6,10 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Lukas Ruhe">
-    <title>Tour</title>
-
+    <title>Trio</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/carousel/">
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="/static/css/carousel.css" rel="stylesheet">
@@ -21,22 +20,25 @@
     <header>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
-      <a class="navbar-brand" href="/">Home</a>
+      {# <a class="navbar-brand" href="/">Home</a> #}
+      <div class="nav-item dropdown">
+        <a class="nav-link navbar-brand dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {% if tour %}{{ tour.name }}{% else %}Tour{% endif %}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          {% touren_liste as tagtouren %}
+            <a class="dropdown-item" href="/"><i class="fa fa-home" style='padding-right: 16px;'></i> Startseite</a>
+          {% for tour in tagtouren %}
+            <a class="dropdown-item" href="/tour/{{ tour.alias }}">{{ tour.name }}</a>
+          {% endfor %}
+        </div>
+      </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {% if tour %}{{ tour.name }}{% else %}Tour{% endif %}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              {% for tour in touren %}
-                <a class="dropdown-item" href="/tour/{{ tour.alias }}">{{ tour.name }}</a>
-              {% endfor %}
-            </div>
-          </li>
+
           {% if tour %}
           <li class="nav-item">
             <a class="nav-link" href="/bilder/{{ tour.alias }}">Bilder</a>
@@ -66,7 +68,11 @@
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
         </form> !-->
-          <a class="btn btn-outline-success" type="button" href="/admin">Login</a>
+        {% if user.is_authenticated %}
+          <a class="btn btn-outline-danger" type="button" href="/logout?next={{ request.path }}">Logout</a>
+        {% else %}
+          <a class="btn btn-outline-success" type="button" href="/login?{{ requext.path }}">Login</a>
+        {% endif %}
       </div>
       </div
   </nav>

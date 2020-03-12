@@ -1,0 +1,43 @@
+{% extends "main/base.html" %}
+{% load static %}
+<!-- https://github.com/blueimp/Gallery#setup -->
+
+
+{% block title %}
+{{ tour.name }} - Logbuch
+{% endblock title %}
+
+
+
+{% block addcss %}
+<link rel="stylesheet" href="{% static 'bilder/css/blueimp-gallery.min.css' %}">
+<link rel="stylesheet" href="{% static 'bilder/css/style.css' %}">
+{% endblock addcss %}
+
+
+{% block content %}
+<div class="container" style="padding-top: 20px;">
+<h2>Lobguch: {{ tour.name }}</h2>
+<div style="padding-top: 10px;"></div>
+{% if eintraege %}
+    {% for eintrag in eintraege %}
+    <h4><a href="{{ eintrag.tag }}">Tag {{ eintrag.tag }}</a></h4>
+    <span style="padding-left: 10px;"></span>
+    <span class="muted">
+      {% if eintrag.datum %}<i class="fa fa-calendar"></i> {{ eintrag.datum }}
+        <span style="padding-left: 10px;"></span>{% endif %}
+      {% if eintrag.strecke %}<i class="fa fa-road"></i> {{ eintrag.strecke }}km
+        <span style="padding-left: 10px;"></span>{% endif %}
+      {% if eintrag.uptime %}<i class="fa fa-clock-o"></i> {{ eintrag.uptime }}h
+        <span style="padding-left: 10px;"></span>{% endif %}
+      {% if eintrag.hoehe %}<i class="fa fa-arrows-v"></i> {{ eintrag.hoehe }}m
+        <span style="padding-left: 10px;"></span>{% endif %}
+    </span>
+    <p>{{ eintrag.text }}</p>
+    {% endfor %}
+{% else %}
+    Für diese Tour wurde noch nichts eingetragen.
+{% endif %}
+</div>
+
+{% endblock %}

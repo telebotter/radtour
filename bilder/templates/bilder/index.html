@@ -39,7 +39,7 @@ Tour - Bilder
 <div class="container" style="padding-top: 20px;">
   <div id="links">
       {% for bild in bilder %}
-      <a href="{{ bild.bild_web.url }}" title="{{ bild.titel }}" data-description="/admin/bilder/bild/{{ bild.id }}/change" >
+      <a href="{{ bild.bild_web.url }}" title="{{ bild.titel }}" data-description="/admin/bilder/bild/{{ bild.id }}/change" data-delete-link="/admin/bilder/bild/{{ bild.id }}/delete">
           <img src="{{ bild.bild_thumb.url }}" alt="{{ bild.titel }}">
       </a>
       {% endfor %}
@@ -86,14 +86,25 @@ document.getElementById('links').onclick = function (event) {
                     onslide: function (index, slide) {
                                     console.log('sliding');
                                     var editlink = this.list[index].getAttribute('data-description'),
+                                        deletelink = this.list[index].getAttribute('data-delete-link'),
                                         node = this.container.find('.description');
                                     node.empty();
                                     console.log(node);
+                                    console.log(deletelink);
                                     if (editlink) {
+                                        console.log('if editlink');
                                         var a = document.createElement('a');
-                                        a.appendChild(document.createTextNode('edit'));
+                                        a.appendChild(document.createTextNode('edit, '));
                                         a.href = editlink;
                                         a.title =  "Bild bearbeiten";
+                                        node[0].appendChild(a);
+                                    }
+                                    if (deletelink) {
+                                        console.log('if deletelink');
+                                        var a = document.createElement('a');
+                                        a.appendChild(document.createTextNode(' delete'));
+                                        a.href = deletelink;
+                                        a.title =  "Bild loeschen";
                                         node[0].appendChild(a);
                                     }
                                 }

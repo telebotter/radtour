@@ -79,7 +79,7 @@ def upload(request, alias):
                         # chunk write to save ram for big files
                         for chunk in f.chunks():
                             target.write(chunk)
-                    bild = Bild(tour=tour, date=date, bild=os.path.join('bilder', fname))
+                    bild = Bild.objects.get_or_create(tour=tour, date=date, bild=os.path.join('bilder', fname))
                     bild.save()
                     messages.info(request, f'datei gespeichert als: {fpath}')
                 except Exception as e:
