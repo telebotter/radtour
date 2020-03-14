@@ -1,0 +1,75 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load leaflet_tags %}
+
+
+{% block addcss %}
+  {% leaflet_css %}
+  <style>
+      .leaflet-container { height: 100%; }
+  </style>
+{% endblock addcss %}
+
+{% block addjs %}
+  {% leaflet_js %}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  <script src="{% static 'karte/js/leaflet.awesome-markers.js' %}"></script>
+{% endblock addjs %}
+
+
+{% block bodytag %}
+  <body style="height: 100vh; padding-top: 56px; padding-bottom: 0px;">
+{% endblock bodytag %}
+
+{% block bodyroot %}
+    {% leaflet_map "main" callback="main_map_init" %}
+
+    <script type="text/javascript">
+        //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
+        var markerSize = 10;
+        var track_orte = [];
+        function main_map_init (map, options) {
+            var controller = L.control.layers().addTo(map);
+            var tourLayer = []; // will be redifined to object (kw assign)
+            console.log('start init map');
+            {% for tour in touren %}
+              var t = '{{ tour.alias }}';
+              tourLayer[t] = L.geoJson(null, {
+                    style: function(feature) {
+                        return {color: feature.properties.color};
+                    },
+                    pointToLayer: function(feature, latlng) {
+                        return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
+                    },
+                    onEachFeature: function (feature, layer) {
+                        if (feature.properties.date) {
+                          layer.bindPopup(
+                              '<h4>' + feature.properties.date + '</h4>'
+                              + '<p>' + feature.properties.text + '</p>');
+                        }
+                    }
+                  });
+              console.log(tourLayer);
+              var trackUrl = '{% url "track_tour" tour.alias %}';
+              $.getJSON(trackUrl, function(data) {
+                  tourLayer[t].addData(data);
+              });
+
+              var orteUrl = '{% url "orte_tour" tour.alias %}';
+              $.getJSON(orteUrl, function(data) {
+                  tourLayer[t].addData(data);
+              });
+
+              tourLayer[t].addTo(map);
+              controller.addOverlay(tourLayer[t], '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span>');
+            {% endfor %}
+        }
+        //on.
+    </script>
+{% endblock bodyroot %}
+
+<!-- hide main and footer containers -->
+{% block main %}
+{% endblock %}
+{% block footer %}
+{% endblock %}

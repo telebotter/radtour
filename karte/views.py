@@ -9,7 +9,13 @@ from django.http import HttpResponse, JsonResponse
 def index(request):
     context = {}
     context['touren'] = Tour.objects.all()
-    return render(request, 'karte/base_karte.html', context=context)
+    return render(request, 'karte/karte.html', context=context)
+
+
+def index_tour(request, touralias):
+    context = {}
+    context['touren'] = Tour.objects.all()
+    return render(request, 'karte/karte.html', context=context)
 
 
 def orte_tour(request, touralias):
@@ -17,8 +23,12 @@ def orte_tour(request, touralias):
     logs = Logbucheintrag.objects.filter(tour=tour)
     points = []
     for log in logs:
+        if user.is_authenticated:
+            text = log.text
+        else:
+            text = 'Logbucheinträge nur mit Login!'
         try:
-            points.append({'type':'Feature', 'geometry': log.ort, 'properties':{'name': log.tag, 'color': tour.color, 'text': log.text, 'tag': log.tag}})
+            points.append({'type':'Feature', 'geometry': log.ort, 'properties':{'name': log.datum, 'color': tour.color, 'text': text, 'date': log.datum}})
         except Exception as e:
             pass
     geo_json = {'type': 'FeatureCollection', 'features': points, 'properties':{'name': tour.name}}
