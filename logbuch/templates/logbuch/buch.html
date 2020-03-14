@@ -14,30 +14,82 @@
 <link rel="stylesheet" href="{% static 'bilder/css/style.css' %}">
 {% endblock addcss %}
 
+{% block bodyroot %}
+<div id="blueimp-gallery" class="blueimp-gallery blueimp-gallery-controls">
+  <div class="slides"></div>
+  <h3 class="title"></h3>
+  <a class="prev">‹</a>
+  <a class="next">›</a>
+  <a class="close">×</a>
+  <a class="play-pause"></a>
+  <ol class="indicator"></ol>
+</div>
+
+{% endblock %}
 
 {% block content %}
-<div class="container" style="padding-top: 20px;">
-<h2>Lobguch: {{ tour.name }}</h2>
-<div style="padding-top: 10px;"></div>
+<div class="container">
+<h2>Logbuch</h2>
 {% if eintraege %}
-    {% for eintrag in eintraege %}
-    <h4><a href="{{ eintrag.tag }}">Tag {{ eintrag.tag }}</a></h4>
+  <script src="{% static 'bilder/js/blueimp-gallery.min.js' %}"></script>
+  {% for eintrag in eintraege %}
+    <h4 id="log-{{ eintrag.datum|date:"Ymd" }}" style="padding-top:16px;">
+      {{ eintrag.datum }}
+      <div class="button-group pull-right" >
+        <a class="btn btn-outline-secondary" href="#log-{{ eintrag.datum|date:"Ymd" }}">
+          <i class="fa fa-link" aria-hidden="true"></i>
+        </a>
+        {% if user.is_authenticated %}
+          <!--<a class="btn btn-primary" href="/admin/logbuch/logbucheintrag/{{ eintrag.id }}/change/">-->
+          <a class="btn btn-primary" href="/logbuch/{{ tour.alias }}/edit/{{ eintrag.id }}">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </a>
+        {% endif %}
+      </div>
+    </h4>
     <span style="padding-left: 10px;"></span>
     <span class="muted">
-      {% if eintrag.datum %}<i class="fa fa-calendar"></i> {{ eintrag.datum }}
+      {% if eintrag.datum %}<i class="fa fa-calendar"></i> {{ eintrag.datum|date:"Y-m-d" }}
         <span style="padding-left: 10px;"></span>{% endif %}
-      {% if eintrag.strecke %}<i class="fa fa-road"></i> {{ eintrag.strecke }}km
+      {% if eintrag.strecke %}<i class="fa fa-road"></i> {{ eintrag.strecke|floatformat:-2 }}km
         <span style="padding-left: 10px;"></span>{% endif %}
-      {% if eintrag.uptime %}<i class="fa fa-clock-o"></i> {{ eintrag.uptime }}h
+      {% if eintrag.uptime %}<i class="fa fa-clock-o"></i> {{ eintrag.uptime|floatformat:-2 }}h
         <span style="padding-left: 10px;"></span>{% endif %}
-      {% if eintrag.hoehe %}<i class="fa fa-arrows-v"></i> {{ eintrag.hoehe }}m
+      {% if eintrag.hoehe %}<i class="fa fa-arrows-v"></i> {{ eintrag.hoehe|floatformat:-2 }}m
         <span style="padding-left: 10px;"></span>{% endif %}
     </span>
-    <p>{{ eintrag.text }}</p>
+    {% if eintrag.text %}
+    <p style="padding-top: 10px;">{{ eintrag.text }}</p>
+    {% else %}
+    <p style="padding-top: 10px;">Noch kein Text eingetragen</p>
+    {% endif %}
+
+    <!-- one day gallery -->
+    <div id="images-{{ eintrag.datum|date:"Ymd" }}">
+    {% for b in eintrag.bilder.all %}
+      <a href="{{ b.bild_web.url }}" title="Titel" data-gallery="#blueimp-gallery-{{ eintrag.datum|date:"Ymd" }}">
+        <img src="{{ b.bild_thumb.url }}" alt="Tagesbild" />
+      </a>
+    {% endfor %}
+    </div> <!-- gal -->
+    <script>
+    document.getElementById('images-{{ eintrag.datum|date:"Ymd" }}').onclick = function (event) {
+        event = event || window.event;
+        var target = event.target || event.srcElement,
+            link = target.src ? target.parentNode : target,
+            options = {index: link, event: event},
+            links = this.getElementsByTagName('a');
+        blueimp.Gallery(links, options);
+    };
+    </script>
+    <hr/>
     {% endfor %}
 {% else %}
     Für diese Tour wurde noch nichts eingetragen.
 {% endif %}
+
+
+
 </div>
 
 {% endblock %}

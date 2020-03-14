@@ -1,0 +1,69 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load tour_tags %}
+<!-- https://github.com/blueimp/Gallery#setup -->
+
+
+{% block title %}
+{{ tour.name }} - Logeintrag Bearbeiten
+{% endblock title %}
+
+{% block addcss %}
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.de.min.js" integrity="sha256-MRg0FdDDqvQkQ3VIUMZCZ39M6O40kpoIYqCGU2rRyxE=" crossorigin="anonymous"></script>-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha256-siyOpF/pBWUPgIcQi17TLBkjvNgNQArcmwJB8YvkAgg=" crossorigin="anonymous" />
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+<h2>Lobgucheintrag {{ log.id }} bearbeiten</h2>
+
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
+<!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.de.min.js" integrity="sha256-MRg0FdDDqvQkQ3VIUMZCZ39M6O40kpoIYqCGU2rRyxE=" crossorigin="anonymous"></script> -->
+
+{{ form.media }}
+{{ form.non_field_errors }}
+<form action="/logbuch/{{ tour.alias }}/edit/{{ log.id }}" method="POST">
+  {% csrf_token %}
+  <div class="form-row">
+    {% for field in form %}
+      {% if field.name in form.Meta.inlinefields %}
+      <div class="col-auto">
+        <label class="sr-only" for="{{ field.id_for_label }}">{{ field.html_name }}</label>
+        <div class="input-group mb-2">
+          <!--<div class="input-group-prepend">
+            <div class="input-group-text">{{ icons|lookup:field.name|safe }}</div>
+          </div>
+          <input type="{{ field.field.widget.input_type }}" class="form-control  {% if field.errors %}is-invalid{% endif %}" id="{{ field.id_for_label }}" name="{{ field.html_name }}" placeholder="{{ placeholder|lookup:field.name }}" step="0.01" value="{% if field.name == 'datum' %}{{ field.value|date:'Y-m-d' }}{% else %}{{ field.value|floatformat:"-3"|default:'' }}{% endif %}"> -->
+          {{ field }}
+            {% for error in field.errors %}
+            <div class="invalid-feedback">
+              {{ error }}
+            </div>
+            {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="form-row">
+    <div class="col-12">
+      {{ form.text.errors }}
+      <textarea id="id_text" class="form-control" style="min-width: 100%;" name="text" rows="16">{{ form.text.value }}</textarea>
+    </div>
+  </div>
+  <hr/>
+  <div class="form-row">
+    <button class="btn btn-success" type="submit">Speichern</button>
+  </div>
+</form>
+{% endblock content %}
+
+
+
+{% block addjs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.de.min.js" integrity="sha256-MRg0FdDDqvQkQ3VIUMZCZ39M6O40kpoIYqCGU2rRyxE=" crossorigin="anonymous"></script>
+{% endblock %}

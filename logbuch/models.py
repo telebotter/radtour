@@ -9,15 +9,16 @@ class Logbucheintrag(models.Model):
     """
     erstellt = models.DateTimeField('Erstellt am', auto_now=True)
     bearbeitet = models.DateTimeField('Bearbeitet am', auto_now=True)
-    datum = models.DateField('Datum', null=True, blank=True)
+    datum = models.DateField('Datum')
     tag = models.IntegerField('Tag Nummer', null=True, blank=True)
     text = models.TextField(null=True, blank=True)
     tour = models.ForeignKey(Tour, null=True, blank=True,
-                             on_delete=models.CASCADE)
+                             on_delete=models.CASCADE, related_name='logs')
     strecke = models.FloatField(null=True, blank=True)
     uptime = models.FloatField(null=True, blank=True)
     hoehe = models.FloatField(null=True, blank=True)
     ort = PointField(null=True, blank=True)
+
 
     @property
     def naechster_eintrag(self):
@@ -40,4 +41,7 @@ class Logbucheintrag(models.Model):
         try:
             return str('{}: Tag {} ({})'.format(self.tour.name, str(self.tag), str(self.datum)))
         except:
-            return str('{}: {}'.format(sefl.tour.name, self.datum))
+            try:
+                return str('{}: {}'.format(self.tour.name, self.datum))
+            except:
+                return str(self.datum)
