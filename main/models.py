@@ -4,6 +4,8 @@ from djgeojson.fields import MultiLineStringField
 from colorful.fields import RGBColorField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdownify
 
 
 
@@ -33,6 +35,7 @@ class Tour(models.Model):
                                 format='JPEG', options={'quality': 60})
     #tourlog = models.TextField(blank=True)  # html or md content?
     text = models.TextField(blank=True, null=True)
+    bericht = MarkdownxField(blank=True, null=True)
     listed = models.BooleanField(default=True)
     short_text = models.CharField(max_length=600, default='Kurzbeschreibung')
 
@@ -94,6 +97,9 @@ class Tour(models.Model):
             except:
                 pass
         return hm
+
+    def bericht_html(self):
+        return markdownify(self.bericht)
 
 
 

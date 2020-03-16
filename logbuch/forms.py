@@ -62,8 +62,8 @@ class LogForm(ModelForm):
         widget=IconTextInput(attrs={"class": "form-control"}, icon='arrows-v', placeholder="Aufstieg m"),
         required=False)
     uptime = forms.FloatField(
-        widget=IconTextInput(attrs={"class": "form-control", 'required':False}, icon='clock-o', placeholder="Fahrzeit h"),
+        widget=IconTextInput(attrs={"class": "form-control"}, icon='clock-o', placeholder="Fahrzeit h"),
         required=False)
     strecke = forms.FloatField(
-        widget=IconTextInput(icon='road', placeholder="Strecke km"),
+        widget=IconTextInput(attrs={"class": "form-control"}, icon='road', placeholder="Strecke km"),
         required=False)

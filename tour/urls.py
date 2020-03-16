@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url
 from django.urls import include, path
 from django.contrib import admin
+from markdownx import urls as mdurls
 
 urlpatterns = [
     path('admin/', admin.site.urls, name='tour_admin'),
@@ -23,5 +24,6 @@ urlpatterns = [
     path('karte/', include('karte.urls')),
     path('logbuch/', include('logbuch.urls')),
     path('bilder/', include('bilder.urls')),
+    path('markdownx/', include(mdurls)),
     url(r'^', include('django_telegrambot.urls')),
 ]

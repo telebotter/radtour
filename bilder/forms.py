@@ -23,4 +23,4 @@ class TagForm(forms.Form):
 
 class FileFieldForm(forms.Form):
     """ upload multiple images at once """
-    file_field = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}))
+    file_field = forms.ImageField(widget=forms.ClearableFileInput(attrs={'multiple': True}))

@@ -1,5 +1,6 @@
 {% load static %}
 {% load tour_tags %}
+{% load bootstrap4 %}
 
 <!doctype html>
 <html lang="de">
@@ -15,7 +16,6 @@
 
 
 <!--
-
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
  -->
 
@@ -35,10 +35,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 
-
-
   </head>
 {% endblock head %}
+
 
   {% block bodytag %}
   <body style="padding-bottom: 0px; padding-top: 54px;">
@@ -73,17 +72,17 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav mr-auto">
               {% if tour %}
-                <li class="nav-item">
+                <li class="nav-item {% active request '/karte/' %}">
                   <a class="nav-link" href="/karte/{{ tour.alias }}">Karte</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% active request '/tour/' %}">
                   <a class="nav-link" href="/tour/{{ tour.alias }}">Bericht</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {% active request '/bilder/' %}">
                   <a class="nav-link" href="/bilder/{{ tour.alias }}">Bilder</a>
                 </li>
                 {% if user.is_authenticated %}
-                  <li class="nav-item">
+                  <li class="nav-item {% active request '/logbuch/' %}">
                     <a class="nav-link" href="/logbuch/{{ tour.alias }}">Logbuch</a>
                   </li>
                 {% endif %}
@@ -93,7 +92,7 @@
                 </li>
                 -->
               {% else %}
-                <li class="nav-item">
+                <li class="nav-item {% active request '/karte/' %}">
                   <a class="nav-link" href="/karte/">Karte</a>
                 </li>
               {% endif %}
@@ -122,21 +121,18 @@
     <!-- <div style="height: 90px;"></div> -->
     {% endblock topspacer %}
 
+    <div class="container" id="message_box">
+        {% bootstrap_messages %}
+    </div>
 
       {% block bodyroot %}
       {% endblock %}
 
-      {% if messages %}
-      <ul class="messages">
-          {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-          {% endfor %}
-      </ul>
-      {% endif %}
 
       <!-- MAIN -->
       {% block main %}
       <main role="main" style="padding-top:20px;">
+
         {% block content %}
         {% endblock content %}
       </main>

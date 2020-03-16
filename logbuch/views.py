@@ -1,5 +1,6 @@
+import json
+from django.http import FileResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, get_list_or_404
-
 from main.models import Tour
 from bilder.models import Bild
 from logbuch.models import Logbucheintrag
@@ -56,7 +57,7 @@ def log_edit(request, touralias, log_id):
     else: # if a GET create a bound (linked to an instance) form
         form = LogForm(instance=log)
 
-    # add some layout stuff in a dirty way
+    # add some layout stuff in a dirty way not longer needed see form
     icons = {
         'hoehe': '<i class="fa fa-arrows-v"></i>',
         'uptime': '<i class="fa fa-clock-o"></i>',
@@ -72,3 +73,23 @@ def log_edit(request, touralias, log_id):
         'maxspeed': 'Maxges kmh',
     }
     return render(request, 'logbuch/log_edit.html', context={'tour': tour, 'form':form, 'icons': icons, 'placeholder': placeholder, 'log': log})
+
+
+@login_required
+def log_export(request, touralias):
+    tour = get_object_or_404(Tour, alias=touralias)
+    log_data = [log.to_dict() for log in tour.logs.all()]
+    log_json = json.dumps(log_data)
+    #return JsonResponse(log_data, safe=False) # PointField is still obj
+    response = FileResponse(log_json)
+    # Auto detection doesn't work with plain text content, so we set the headers ourselves
+    response["Content-Type"] = "text/json"
+    response["Content-Length"] = len(log_json)
+    response["Content-Disposition"] = 'attachment; filename="' + f'logbuch_{touralias}.json' + '"'
+    return response
+
+@login_required
+def log_import(request, touralias):
+    # TODO uploadjsonfileform
+    messages.warning(request, 'Das importieren muss erst noch vernünftig getestet werden, damit nichts ungewollt überschrieben wird. Comming Soon...')
+    return(HttpResponseRedirect(f'/logbuch/{touralias}'))

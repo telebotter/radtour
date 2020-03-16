@@ -15,6 +15,7 @@ def index(request):
 def index_tour(request, touralias):
     context = {}
     context['touren'] = Tour.objects.all()
+    context['tour'] = get_object_or_404(Tour, alias=touralias)
     return render(request, 'karte/karte.html', context=context)
 
 

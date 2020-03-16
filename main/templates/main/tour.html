@@ -5,7 +5,7 @@
 
 {% block content %}
 <div class="container">
-  <div class="row" style="text-align: center;">
+ <div class="row" style="text-align: center;">
       <div class="tour-banner" style="position: relative; min-height: 100px; width:100%;">
         {% if tour.img %}
         <img class="" style="width:100%;height:auto;" src="{{ tour.img.url }}" alt="{{ tour.titel }}" focusable="false" role="img"/>
@@ -13,67 +13,37 @@
         <img class="" style="width:100%;height:auto;" src="https://tour.sarbot.de/media/kroatienheader.jpg" alt="{{ tour.titel }}" focusable="false" role="img"/>
         {% endif %}
 
-        <div class="text-block" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0,0,0,0.5); padding-top: 8px; padding-left: 16px; padding-right: 16px;
+<!--        <div class="text-block" style="position: absolute; top: 0px; left: 0px; background-color: rgba(0,0,0,0.5); padding-top: 8px; padding-left: 16px; padding-right: 16px;
 color: white; padding-bottom: 20px;">
         <h2 class="featurette-heading" style="margin-top:10px; text-shadow:10px;">
             <a href="{% url 'main_tour' tour.alias %}" style="color: white; text-shadow: 2px 2px 4px {{ tour.color }};">{{ tour.name }}</a></h2>
+</div>-->
       </div>
-    </div>
   </div>
   <div style="height:20px;"></div>
-  <div class="row">
-    <div class="col-sm-12 col-md-6">
-          <table class="table table-hover">
-          <tbody>
-          {% if tour.date_start %}
-            <tr>
-              <td>Start</td>
-              <td>{{ tour.date|date:"Y-m-d" }}</td>
-            </tr>
-          {% endif %}
-          {% if tour.dauer %}
-            <tr>
-              <td>Dauer</td>
-              <td>{{ tour.dauer }}</td>
-            </tr>
-          {% endif %}
-          {% if tour.strecke %}
-            <tr>
-              <td>Strecke</td>
-              <td>{{ tour.strecke }} km</td>
-            </tr>
-          {% endif %}
-          {% if tour.hoehe %}
-            <tr>
-              <td>Hoehe</td>
-              <td>{{ tour.hoehe }} m</td>
-            </tr>
-          {% endif %}
-          {% if tour.color %}
-            <tr>
-              <td>Farbe</td>
-                <td><div style="background-color:{{ tour.color }}; width:20px; height:20px;"></div></td>
-            </tr>
-          {% endif %}
-          <tr>
-              <td>
-              <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
-              </td>
-              <td><a href="/bilder/{{ tour.alias }}">Bilder</a></td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    <div class="col-sm-12 col-md-6">
-      <div class="minimap-box">
-          <a href="/karte"><img width="100%" src="/media/gfx/minimap_{{ tour.alias }}.png" /></a>
-      </div>
+    <div class="row">
+        <div class="col-12">
+            {% if user.is_authenticated %}
+            <a href="/tour/{{ tour.alias }}/edit" class="float-right btn btn-outline-primary">
+                <i class="fa fa-pencil"></i>
+            </a>
+            {% endif %}
+            <h1>{{ tour.name }}</h1>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <p>{{ tour.text|safe }}</p>
-    <a href="/logbuch/{{ tour.alias }}">Logbuch</a>
-  </div>
+    <div class="row">
+        <div class="col-12">
+          {% if tour.date_start %}
+          <i class="fa fa-calendar"></i> {{ tour.date_start|date:"Y-m-d" }}
+          {% endif %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {% if tour.bericht %}
+            {{ tour.bericht_html|safe }}
+            {% endif %}
+        </div>
 </div><!-- container -->
 {% endblock content %}
 

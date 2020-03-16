@@ -24,3 +24,12 @@ def app_path(context):
 @register.filter
 def lookup(h, key):
     return h[key]
+
+
+@register.simple_tag
+def active(request, pattern):
+    """ use this tag as class for nav items """
+    path = request.path
+    if path.startswith(pattern):
+        return 'active'
+    return ''

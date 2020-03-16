@@ -3,8 +3,6 @@ tour/settings.py
 media/
 *.sqlite3
 local/
-!karte/static/
-!main/static/
 .idea/*
 **/__pycache__
-static/
+/static/

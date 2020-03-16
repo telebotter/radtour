@@ -29,10 +29,23 @@
 
 {% block content %}
 <div class="container">
-<h2>Logbuch</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Logbuch</h2>
+    </div>
+    {% if user.is_authenticated %}
+    <div class="col-md-4">
+        <div class="button-group" >
+          <a class="btn btn-primary float-right" href="/logbuch/{{ tour.alias }}/export" tooltip="Logbuch Exportieren" style="margin-left:5px;"><i class="fa fa-download"></i></a>
+           <a class="btn btn-outline-primary float-right" href="/logbuch/{{ tour.alias }}/import" tooltip="Logbuch Importieren"><i class="fa fa-upload"></i></a>
+        </div>
+      </div>
+    {% endif %}
+    </div>
 {% if eintraege %}
   <script src="{% static 'bilder/js/blueimp-gallery.min.js' %}"></script>
   {% for eintrag in eintraege %}
+  <hr/>
     <h4 id="log-{{ eintrag.datum|date:"Ymd" }}" style="padding-top:16px;">
       {{ eintrag.datum }}
       <div class="button-group pull-right" >
@@ -82,7 +95,6 @@
         blueimp.Gallery(links, options);
     };
     </script>
-    <hr/>
     {% endfor %}
 {% else %}
     Für diese Tour wurde noch nichts eingetragen.
