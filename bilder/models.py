@@ -7,13 +7,6 @@ from imagekit.processors import ResizeToFit
 
 # Create your models here.
 
-class Label(models.Model):
-    private = models.BooleanField(default=False)
-    name = models.CharField(max_length=50, primary_key=True)
-
-    def __str__(self):
-        return self.name
-
 
 
 class Bild(models.Model):
@@ -31,7 +24,6 @@ class Bild(models.Model):
                                       options={'quality': 90})
     bild_thumb = ImageSpecField(source='bild', processors=[ResizeToFill(100,100)],
                                 format='JPEG', options={'quality': 60})
-    labels = models.ManyToManyField(Label, blank=True, null=True, related_name='bild_label')
     private = models.BooleanField(default=False)
 
     def __str__(self):

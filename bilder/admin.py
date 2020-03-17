@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from bilder.models import Bild, Label
+from bilder.models import Bild
 from imagekit.admin import AdminThumbnail
 
 
@@ -14,4 +14,3 @@ class BildAdmin(admin.ModelAdmin):
     readonly_fields = ['big_thumbnail']  # for detail view
 
 admin.site.register(Bild, BildAdmin)
-admin.site.register(Label)

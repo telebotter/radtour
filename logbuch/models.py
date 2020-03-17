@@ -9,7 +9,7 @@ class Logbucheintrag(models.Model):
     """
     erstellt = models.DateTimeField('Erstellt am', auto_now=True)
     bearbeitet = models.DateTimeField('Bearbeitet am', auto_now=True)
-    datum = models.DateField('Datum')
+    datum = models.DateField('Datum', default='2000-01-01')
     tag = models.IntegerField('Tag Nummer', null=True, blank=True)
     text = models.TextField(null=True, blank=True)
     tour = models.ForeignKey(Tour, null=True, blank=True,
