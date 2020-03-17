@@ -25,7 +25,7 @@ pytz==2019.3
 six==1.13.0
 sqlparse==0.3.0
 tornado==6.0.3
-django-bootstrap-4==1.1.1
+django-bootstrap4==1.1.1
 django-bootstrap-form==3.4
 django-bootstrap-datepicker-widget==0.1
 django-bootstrap-datepicker-plus==3.0.5
