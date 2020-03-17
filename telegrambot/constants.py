@@ -1,0 +1,7 @@
+MESSAGES = {
+    'csv': "Yo, hab die csv bekommen und gespeichert.. was soll ich jetzt machen?",
+    'fragen': "*Hi* {},\n Gut dass du fragst, ",
+    'help': "Hilfetext... ",
+    'start': "*Benutze mich!* \n Bin zwar noch in arbeit, aber trotzdem cool. \n Mit /menu kriegst du ne kleine 'grafische' Oberfläche. Mit /status behälst du immer im Blick, auf welcher Tour und an welchem Tag du dich gerade befindest.\nDu kannst mir direkt mehrere Foto oder einen Standort pro Tag schicken. Außerdem kannst du mir nen Text schicken, wenn #log darin vorkommt, werde ich daraus ein Logbucheintrag erstellen, oder den Text an einen bestehenden Beitrag anhängen. Um die Strecke, Fahrzeit oder Höhenmeter anzugeben, benutze die entsprechenden Befehle. In jedemfall solltest du vor jedem Eintrag darauf achten, dass der richtige Tag ausgewählt ist.\nÜber das Menu können unter Logbuch->Neuer Eintrag alle Daten für einen vollständigen Logbuch eintrag auf einmal eingegeben werden.\nDie Daten sind sobald ich geantwortet habe auf der Website unter https://tour.sarbot.de zu erreichen.\n\n*Befehle:*\n/start - zeigt diese Nachricht\n/status - generelle infos oder spzifisch mit param tour oder tag\n/menu - 'grafisches' Menu\n/tag <int> - zu Tag <int> springen, wenn kein parameter, wird versucht aus dem Startdatum der aktuelle Tag zu bestimmen\n /tour <str> - zu tour <str> Springen, öffnet Menu, wenn kein parameter\n/abbrechen - Bricht die aktuelle Konversation ab\n",
+
+    }
