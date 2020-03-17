@@ -1,5 +1,6 @@
 /tour/settings.py
 **/migrations
+migrations
 /media/
 *.sqlite3
 local/
