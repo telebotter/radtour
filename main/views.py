@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from .models import Tour
+from .forms import TourForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
@@ -27,10 +28,17 @@ def tour(request, touralias):
     Kompaktansicht einer Tour. Gesamtstrecke, links zu den jeweiligen Views,
     Zusammenfassung
     """
-    touren = Tour.objects.filter(listed=True).order_by('date_start').reverse()
+    #touren = Tour.objects.filter(listed=True).order_by('date_start').reverse()
     tour = get_object_or_404(Tour, alias=touralias)
-    context = {'tour': tour, 'touren': touren}
+    context = {'tour': tour}  # , 'touren': touren}
     return render(request, 'main/tour.html', context=context)
+
+
+def tour_edit(request, touralias):
+    tour = get_object_or_404(Tour, alias=touralias)
+    form = TourForm(instance=tour)
+    context = {'tour': tour, 'form': form}
+    return render(request, 'main/tour_edit.html', context=context)
 
 
 def map(request, tour):

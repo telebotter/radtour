@@ -1,0 +1,15 @@
+<div class="demo">
+    <input id="demo-input" type="text" value="rgb(255, 128, 0)" />
+</div>
+<script src="static/ext/bootstra-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script>
+  $(function () {
+    // Basic instantiation:
+    $('#demo-input').colorpicker();
+
+    // Example using an event, to change the color of the #demo div background:
+    $('#demo-input').on('colorpickerChange', function(event) {
+      $('#demo').css('background-color', event.color.toString());
+    });
+  });
+</script>

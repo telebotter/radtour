@@ -1,6 +1,6 @@
-tour/settings.py
+/tour/settings.py
 **/migrations
-media/
+/media/
 *.sqlite3
 local/
 .idea/*

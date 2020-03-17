@@ -1,12 +1,11 @@
 from django.db import models
-import datetime as dt
 from djgeojson.fields import MultiLineStringField
 from colorful.fields import RGBColorField
+from colorfield.fields import ColorField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill
 from markdownx.models import MarkdownxField
 from markdownx.utils import markdownify
-
 
 
 class Country(models.Model):
