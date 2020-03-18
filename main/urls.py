@@ -20,4 +20,5 @@ urlpatterns = [
     #path('auth/', include('django.contrib.auth.urls')),
     #path('karte/', include('karte.urls')),
     #path('bilder/', include('bilder.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]

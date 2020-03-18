@@ -36,7 +36,19 @@ def tour(request, touralias):
 
 def tour_edit(request, touralias):
     tour = get_object_or_404(Tour, alias=touralias)
-    form = TourForm(instance=tour)
+    if request.method == 'POST':
+        # create a form instance and populate it with data from the request:
+        form = TourForm(request.POST, instance=tour)
+        if form.is_valid():
+            tour = form.save()
+            tour.save()
+            messages.success(request, "Eintrag gespeichert.")
+            return HttpResponseRedirect(f'/tour/{tour.alias}')
+        else:
+            #TODO render form validation error
+            messages.error(request, "Formulardaten Ungültig. Nicht gespeichert!")
+    else: # if a GET create a bound (linked to an instance) form
+        form = TourForm(instance=tour)
     context = {'tour': tour, 'form': form}
     return render(request, 'main/tour_edit.html', context=context)
 
