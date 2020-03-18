@@ -10,8 +10,7 @@ from telegrambot.botcommands import commands
 from telegrambot import utils
 
 import logging
-logging.basicConfig(filename='/home/django/tour/debug.log')
-logger = logging.getLogger('django')
+logger = logging.getLogger(__name__)
 logger.info('logger created')
 
 
