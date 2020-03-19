@@ -1,30 +1,46 @@
 from django.db import models
+from django.db.models import (ForeignKey, IntegerField, FloatField, CharField,
+    DateField, BooleanField, OneToOneField, FileField)
+from django.db.models import (CASCADE, SET_NULL)
 from main.models import Tour
-from djgeojson.fields import PointField, MultiLineStringField
+from djgeojson.fields import (PointField, MultiLineStringField, LineStringField,
+    GeometryField)
+
 
 # Create your models here.
 class Karte(models.Model):
-    name = models.CharField(max_length=255, default='unknown')
+    name = CharField(max_length=255, default='unknown')
 
     def __str__(self):
         return self.name
 
 
-class Einzelstrecke(models.Model):
-    """One day of the tour?"""
-    tag = models.IntegerField(null=True, blank=True)
-    tour = models.ForeignKey(Tour, on_delete=models.SET_NULL, null=True, blank=True)
-    track = MultiLineStringField(null=True, blank=True)
+class Track(models.Model):
+    """ the path with timestamps from one tour, splitted in segments for
+    each day. """
+    tour = OneToOneField(Tour, on_delete=SET_NULL, auto_created=True, related_name='newtrack', null=True)
 
-    def __str__(self):
-        return '{}'.format(self.tour.name)
+    @property
+    def geo_json(self):
+        data = {
+            "type": "FeatureCollection",
+            "features": [seg.geo_json for seg in self.segments.all()]}
+        return data
 
 
-class Schlafplatz(models.Model):
-    """Punkt an dem wir zelteten"""
-    geom = PointField()
-    tag = models.IntegerField(null=True, blank=True)
-    tour = models.ForeignKey(Tour, null=True, blank=True, on_delete=models.SET_NULL)
+class Segment(models.Model):
+    date = DateField(default='2000-01-01')
+    line = LineStringField(null=True, blank=True)
+    # line_geom = GeometryField(null=True, blank=True)
+    transfer = BooleanField(default=False)
+    position = FloatField(default=1) # used to order the segments in track
+    track = ForeignKey(Track, on_delete=SET_NULL, related_name='segments', null=True, blank=True)
+    csv = FileField(upload_to='tracks', null=True, blank=True)
 
-    def __str__(self):
-        return '{} Tag: {}'.format(self.tour.name, self.tag)
+    @property
+    def geo_json(self):
+        data = {
+            "type": "Feature",
+            "geometry": self.line,
+            "properties": {"transfer": self.transfer}}
+        return data

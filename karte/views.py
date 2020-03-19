@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from main.models import Tour
 from logbuch.models import Logbucheintrag
 from djgeojson.serializers import Serializer as GeoJSONSerializer
-from karte.models import Schlafplatz
+# from karte.models import Schlafplatz
 from django.http import HttpResponse, JsonResponse
 # Create your views here.
 
@@ -35,7 +35,7 @@ def orte_tour(request, touralias):
     geo_json = {'type': 'FeatureCollection', 'features': points, 'properties':{'name': tour.name}}
     context = {}
     context['logs'] = logs
-    geoms = Schlafplatz.objects.all()
+    # geoms = Schlafplatz.objects.all()
     #json = GeoJSONSerializer().serialize(Schlafplatz.objects.all(),
     #                              use_natural_keys=True, with_modelname=False)
 
@@ -51,3 +51,9 @@ def track_tour(request, touralias):
     json = GeoJSONSerializer().serialize(data)
     #return HttpResponse(json, content_type='application/json')
     return JsonResponse(geo_json)
+
+
+def new_track(request, touralias):
+    tour = get_object_or_404(Tour, alias=touralias)
+    #track = tour.newtrack
+    return JsonResponse(tour.newtrack.geo_json)

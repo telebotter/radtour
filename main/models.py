@@ -21,7 +21,7 @@ class Country(models.Model):
 
 
 class Tour(models.Model):
-
+    
     name = models.CharField(max_length=250)
     alias = models.CharField(max_length=250, unique=True)  # url-safe
     date_start = models.DateField('Tour Started', null=True)
@@ -103,9 +103,16 @@ class Tour(models.Model):
         return markdownify(self.bericht)
 
 
-
 class User(models.Model):
     name = models.CharField(max_length=250, null=True)
     chatid = models.IntegerField()
     date_active = models.DateTimeField('Last Activity', auto_now=True)
     date_signed = models.DateTimeField('User Registred', auto_now=True)
+
+
+class Page(models.Model):
+    alias = models.CharField(max_length=80)
+    name = models.CharField(max_length=80)
+    public = models.BooleanField(default=False)
+    tour = models.ForeignKey(Tour, null=True, blank=True, related_name='pages', on_delete=models.SET_NULL)
+    content = RichTextUploadingField(null=True, blank=True)
