@@ -16,6 +16,7 @@ urlpatterns = [
     path('webodf/', views.webodf, name='web_odf'),
     path('login/', auth_views.LoginView.as_view(template_name='main/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='main/login.html'), name='logout'),
+    path('intern/<touralias>', views.intern, name='main_intern'),
     #path('login/', views.login_view),
     #path('auth/', include('django.contrib.auth.urls')),
     #path('karte/', include('karte.urls')),

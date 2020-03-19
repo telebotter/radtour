@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from main.models import Tour
+# from karte.forms import FileFieldForm
 from logbuch.models import Logbucheintrag
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 # from karte.models import Schlafplatz
@@ -57,3 +58,34 @@ def new_track(request, touralias):
     tour = get_object_or_404(Tour, alias=touralias)
     #track = tour.newtrack
     return JsonResponse(tour.newtrack.geo_json)
+
+
+# @login_required
+# def upload_csv(request, touralias):
+#     tour = get_object_or_404(Tour, alias=touralias)
+#     if request.method == 'POST':
+#         form = FileFieldForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             for f in request.FILES.getlist('file_field'):
+#                 try:
+#                     date, fname, tags = get_exif_date(f.file)
+#                     fpath = os.path.join(settings.MEDIA_ROOT, 'bilder', fname)
+#                     with open(fpath, 'wb+') as target:
+#                         # chunk write to save ram for big files
+#                         for chunk in f.chunks():
+#                             target.write(chunk)
+#                     bild, created = Bild.objects.get_or_create(tour=tour, date=date, bild=os.path.join('bilder', fname))
+#                     if created:
+#                         messages.info(request, f'datei gespeichert als: {fpath}')
+#                     else:
+#                         messages.warning(request, f'bild ist bereits in der db')
+#                 except Exception as e:
+#                     messages.error(request, f'fehler: {e}')
+#             #instance = ModelWithFileField(file_field=request.FILES['file'])
+#             #instance.save()
+#         else:
+#             messages.error(request, 'invalid form')
+#         return HttpResponseRedirect('/bilder/'+tour.alias)
+#     else:
+#         form = FileFieldForm()
+#         return render(request, 'bilder/upload.html', {'form': form, 'tour': tour})

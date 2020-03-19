@@ -34,6 +34,7 @@ def tour(request, touralias):
     return render(request, 'main/tour.html', context=context)
 
 
+@login_required
 def tour_edit(request, touralias):
     tour = get_object_or_404(Tour, alias=touralias)
     if request.method == 'POST':
@@ -108,6 +109,12 @@ def webodf(request):
     """
     context = {}
     return render(request, 'main/webodf.html', context)
+
+@login_required
+def intern(request, touralias):
+    tour = get_object_or_404(Tour, alias=touralias)
+    context = {'tour': tour}
+    return render(request, 'main/intern.html', context)
 
 
 def login_view(request):

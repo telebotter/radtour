@@ -1,0 +1,25 @@
+{% extends "main/base.html" %}
+{% load static %}
+<!-- https://github.com/blueimp/Gallery#setup -->
+
+
+{% block title %}
+{{ tour.name }} - Intern
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Intern</h2>
+      <h3>Links</h3>
+      <ul>
+        <li><a href="/admin">Django Backend</a> um 'direkt' auf die Daten zuzugreifen.</li>
+        <li><a href="/karte/{{ tour.alias }}/upload">Track hochladen<a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}
