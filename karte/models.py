@@ -32,6 +32,7 @@ class Track(models.Model):
 
 
 class Segment(models.Model):
+    name = CharField(max_length=50, null=True, blank=True) # fname from upload
     date = DateField(default='2000-01-01')
     time = TimeField(default='00:00:00')
     line = LineStringField(null=True, blank=True)
@@ -41,7 +42,11 @@ class Segment(models.Model):
     # TODO: use time field instead of position.. and order bei date, time
     # or just use a datetime field with a default start time of 00:00:00?
     track = ForeignKey(Track, on_delete=SET_NULL, related_name='segments', null=True, blank=True)
-    csv = FileField(upload_to='tracks', null=True, blank=True)
+    csv = FileField(upload_to='tracks', null=True, blank=True) # not used yet
+
+    def __str__(self):
+        return self.name
+
 
     @property
     def geo_json(self):
