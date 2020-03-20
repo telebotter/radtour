@@ -53,7 +53,7 @@ class Segment(models.Model):
         data = {
             "type": "Feature",
             "geometry": self.line,
-            "properties": {"transfer": self.transfer}}
+            "properties": {"transfer": str(self.transfer)}}
         return data
 
     def from_csv(self, csv, time='00:00:00', force=False):

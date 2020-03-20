@@ -3,7 +3,7 @@ from main.models import Tour
 # from karte.forms import FileFieldForm
 from logbuch.models import Logbucheintrag
 from karte.forms import FileFieldForm
-from karte.models import Segment
+from karte.models import Segment, Track
 from djgeojson.serializers import Serializer as GeoJSONSerializer
 # from karte.models import Schlafplatz
 from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
@@ -87,7 +87,8 @@ def upload(request, touralias):
                     date = date_str.replace('/', '-')
                     time = df['Time'][0]
                     # TODO: check file or date/time? or is name good
-                    seg, created = Segment.objects.get_or_create(name=f.name, track=tour.newtrack, date=date, time=time)
+                    track, created = Track.objects.get_or_create(tour=tour)
+                    seg, created = Segment.objects.get_or_create(name=f.name, track=track, date=date, time=time)
                     if created:
                         # coords = df[['Longitude', 'Latitude', 'Alt', 'Time']].values
                         coords = df[['Longitude', 'Latitude']].values
