@@ -1,0 +1,24 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+  <h4>Track Upload: {{ tour.name }}</h4>
+  <div class="alert alert-success" role="alert">
+    <b>Info:</b>
+    <ul>
+      <li>Es können <b>mehrere Tracks</b> auf einmal hochgeladen werden.</li>
+      <li>Eine Datei sollte nur Einträge eines Tages enthalten.</li>
+      <li>Jede CSV Datei wird als einzelnes Segment gespeichert.</li>
+      <li>Existierende Segmente werden überschrieben.</li>
+    </ul>
+  </div>
+
+  <form action='/karte/{{ tour.alias }}/upload' enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {% bootstrap_form form  %}
+    <button class="btn btn-success" type="submit"><i class="fa fa-upload"></i> Upload</button>
+  </form>
+</div>
+{% endblock %}

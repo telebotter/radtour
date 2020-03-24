@@ -1,0 +1,42 @@
+{% extends "main/base.html" %}
+{% load static %}
+<!-- https://github.com/blueimp/Gallery#setup -->
+
+
+{% block title %}
+{{ tour.name }} - Intern
+{% endblock title %}
+
+
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>Intern</h2>
+      <h4>Links</h4>
+      <ul>
+        <li><a href="/admin">Django Backend</a> 'direkter' Datenzugriff</li>
+        <li><a href="https://github.com/telebotter/tour">Source Code</a> der Website</li>
+      </ul>
+      <h4>Upload</h4>
+      <ul>
+        <li><a href="/karte/{{ tour.alias }}/upload">CSV Track</a></li>
+        <li><a href="/bilder/{{ tour.alias }}/upload">Bilder</a></li>
+      </ul>
+      <h4>Tour Export</h4>
+      <ul>
+        <li><a href="/tour/{{ tour.alias }}/export">Tour Daten</a></li>
+        <li><a href="/tagebuch/{{ tour.alias }}/export">Tagebuch</a></li>
+        <li><a href="/kakrte/{{ tour.alias }}/export">Track</a></li>
+      </ul>
+      <h4>Backup</h4>
+      <ul>
+        <li><a href="/backup">Komplett Backup der Website</a></li>
+      </ul>
+
+
+    </div>
+  </div>
+</div>
+{% endblock %}

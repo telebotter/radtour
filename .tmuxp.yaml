@@ -1,0 +1,9 @@
+session_name: tour
+windows:
+- window_name: work
+  shell_command_before:
+    - cd ~/projects/tour                    # run as a first command in all panes
+  panes:
+    - shell_command:           # pane no. 1
+        - python3 manage.py runserver
+    - ll
