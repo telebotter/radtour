@@ -30,6 +30,9 @@ class Track(models.Model):
     def from_csv(self, csv, force=False):
         return
 
+    def __str__(self):
+        return self.tour.name + ' (' + str(self.segments.all().count()) + ')'
+
 
 class Segment(models.Model):
     name = CharField(max_length=50, null=True, blank=True) # fname from upload
@@ -53,7 +56,14 @@ class Segment(models.Model):
         data = {
             "type": "Feature",
             "geometry": self.line,
-            "properties": {"transfer": str(self.transfer)}}
+            "properties": {
+                "transfer": str(self.transfer),
+                "date": str(self.date),
+                "time": str(self.time),
+                "id": str(self.id),
+                "popup": f'[{self.id}]<br/>{self.date}<br/>{self.time}<br/>transfer: {self.transfer}</br/><a href="/admin/karte/segment/{self.id}/change/">bearbeiten</a>',
+                }
+            }
         return data
 
     def from_csv(self, csv, time='00:00:00', force=False):

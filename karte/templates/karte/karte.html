@@ -28,9 +28,10 @@
         //L.AwesomeMarkers.Icon.prototype.options.prefix = 'ion';
         var markerSize = 10;
         var track_orte = [];
+
         function main_map_init (map, options) {
             var controller = L.control.layers().addTo(map);
-            var tourLayer = []; // will be redifined to object (kw assign)
+            // var tourLayer = []; // will be redifined to object (kw assign)
             console.log('start init map');
             // {% for tour in touren %}
             //   var t = '{{ tour.alias }}';
@@ -70,18 +71,36 @@
             // {% endfor %}
 
 
-            // var tourtrack = {# tour.newtrack|geojsonfeature|safe #};
-            var tourtrack = {{ tour.newtrack.geo_json|safe }} {# |geojsonfeature|safe #};
-            var tour_layer = L.geoJson(tourtrack).addTo(map);
-            controller.addOverlay(tour_layer, '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span>');
-            // console.log(tourtrack);
             {% for t in touren %}
-            console.log('for');
-            {% if t.alias == 'kroatien' %}
-            console.log('its kroatien');
-            var t_track = {{ t.newtrack.geo_json|safe }} {# |geojsonfeature|safe #};
-            var t_layer = L.geoJson(t_track).addTo(map);
-            controller.addOverlay(t_layer, '<span style="color: {{ t.color|safe }};">' + '{{ t.name|safe }}' + '</span>');
+            {% if t.newtrack.geo_json %}
+            console.log('loading {{ t.alias }}');
+            var track_{{ t.alias }} = {{ t.newtrack.geo_json|safe|default:'{}' }}{# |geojsonfeature|safe #};
+            // function ft_style_{{ t.alias }}(feature){}
+            var style_{{ t.alias }} = {"color": "{{ t.color }}"};
+            var style2_{{ t.alias }} = {"color": "{{ t.color }}"};
+            var layer_{{ t.alias }} = L.geoJson(track_{{ t.alias }}, {
+              // style: style_{{ t.alias }},
+              style: function(feature) {
+                console.log(feature.properties.transfer);
+                switch (feature.properties.transfer) {
+                    case 'True': return {color: "{{ t.color }}", weight: 4, dashArray: '5, 10', dashOffset: '0'};
+                    case 'False':   return {color: "{{ t.color}}", weight: 4};
+                }
+              },
+                // if(feature.properties.transfer){
+                //   return {style: style_{{ t.alias }}};
+                // }else{
+                //   return {style: style2_{{ t.alias}}};
+                // }
+                //return {style: style_{{ t.alias }}};
+                //},
+              onEachFeature: function (feature, layer) {
+                  if (feature.properties.popup) {
+                    layer.bindPopup(feature.properties.popup);
+                  }
+              }
+            }).addTo(map);
+            controller.addOverlay(layer_{{ t.alias }}, '<span style="color: {{ t.color|safe }};">' + '{{ t.name|safe }}' + '</span>');
             {% endif %}
             {% endfor %}
         }

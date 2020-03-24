@@ -4,25 +4,44 @@ import os
 import datetime as dt
 import io
 
-in_folder = '/home/buki/cloud/fremd/touren/kroatien/tracks/custom/'
-out_folder = '/home/buki/cloud/fremd/touren/kroatien/tracks/csv_custom/'
+tour = 'portugal'
+#start = dt.date(2012, 9, 1)
+in_folder = f'/home/buki/cloud/fremd/touren/{tour}/tracks/gpx/'
+out_folder = f'/home/buki/cloud/fremd/touren/{tour}/tracks/csv/'
+
+
+def datefromfname(f, start):
+    days = int(f[:2])-1
+    dat = start + dt.timedelta(days=days)
+    if '_' in f:
+        t = int(f.split('_')[1][:2])
+        tim = dt.time(t, 0)
+    else:
+        tim = dt.time(0, 0)
+    dati = dt.datetime.combine(dat, tim)
+    return dati
+
+
 
 
 
 for f in sorted(os.listdir(in_folder)):
     print(f)
-    fi = open(os.path.join(in_folder, f), 'r')
-    lines = fi.readlines()
-    lines[1] = '<gpx>\n'
-    fi.close()
-    fo = open(os.path.join(in_folder, f), 'w')
-    fo.writelines(lines)
-    fo.close()
+    if True:
+        fi = open(os.path.join(in_folder, f), 'r')
+        lines = fi.readlines()
+        lines[1] = '<gpx>\n'
+        #lines[2:7] = ''
+        fi.close()
+        fo = open(os.path.join(in_folder, f), 'w')
+        fo.writelines(lines)
+        fo.close()
     with open(os.path.join(in_folder, f), 'r') as xf:
         xtree = et.parse(xf)
     xroot = xtree.getroot() # <gpx>
     lat, lon, alt, time, date, speed = [], [], [], [], [], []
     first_time = False
+    print(xroot.attrib)
     for trkpt in xroot.iter('trkpt'):
         lat.append(trkpt.attrib['lat'])
         lon.append(trkpt.attrib['lon'])
@@ -38,6 +57,8 @@ for f in sorted(os.listdir(in_folder)):
                 datetime = dt.datetime.strptime('2000-01-01T00:00:00Z', "%Y-%m-%dT%H:%M:%SZ")
             else:
                 datetime = first_time
+            # get dt from fname in days
+            # datetime = datefromfname(f, start)
         if not first_time:
             first_time = datetime
         date.append(datetime.date())

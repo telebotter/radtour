@@ -9,6 +9,12 @@ from markdownx.admin import MarkdownxModelAdmin
 
 #admin.site.register(Tour, LeafletGeoAdmin)
 admin.site.register(Tour)
-admin.site.register(Segment, LeafletGeoAdmin)
+# admin.site.register(Segment, LeafletGeoAdmin)
 admin.site.register(Track)
 # admin.site.register(Tour, MarkdownxModelAdmin)
+
+class SegmentAdmin(LeafletGeoAdmin):
+    list_display = ('id', 'date', 'time', 'track')  # for list view
+    search_fields = ['track__tour__name', 'date']
+
+admin.site.register(Segment, SegmentAdmin)
