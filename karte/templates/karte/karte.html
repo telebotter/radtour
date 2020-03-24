@@ -9,12 +9,14 @@
   <style>
       .leaflet-container { height: 100%; }
   </style>
+  <link href="{% static 'karte/css/leaflet.contextmenu.css' %}" rel="stylesheet">
 {% endblock addcss %}
 
 {% block addjs %}
   {% leaflet_js %}
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="{% static 'karte/js/leaflet.awesome-markers.js' %}"></script>
+  <script src="{% static 'karte/js/leaflet.contextmenu.js' %}"></script>
 {% endblock addjs %}
 
 
@@ -31,45 +33,9 @@
 
         function main_map_init (map, options) {
             var controller = L.control.layers().addTo(map);
-            // var tourLayer = []; // will be redifined to object (kw assign)
-            console.log('start init map');
-            // {% for tour in touren %}
-            //   var t = '{{ tour.alias }}';
-            //   tourLayer[t] = L.geoJson(null, {
-            //         style: function(feature) {
-            //             return {color: feature.properties.color};
-            //         },
-            //         pointToLayer: function(feature, latlng) {
-            //             return new L.CircleMarker(latlng, {radius: 4, fillOpacity: 0.85});
-            //         },
-            //         onEachFeature: function (feature, layer) {
-            //             if (feature.properties.date) {
-            //               layer.bindPopup(
-            //                   '<h4>' + feature.properties.date + '</h4>'
-            //                   + '<p>' + feature.properties.text + '</p>');
-            //             }
-            //         }
-            //       });
-            //   // console.log(tourLayer);
-            //   //var trackUrl = '{% url "track_tour" tour.alias %}';
-            //   var trackUrl = '{% url "new_track" tour.alias %}'
-            //   if ('{{ tour.alias }}'== 'ortler'){
-            //     console.log(trackUrl);
-            //     $.getJSON(trackUrl, function(data) {
-            //         console.log(data);
-            //         tourLayer[t].addData(data);
-            //     });
-            //   }
-            //
-            //   var orteUrl = '{% url "orte_tour" tour.alias %}';
-            //   $.getJSON(orteUrl, function(data) {
-            //       tourLayer[t].addData(data);
-            //   });
-            //
-            //   tourLayer[t].addTo(map);
-            //   controller.addOverlay(tourLayer[t], '<span style="color: {{ tour.color|safe }};">' + '{{ tour.name|safe }}' + '</span>');
-            // {% endfor %}
-
+            map.addEventListener('click', function(ev) {
+               console.log(ev);
+            });
 
             {% for t in touren %}
             {% if t.newtrack.geo_json %}
@@ -85,19 +51,33 @@
                 switch (feature.properties.transfer) {
                     case 'True': return {color: "{{ t.color }}", weight: 4, dashArray: '5, 10', dashOffset: '0'};
                     case 'False':   return {color: "{{ t.color}}", weight: 4};
-                }
-              },
-                // if(feature.properties.transfer){
-                //   return {style: style_{{ t.alias }}};
-                // }else{
-                //   return {style: style2_{{ t.alias}}};
-                // }
-                //return {style: style_{{ t.alias }}};
-                //},
-              onEachFeature: function (feature, layer) {
-                  if (feature.properties.popup) {
-                    layer.bindPopup(feature.properties.popup);
                   }
+              },
+              onEachFeature: function (feature, layer) {
+                if (feature.properties.popup) {
+                  layer.bindPopup(feature.properties.popup);
+                }
+                // layer.on({
+                //    contextmenu: function (e) {
+                //      console.log(e);
+                //    }
+                layer.bindContextMenu({
+                  contextmenu: true,
+                  contextmenuItems: [{
+                    text: 'Abbrechen'
+                  },{
+                    text: 'Django Admin',
+                    callback: function(obj){
+                      location.href = '/admin/karte/segment/'+feature.properties.id+'/change/';
+                    }
+                  },{
+                    text: 'Hier Auftrennen',
+                    callback: function(obj){
+                      console.log(obj);
+                      location.href = '/karte/segment/'+feature.properties.id+'/split/'+obj.latlng.lat+'/'+obj.latlng.lng;
+                    }
+                  }]
+                });
               }
             }).addTo(map);
             controller.addOverlay(layer_{{ t.alias }}, '<span style="color: {{ t.color|safe }};">' + '{{ t.name|safe }}' + '</span>');
