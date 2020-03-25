@@ -11,5 +11,6 @@ urlpatterns = [
     path('track/<touralias>/', views.track_tour, name='track_tour'),
     path('newtrack/<touralias>/', views.new_track, name='new_track'),
     path('<touralias>/', views.index_tour, name='index_tour_karte'),
-    path('<touralias>/upload', views.upload, name="track_upload")
+    path('<touralias>/upload', views.upload, name="track_upload"),
+    path('segment/<seg>/split/<lat>/<lon>', views.split_segment, name="split_segment"),
 ]

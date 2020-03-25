@@ -1,0 +1,12 @@
+{% extends "main/base.html" %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+  <h4>Segment Trennen: {{ tour.name }}</h4>
+    <a href="?confirmed=true" class="btn btn-success"><i class="fa fa-scissors"></i> Zeit behalten</a>
+    <a href="?confirmed=true&shift=time" class="btn btn-success"><i class="fa fa-clock-o"></i> +1 Stunde</a>
+    <a href="?confirmed=true&shift=date" class="btn btn-success"><i class="fa fa-calendar"></i> +1 Tag</a>
+</div>
+{% endblock %}

@@ -10,6 +10,7 @@
       .leaflet-container { height: 100%; }
   </style>
   <link href="{% static 'karte/css/leaflet.contextmenu.css' %}" rel="stylesheet">
+  <link href="{% static 'karte/css/easy-button.css' %}" rel="stylesheet">
 {% endblock addcss %}
 
 {% block addjs %}
@@ -17,6 +18,7 @@
   <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="{% static 'karte/js/leaflet.awesome-markers.js' %}"></script>
   <script src="{% static 'karte/js/leaflet.contextmenu.js' %}"></script>
+  <script src="{% static 'karte/js/easy-button.js' %}"></script>
 {% endblock addjs %}
 
 
@@ -36,7 +38,6 @@
             map.addEventListener('click', function(ev) {
                console.log(ev);
             });
-
             {% for t in touren %}
             {% if t.newtrack.geo_json %}
             console.log('loading {{ t.alias }}');
@@ -57,10 +58,6 @@
                 if (feature.properties.popup) {
                   layer.bindPopup(feature.properties.popup);
                 }
-                // layer.on({
-                //    contextmenu: function (e) {
-                //      console.log(e);
-                //    }
                 layer.bindContextMenu({
                   contextmenu: true,
                   contextmenuItems: [{
@@ -83,6 +80,11 @@
             controller.addOverlay(layer_{{ t.alias }}, '<span style="color: {{ t.color|safe }};">' + '{{ t.name|safe }}' + '</span>');
             {% endif %}
             {% endfor %}
+            {% if tour %}
+            L.easyButton('fa-upload', function(btn, map){
+              location.href='/karte/{{ tour.alias }}/upload';
+            }).addTo(map);
+            {% endif %}
         }
         //on.
     </script>

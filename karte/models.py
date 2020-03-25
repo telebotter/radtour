@@ -41,7 +41,7 @@ class Segment(models.Model):
     line = LineStringField(null=True, blank=True)
     # line_geom = GeometryField(null=True, blank=True)
     transfer = BooleanField(default=False)
-    position = FloatField(default=1) # used to order the segments in track
+    # position = FloatField(default=1) # used to order the segments in track
     # TODO: use time field instead of position.. and order bei date, time
     # or just use a datetime field with a default start time of 00:00:00?
     track = ForeignKey(Track, on_delete=SET_NULL, related_name='segments', null=True, blank=True)
