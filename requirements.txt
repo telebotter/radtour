@@ -3,7 +3,7 @@ autodiscover==0.0.3
 certifi==2019.9.11
 cffi==1.13.2
 colorful==0.5.4
-cryptography==2.8
+cryptography==3.2
 Django==2.2.13
 django-appconf==1.0.3
 django-colorful==1.3
