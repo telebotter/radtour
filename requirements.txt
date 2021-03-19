@@ -18,7 +18,7 @@ leaflet==0.0.3
 mysqlclient==1.4.6
 openmensa-api==1.1
 pilkit==2.0
-Pillow==6.2.1
+Pillow==8.1.1
 pycparser==2.19
 python-telegram-bot==12.2.0
 pytz==2019.3
